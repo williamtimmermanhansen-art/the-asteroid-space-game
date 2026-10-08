@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+  <meta name="theme-color" content="#05070d">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="The Asteroid Space Game">
+  <link rel="manifest" href="manifest.json">
+  <title>The Asteroid Space Game</title>
+  <style>
+    :root{
+      --bg:#05070d;
+      --panel:rgba(0,0,0,.72);
+      --border:rgba(255,255,255,.18);
+      --text:#fff;
+      --muted:rgba(255,255,255,.68);
+      --accent:#d8e8ff;
+    }
+    *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+    html,body{margin:0;background:#000;color:#fff;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text",system-ui,sans-serif;overflow:hidden}
+    body{position:fixed;inset:0}
+    button{font:inherit;color:inherit}
+    #app{position:absolute;inset:0;background:#000;user-select:none;-webkit-user-select:none;touch-action:none;outline:none}
+    canvas{position:absolute;inset:0;width:100%;height:100%;display:block;background:var(--bg);touch-action:none}
+    .hud{position:absolute;z-index:10;left:max(12px,env(safe-area-inset-left));top:max(12px,env(safe-area-inset-top));background:rgba(0,0,0,.52);border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:10px 12px;color:#fff;text-shadow:0 2px 5px #000;font-weight:800;font-size:13px;backdrop-filter:blur(9px)}
+    .hud .big{font-size:18px;line-height:1.2}
+    .hud-row{margin-top:4px}
+    .rankbar{width:170px;max-width:42vw;height:7px;border-radius:99px;background:rgba(255,255,255,.16);overflow:hidden;margin-top:7px}
+    .rankbar > div{height:100%;background:#fff;width:0;transition:width .25s ease}
+    .small{font-size:11px;color:rgba(255,255,255,.82);margin-top:4px}
+    .menu-button{position:absolute;z-index:12;right:max(12px,env(safe-area-inset-right));top:max(12px,env(safe-area-inset-top));min-width:82px;min-height:48px;border-radius:16px;border:1px solid rgba(255,255,255,.18);background:rgba(0,0,0,.58);font-weight:900;backdrop-filter:blur(8px)}
+    .controls{position:absolute;z-index:12;left:0;right:0;bottom:0;padding:12px max(12px,env(safe-area-inset-right)) max(12px,env(safe-area-inset-bottom)) max(12px,env(safe-area-inset-left));display:flex;align-items:flex-end;justify-content:space-between;gap:12px;pointer-events:none}
+    .dpad{width:168px;display:grid;grid-template-columns:repeat(3,1fr);gap:8px;pointer-events:auto}
+    .control,.fire{border:1px solid rgba(255,255,255,.16);background:rgba(0,0,0,.58);backdrop-filter:blur(8px);font-weight:900;touch-action:none}
+    .control{min-height:56px;border-radius:17px;font-size:22px}
+    .fire{pointer-events:auto;width:96px;height:96px;border-radius:50%;background:rgba(220,235,255,.92);color:#07101a;font-size:15px;border:2px solid rgba(255,255,255,.5)}
+    .overlay{position:absolute;z-index:40;inset:0;background:rgba(0,0,0,.82);display:flex;align-items:center;justify-content:center;padding:22px calc(22px + env(safe-area-inset-right)) calc(22px + env(safe-area-inset-bottom)) calc(22px + env(safe-area-inset-left))}
+    .card{width:min(100%,370px);background:rgba(5,7,13,.92);border:1px solid var(--border);border-radius:28px;padding:22px;box-shadow:0 18px 60px rgba(0,0,0,.4)}
+    .center{text-align:center}
+    h1,h2,h3,p{margin:0}
+    h1{font-size:28px}
+    h2{font-size:22px}
+    .lead{margin-top:10px;color:var(--muted);font-size:14px;line-height:1.45}
+    .go{width:100%;min-height:62px;margin-top:20px;border:0;border-radius:18px;background:#eef5ff;color:#08111c;font-size:21px;font-weight:950}
+    .hidden{display:none!important}
+    .message{position:absolute;z-index:30;left:50%;top:180px;transform:translateX(-50%);width:min(86%,360px);padding:10px 12px;border-radius:14px;text-align:center;background:rgba(0,0,0,.7);font-size:13px;font-weight:900;backdrop-filter:blur(8px)}
+    .upgrade-overlay{align-items:flex-start;overflow:auto;padding-top:max(18px,env(safe-area-inset-top));padding-bottom:max(18px,env(safe-area-inset-bottom))}
+    .upgrade-card{margin:auto 0}
+    .topline{display:flex;gap:12px;align-items:flex-start;justify-content:space-between}
+    .close{min-height:44px;border-radius:13px;border:1px solid var(--border);background:rgba(255,255,255,.06);font-weight:900;padding:0 16px}
+    .system{margin-top:12px;padding:13px;border-radius:18px;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.08)}
+    .system-title{display:flex;justify-content:space-between;gap:10px;font-weight:900}
+    .desc{margin-top:4px;font-size:12px;color:var(--muted)}
+    .upgrade-btn,.rank-btn{width:100%;min-height:46px;margin-top:9px;border-radius:14px;border:1px solid var(--border);background:rgba(255,255,255,.07);font-weight:900;padding:8px 12px}
+    .upgrade-btn:disabled,.rank-btn:disabled{opacity:.38}
+    .rank-grid{display:grid;gap:8px;margin-top:9px}
+    .rank-btn{text-align:left;margin:0}
+    .rank-btn span{display:block;font-size:11px;color:var(--muted);font-weight:600;margin-top:2px}
+    .mini-bar{height:7px;border-radius:99px;background:rgba(255,255,255,.14);overflow:hidden;margin-top:12px}
+    .mini-bar > div{height:100%;background:#fff;width:0}
+    .gameover-rank{margin-top:8px;color:var(--muted);font-weight:700}
+    @media (max-width:360px){
+      .hud{font-size:12px;padding:8px 10px}
+      .hud .big{font-size:16px}
+      .dpad{width:148px;gap:6px}
+      .control{min-height:52px}
+      .fire{width:86px;height:86px}
+      .rankbar{width:145px}
+    }
+  
+    .keyboard-hint{position:absolute;z-index:11;left:50%;bottom:calc(18px + env(safe-area-inset-bottom));transform:translateX(-50%);padding:7px 11px;border-radius:12px;background:rgba(0,0,0,.45);border:1px solid rgba(255,255,255,.10);color:rgba(255,255,255,.78);font-size:11px;font-weight:800;letter-spacing:.04em;pointer-events:none;backdrop-filter:blur(8px);white-space:nowrap}
+    @media (max-width:700px){.keyboard-hint{display:none}}
+    @media (min-width:701px){.controls{padding:18px 22px 18px 22px}.dpad{width:178px}.control{min-height:60px;font-size:24px}.fire{width:102px;height:102px}.menu-button{min-width:96px}}
+  
+    .fire-stack{
+      display:flex;
+      align-items:flex-end;
+      gap:8px;
+      pointer-events:auto;
+    }
+    .reload-btn{
+      width:78px;
+      height:68px;
+      border-radius:18px;
+      border:1px solid rgba(255,255,255,.16);
+      background:rgba(0,0,0,.58);
+      color:#fff;
+      font-size:12px;
+      font-weight:900;
+      backdrop-filter:blur(8px);
+      touch-action:none;
+    }
+    @media (max-width:420px){
+      .fire-stack{gap:6px}
+      .reload-btn{width:70px;height:62px;font-size:11px}
+      .fire{width:88px;height:88px}
+    }
+
+</style>
+</head>
+<body>
+<div id="app" tabindex="0">
+  <canvas id="game" aria-label="The Asteroid Space Game space game"></canvas>
+
+  <div class="hud">
+    <div id="lives" class="big">❤️ ❤️ ❤️</div>
+    <div class="hud-row">CREDITS <span id="credits">0</span></div>
+    <div class="hud-row">SHIELD <span id="shieldText">100 / 100</span></div>
+    <div class="hud-row">SPACE RANK <span id="spaceRankHud">ROOKIE</span></div>
+    <div class="hud-row">ASTEROIDS <span id="killsHud">0</span></div>
+    <div class="rankbar"><div id="rankBar"></div></div>
+    <div id="rankProgressText" class="small">20 to Space Cadet</div>
+    <div id="ammoHud" class="hud-row">GUN 30 / 30</div>
+  </div>
+
+  <button id="menuBtn" class="menu-button" type="button">🚀 SHIP</button>
+
+  <div id="keyboardHint" class="keyboard-hint">WASD / ARROWS · SPACE = FIRE · R = RELOAD · M = MENU</div>
+  <div class="controls">
+    <div class="dpad">
+      <span></span><button class="control" data-key="up" type="button">▲</button><span></span>
+      <button class="control" data-key="left" type="button">◀</button>
+      <button class="control" data-key="down" type="button">▼</button>
+      <button class="control" data-key="right" type="button">▶</button>
+    </div>
+    <div class="fire-stack">
+      <button id="reloadBtn" class="reload-btn" type="button">↻<br>RELOAD</button>
+      <button id="fireBtn" class="fire" type="button">🔥<br>FIRE</button>
+    </div>
+  </div>
+
+  <div id="message" class="message hidden" aria-live="polite"></div>
+
+  <div id="startOverlay" class="overlay">
+    <div class="card center">
+      <div style="font-size:64px">🚀</div>
+      <h1 style="margin-top:14px">THE ASTEROID SPACE GAME</h1>
+      <p class="lead">Destroy asteroids, earn credits, climb the Space Ranks, and upgrade your ship.</p><p class="lead"><b>PC:</b> W/A/S/D or Arrow Keys to fly · Space to fire · R to reload · M to open Ship Systems<br><b>Mobile / Touchscreen:</b> Use the on-screen controls, including the Reload button.<br><b>Elite asteroid:</b> Every 5th asteroid is red, has more health, and gives 2× credits.</p>
+      <button id="goBtn" class="go" type="button">GO</button>
+      <p class="lead">iPhone tip: Add the game to your Home Screen for the most app-like full-screen experience.</p>
+    </div>
+  </div>
+
+  <div id="upgradeMenu" class="overlay upgrade-overlay hidden">
+    <div class="card upgrade-card">
+      <div class="topline">
+        <div>
+          <h2>🚀 SHIP SYSTEMS</h2>
+          <div class="desc" style="font-size:14px;color:#fff;margin-top:6px">CREDITS: <b id="menuCredits">0</b></div>
+          <div class="desc">SPACE RANK: <b id="menuSpaceRank">ROOKIE</b></div>
+          <div class="desc">DESTROYED: <b id="menuKills">0</b> asteroids</div>
+        </div>
+        <button id="closeMenu" class="close" type="button">CLOSE</button>
+      </div>
+
+      <div class="mini-bar"><div id="menuRankBar"></div></div>
+      <div id="menuRankProgress" class="desc">20 to Space Cadet</div>
+
+      <div class="system">
+        <div class="system-title"><span>🔫 WEAPONS</span><span>LV. <b id="gunLevel">1</b></span></div>
+        <div id="gunInfo" class="desc">Center cannon · 30 shots before cooldown</div>
+        <button id="gunUpgrade" class="upgrade-btn" type="button">UPGRADE · 35 CR</button>
+      </div>
+
+      <div class="system">
+        <div class="system-title"><span>🧰 MAGAZINE</span><span><b id="magCapacity">30</b> SHOTS</span></div>
+        <div id="magInfo" class="desc">Standard magazine · 30 shots</div>
+        <button id="magUpgrade" class="upgrade-btn" type="button">UPGRADE TO 60 · 100 CR</button>
+      </div>
+
+      <div class="system">
+        <div class="system-title"><span>🚀 ENGINE</span><span>LV. <b id="engineLevel">1</b></span></div>
+        <div id="engineInfo" class="desc">100% engine power</div>
+        <button id="engineUpgrade" class="upgrade-btn" type="button">UPGRADE · 30 CR</button>
+      </div>
+
+      <div class="system">
+        <div class="system-title"><span>🛡️ SHIELD</span><span>LV. <b id="shieldLevel">1</b></span></div>
+        <div id="shieldInfo" class="desc">100 max shield</div>
+        <button id="shieldUpgrade" class="upgrade-btn" type="button">UPGRADE · 40 CR</button>
+      </div>
+
+      <div class="system">
+        <div class="system-title"><span>👑 SHIP TITLE</span><span id="cosmeticHud">ROOKIE</span></div>
+        <div class="desc">Buy special colors and designs. Titles are unlocked in order.</div>
+        <div class="rank-grid">
+          <button id="rankKing" class="rank-btn" type="button">👑 KING · 100 CR<span>Gold ship</span></button>
+          <button id="rankMaster" class="rank-btn" type="button">💎 MASTER · 700 CR<span>Light blue ship</span></button>
+          <button id="rankLegend" class="rank-btn" type="button">⭐ LEGEND · 1500 CR<span>Legend-design</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="gameOver" class="overlay hidden">
+    <div class="card center">
+      <div style="font-size:64px">💥</div>
+      <h2 style="margin-top:12px">GAME OVER</h2>
+      <div style="margin-top:12px;font-weight:900">SCORE <span id="finalScore">0</span></div>
+      <div class="gameover-rank">RANK <span id="finalRank">ROOKIE</span></div>
+      <button id="restartBtn" class="go" type="button">PLAY AGAIN</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(() => {
+  const app = document.getElementById('app');
+  const q = id => document.getElementById(id);
+  const canvas = q('game');
+  const ctx = canvas.getContext('2d');
+  const active = new Set();
+
+  let W=0,H=0,dpr=1;
+  let started=false, paused=true, menuOpen=false, over=false;
+  let last=performance.now(), credits=0, score=0, lives=3, asteroidKills=0;
+  let fireClock=0, spawnClock=0, msgClock=0, shotsUsed=0, cooldown=0, reloading=0, gunSide=0;
+  let cosmeticRank=0, magLevel=0, spawnCount=0;
+  let bullets=[], rocks=[], particles=[], stars=[];
+  let upgrades={gun:1,engine:1,shield:1}, ship;
+
+  const cosmeticRanks=[
+    {name:'ROOKIE',cost:0,color:'#9fb6cf',accent:'#ffffff'},
+    {name:'KING',cost:100,color:'#d9b64c',accent:'#fff1a6'},
+    {name:'MASTER',cost:700,color:'#9edcff',accent:'#e6f8ff'},
+    {name:'LEGEND',cost:1500,color:'#eeeaff',accent:'#c4a8ff'}
+  ];
+  const spaceRanks=[
+    {name:'ROOKIE',at:0},
+    {name:'SPACE CADET',at:20},
+    {name:'SPACE OFFICER',at:50},
+    {name:'SPACE SERGEANT',at:75},
+    {name:'SPACE COLONEL',at:100},
+    {name:'SPACE LIEUTENANT',at:150},
+    {name:'SPACE CAPTAIN',at:200},
+    {name:'SPACE GOD',at:300}
+  ];
+
+  const rand=(a,b)=>a+Math.random()*(b-a);
+
+  function resize(){
+    const rect=app.getBoundingClientRect();
+    dpr=Math.min(2,window.devicePixelRatio||1);
+    W=Math.max(320,rect.width);
+    H=Math.max(500,rect.height);
+    canvas.width=Math.floor(W*dpr);
+    canvas.height=Math.floor(H*dpr);
+    canvas.style.width=W+'px';
+    canvas.style.height=H+'px';
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    stars=Array.from({length:Math.round(Math.min(150,W*H/6500))},()=>({
+      x:rand(0,W),y:rand(0,H),r:rand(.5,1.7),a:rand(.18,.7)
+    }));
+    if(ship){
+      ship.x=Math.min(W-30,Math.max(30,ship.x));
+      ship.y=Math.min(H-30,Math.max(30,ship.y));
+    }
+  }
+
+  function resetShip(){
+    const max=100+(upgrades.shield-1)*30;
+    ship={x:W/2,y:H*.46,vx:0,vy:0,a:-Math.PI/2,r:17,shield:max,maxShield:max,inv:2};
+  }
+
+  function wrap(o){
+    if(o.x<-45)o.x=W+45;if(o.x>W+45)o.x=-45;
+    if(o.y<-45)o.y=H+45;if(o.y>H+45)o.y=-45;
+  }
+
+  function systemCost(t){
+    return Math.round({gun:35,engine:30,shield:40}[t]*Math.pow(1.55,upgrades[t]-1));
+  }
+
+  function magCapacity(){
+    return magLevel===0 ? 30 : magLevel===1 ? 60 : 125;
+  }
+
+  function magUpgradeCost(){
+    return magLevel===0 ? 100 : magLevel===1 ? 350 : null;
+  }
+
+  function startReload(){
+    if(!started || paused || menuOpen || over) return;
+    if(reloading>0 || cooldown>0) return;
+    if(shotsUsed<=0) return;
+    reloading=3;
+    active.delete('fire');
+    showMessage('RELOADING · 3 SEC.',1.2);
+    updateUI();
+  }
+
+  function upgradeMagazine(){
+    const c=magUpgradeCost();
+    if(c===null || credits<c) return;
+    credits-=c;
+    magLevel++;
+    shotsUsed=0;
+    reloading=0;
+    cooldown=0;
+    showMessage(magLevel===1?'60-SHOT MAGAZINE UNLOCKED':'125-SHOT MAGAZINE UNLOCKED',2);
+    updateUI();
+  }
+
+  function showMessage(text,time=1.8){
+    q('message').textContent=text;
+    q('message').classList.remove('hidden');
+    msgClock=time;
+  }
+
+  function getSpaceRankIndex(){
+    let idx=0;
+    for(let i=0;i<spaceRanks.length;i++) if(asteroidKills>=spaceRanks[i].at) idx=i;
+    return idx;
+  }
+
+  function getRankProgress(){
+    const idx=getSpaceRankIndex();
+    if(idx>=spaceRanks.length-1) return {pct:100,text:'MAX RANK · SPACE GOD'};
+    const current=spaceRanks[idx], next=spaceRanks[idx+1];
+    return {
+      pct:Math.max(0,Math.min(100,(asteroidKills-current.at)/(next.at-current.at)*100)),
+      text:(next.at-asteroidKills)+' to '+titleCase(next.name)
+    };
+  }
+
+  function titleCase(s){
+    return s.toLowerCase().replace(/\b\w/g,c=>c.toUpperCase());
+  }
+
+  function updateRankButtons(){
+    const buttons=[null,q('rankKing'),q('rankMaster'),q('rankLegend')];
+    const labels=[
+      '',
+      '👑 KING · 100 CR<span>Gold ship</span>',
+      '💎 MASTER · 700 CR<span>Light blue ship</span>',
+      '⭐ LEGEND · 1500 CR<span>Legend-design</span>'
+    ];
+    for(let i=1;i<=3;i++){
+      const b=buttons[i];
+      b.innerHTML=cosmeticRank>=i
+        ? (i===1?'👑 KING':i===2?'💎 MASTER':'⭐ LEGEND')+' · PURCHASED'
+        : labels[i];
+      if(cosmeticRank>=i){b.disabled=true;continue;}
+      if(i!==cosmeticRank+1){b.disabled=true;continue;}
+      b.disabled=credits<cosmeticRanks[i].cost;
+    }
+  }
+
+  function updateUI(){
+    const sr=spaceRanks[getSpaceRankIndex()];
+    const prog=getRankProgress();
+    q('credits').textContent=credits;
+    q('menuCredits').textContent=credits;
+    q('shieldText').textContent=Math.ceil(ship.shield)+' / '+ship.maxShield;
+    q('lives').textContent=('❤️ '.repeat(lives)+'🖤 '.repeat(3-lives)).trim();
+    q('spaceRankHud').textContent=sr.name;
+    q('menuSpaceRank').textContent=sr.name;
+    q('killsHud').textContent=asteroidKills;
+    q('menuKills').textContent=asteroidKills;
+    q('rankBar').style.width=prog.pct+'%';
+    q('menuRankBar').style.width=prog.pct+'%';
+    q('rankProgressText').textContent=prog.text;
+    q('menuRankProgress').textContent=prog.text;
+    q('ammoHud').textContent=reloading>0
+      ? 'RELOADING '+reloading.toFixed(1)+'s'
+      : cooldown>0
+        ? 'GUN COOLDOWN '+cooldown.toFixed(1)+'s'
+        : 'GUN '+Math.max(0,magCapacity()-shotsUsed)+' / '+magCapacity();
+    q('gunLevel').textContent=upgrades.gun;
+    q('engineLevel').textContent=upgrades.engine;
+    q('shieldLevel').textContent=upgrades.shield;
+    q('gunInfo').textContent=upgrades.gun>=2?'Side cannons · alternate left/right · 30 shots':'Center cannon · 30 shots before cooldown';
+    q('engineInfo').textContent=Math.round((1+(upgrades.engine-1)*.17)*100)+' % engine power';
+    q('shieldInfo').textContent=ship.maxShield+' max shield';
+    q('magCapacity').textContent=magCapacity();
+    q('magInfo').textContent=magLevel===0?'Standard magazine · 30 shots':magLevel===1?'Extended magazine · 60 shots':'Heavy magazine · 125 shots';
+    const magBtn=q('magUpgrade');
+    const magCost=magUpgradeCost();
+    if(magCost===null){
+      magBtn.textContent='MAX MAGAZINE · 125 SHOTS';
+      magBtn.disabled=true;
+    }else{
+      magBtn.textContent=(magLevel===0?'UPGRADE TO 60':'UPGRADE TO 125')+' · '+magCost+' CR';
+      magBtn.disabled=credits<magCost;
+    }
+    q('cosmeticHud').textContent=cosmeticRanks[cosmeticRank].name;
+    ['gun','engine','shield'].forEach(t=>{
+      const b=q(t+'Upgrade'), c=systemCost(t);
+      b.textContent='UPGRADE · '+c+' CR';
+      b.disabled=credits<c;
+    });
+    updateRankButtons();
+  }
+
+  function spawnRock(){
+    let side=Math.floor(Math.random()*4),x,y;
+    if(side===0){x=rand(0,W);y=-40}
+    else if(side===1){x=W+40;y=rand(0,H)}
+    else if(side===2){x=rand(0,W);y=H+40}
+    else{x=-40;y=rand(0,H)}
+
+    spawnCount++;
+    const elite = spawnCount % 5 === 0;
+    const r=elite ? rand(24,44) : rand(19,41);
+    const a=Math.atan2(ship.y-y,ship.x-x)+rand(-.65,.65);
+    const s=(elite ? rand(20,42) : rand(23,50))+Math.min(score/90,30);
+    const baseHp=r>32?3:r>24?2:1;
+
+    rocks.push({
+      x,y,
+      vx:Math.cos(a)*s,
+      vy:Math.sin(a)*s,
+      r,
+      hp: elite ? baseHp+2 : baseHp,
+      maxHp: elite ? baseHp+2 : baseHp,
+      rot:rand(0,6.28),
+      spin:rand(-.65,.65),
+      value:Math.max(4,Math.round(r/5)),
+      elite
+    });
+  }
+
+  function burst(x,y,n=8){
+    for(let i=0;i<n;i++){
+      const a=rand(0,Math.PI*2),s=rand(18,85);
+      particles.push({x,y,vx:Math.cos(a)*s,vy:Math.sin(a)*s,life:rand(.25,.75)});
+    }
+  }
+
+  function addBullet(offset){
+    const sx=Math.sin(ship.a)*offset, sy=-Math.cos(ship.a)*offset, a=ship.a;
+    bullets.push({x:ship.x+Math.cos(a)*22+sx,y:ship.y+Math.sin(a)*22+sy,vx:Math.cos(a)*410+ship.vx,vy:Math.sin(a)*410+ship.vy,life:1.4,r:4});
+  }
+
+  function shoot(){
+    if(cooldown>0||reloading>0||paused||menuOpen||over)return;
+    const delay=Math.max(.10,.34-(upgrades.gun-1)*.045);
+    if(fireClock<delay)return;
+    fireClock=0;
+    if(upgrades.gun===1) addBullet(0);
+    else { gunSide=gunSide?0:1; addBullet(gunSide?15:-15); }
+    shotsUsed++;
+    if(shotsUsed>=magCapacity()){
+      shotsUsed=magCapacity();
+      cooldown=3;
+      showMessage('MAG EMPTY · AUTO RELOAD 3 SEC.',1.2);
+    }
+  }
+
+  function asteroidDestroyed(r){
+    r.hp--;
+    if(r.hp>0){burst(r.x,r.y,3);return false;}
+    const beforeRank=getSpaceRankIndex();
+    const earned = r.elite ? r.value*2 : r.value;
+    credits+=earned;
+    score+=r.elite ? 20 : 10;
+    asteroidKills++;
+    burst(r.x,r.y,r.elite?20:12);
+    if(r.elite) showMessage('RED ASTEROID DESTROYED · 2× CREDITS!',1.5);
+
+    if(asteroidKills%10===0){
+      credits+=15;
+      showMessage(' +15 BONUS CREDITS · '+asteroidKills+' ASTEROIDS!',1.8);
+    }
+
+    const afterRank=getSpaceRankIndex();
+    if(afterRank>beforeRank){
+      showMessage('RANK UP · '+spaceRanks[afterRank].name+'!',2.3);
+      burst(ship.x,ship.y,32);
+    }
+    return true;
+  }
+
+  function loseLife(){
+    lives--;
+    burst(ship.x,ship.y,28);
+    if(lives<=0){
+      lives=0;over=true;paused=true;active.clear();
+      q('finalScore').textContent=score;
+      q('finalRank').textContent=spaceRanks[getSpaceRankIndex()].name;
+      q('gameOver').classList.remove('hidden');
+      updateUI();
+      return;
+    }
+    resetShip();
+    rocks=rocks.filter(r=>Math.hypot(r.x-ship.x,r.y-ship.y)>210);
+    showMessage('LIFE LOST · '+lives+' LEFT');
+    updateUI();
+  }
+
+  function upgrade(t){
+    const c=systemCost(t);
+    if(credits<c)return;
+    credits-=c;
+    upgrades[t]++;
+    if(t==='shield'){
+      ship.maxShield=100+(upgrades.shield-1)*30;
+      ship.shield=ship.maxShield;
+    }
+    showMessage(t==='gun'?'SIDE CANNONS UPGRADED':t==='engine'?'ENGINE UPGRADED':'SHIELD UPGRADED');
+    updateUI();
+  }
+
+  function buyCosmeticRank(level){
+    if(level!==cosmeticRank+1)return;
+    const r=cosmeticRanks[level];
+    if(credits<r.cost)return;
+    credits-=r.cost;
+    cosmeticRank=level;
+    showMessage(r.name+' SHIP TITLE UNLOCKED',2);
+    burst(ship.x,ship.y,35);
+    updateUI();
+  }
+
+  function step(dt){
+    if(reloading>0){
+      reloading=Math.max(0,reloading-dt);
+      if(reloading===0){shotsUsed=0;showMessage('RELOAD COMPLETE',1);}
+    }
+    if(cooldown>0){
+      cooldown=Math.max(0,cooldown-dt);
+      if(cooldown===0){shotsUsed=0;showMessage('GUNS READY',1);}
+    }
+    if(paused||menuOpen||over||!started){updateUI();return;}
+
+    fireClock+=dt;
+    spawnClock+=dt;
+    if(msgClock>0){msgClock-=dt;if(msgClock<=0)q('message').classList.add('hidden');}
+
+    const turn=2.75+(upgrades.engine-1)*.14;
+    const thrust=102*(1+(upgrades.engine-1)*.17);
+    const max=168*(1+(upgrades.engine-1)*.13);
+
+    if(active.has('left'))ship.a-=turn*dt;
+    if(active.has('right'))ship.a+=turn*dt;
+    if(active.has('up')){ship.vx+=Math.cos(ship.a)*thrust*dt;ship.vy+=Math.sin(ship.a)*thrust*dt;}
+    if(active.has('down')){ship.vx*=Math.pow(.2,dt);ship.vy*=Math.pow(.2,dt);}
+    if(active.has('fire'))shoot();
+
+    const sp=Math.hypot(ship.vx,ship.vy);
+    if(sp>max){ship.vx=ship.vx/sp*max;ship.vy=ship.vy/sp*max;}
+    ship.vx*=Math.pow(.985,dt*60);
+    ship.vy*=Math.pow(.985,dt*60);
+    ship.x+=ship.vx*dt;
+    ship.y+=ship.vy*dt;
+    wrap(ship);
+    ship.inv=Math.max(0,ship.inv-dt);
+    ship.shield=Math.min(ship.maxShield,ship.shield+dt*(1.2+(upgrades.shield-1)*.8));
+
+    if(spawnClock>1.15&&rocks.length<Math.min(11,3+Math.floor(score/130))){
+      spawnClock=0;spawnRock();
+    }
+
+    bullets.forEach(b=>{b.x+=b.vx*dt;b.y+=b.vy*dt;b.life-=dt});
+    bullets=bullets.filter(b=>b.life>0&&b.x>-30&&b.x<W+30&&b.y>-30&&b.y<H+30);
+    rocks.forEach(r=>{r.x+=r.vx*dt;r.y+=r.vy*dt;r.rot+=r.spin*dt;wrap(r)});
+    particles.forEach(p=>{p.x+=p.vx*dt;p.y+=p.vy*dt;p.life-=dt});
+    particles=particles.filter(p=>p.life>0);
+
+    for(let bi=bullets.length-1;bi>=0;bi--){
+      for(let ri=rocks.length-1;ri>=0;ri--){
+        const b=bullets[bi],r=rocks[ri];
+        if(b&&Math.hypot(b.x-r.x,b.y-r.y)<r.r+b.r){
+          bullets.splice(bi,1);
+          if(asteroidDestroyed(r))rocks.splice(ri,1);
+          break;
+        }
+      }
+    }
+
+    if(ship.inv<=0){
+      for(const r of rocks){
+        if(Math.hypot(ship.x-r.x,ship.y-r.y)<ship.r+r.r*.78){
+          ship.shield-=Math.round(22+r.r*.55);
+          ship.inv=1;
+          burst(ship.x,ship.y,12);
+          if(ship.shield<=0){ship.shield=0;loseLife();}
+          break;
+        }
+      }
+    }
+    updateUI();
+  }
+
+  function drawShip(){
+    ctx.save();
+    ctx.translate(ship.x,ship.y);
+    ctx.rotate(ship.a);
+    const style=cosmeticRanks[cosmeticRank],engine=upgrades.engine,gun=upgrades.gun;
+
+    if(active.has('up')&&!paused){
+      ctx.beginPath();
+      ctx.moveTo(-12,-7-engine);
+      ctx.lineTo(-28-engine*4,0);
+      ctx.lineTo(-12,7+engine);
+      ctx.closePath();
+      ctx.fillStyle=cosmeticRank===1?'#ffd66b':cosmeticRank===2?'#b9ecff':cosmeticRank===3?'#d8c4ff':'#f2b85e';
+      ctx.fill();
+    }
+
+    ctx.beginPath();
+    ctx.moveTo(24+engine,0);
+    ctx.lineTo(-15,-14);
+    ctx.lineTo(-8,0);
+    ctx.lineTo(-15,14);
+    ctx.closePath();
+    ctx.fillStyle=style.color;
+    ctx.fill();
+    ctx.strokeStyle=style.accent;
+    ctx.lineWidth=cosmeticRank===3?3:2;
+    ctx.stroke();
+
+    if(gun>=2){
+      ctx.fillStyle=style.accent;
+      ctx.fillRect(0,-18,15,4);
+      ctx.fillRect(0,14,15,4);
+    }
+    if(gun>=4){
+      ctx.fillRect(-6,-22,13,3);
+      ctx.fillRect(-6,19,13,3);
+    }
+    if(cosmeticRank===1){
+      ctx.beginPath();ctx.moveTo(-2,-10);ctx.lineTo(5,-18);ctx.lineTo(11,-10);
+      ctx.strokeStyle='#fff1a6';ctx.lineWidth=3;ctx.stroke();
+    }
+    if(cosmeticRank===2){
+      ctx.beginPath();ctx.arc(3,0,7,0,Math.PI*2);ctx.fillStyle='#e6f8ff';ctx.fill();
+    }
+    if(cosmeticRank===3){
+      ctx.beginPath();ctx.moveTo(3,-11);ctx.lineTo(9,0);ctx.lineTo(3,11);
+      ctx.strokeStyle='#c4a8ff';ctx.lineWidth=4;ctx.stroke();
+    }
+    ctx.restore();
+
+    const rings=1+(upgrades.shield>=3?1:0)+(cosmeticRank===3?1:0);
+    for(let i=0;i<rings;i++){
+      ctx.beginPath();
+      ctx.arc(ship.x,ship.y,ship.r+11+i*6,0,Math.PI*2);
+      ctx.strokeStyle=cosmeticRank===2?'rgba(170,230,255,.45)':cosmeticRank===1?'rgba(255,220,110,.42)':cosmeticRank===3?'rgba(205,180,255,.45)':'rgba(150,220,255,.35)';
+      ctx.lineWidth=2;
+      ctx.stroke();
+    }
+  }
+
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    ctx.fillStyle='#04060b';ctx.fillRect(0,0,W,H);
+
+    stars.forEach(s=>{
+      ctx.globalAlpha=s.a;ctx.fillStyle='#fff';
+      ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);ctx.fill();
+    });
+    ctx.globalAlpha=1;
+
+    rocks.forEach(r=>{
+      ctx.save();ctx.translate(r.x,r.y);ctx.rotate(r.rot);ctx.beginPath();
+      for(let i=0;i<9;i++){
+        const a=i/9*Math.PI*2,rr=r.r*(.83+((i*13)%5)*.045),x=Math.cos(a)*rr,y=Math.sin(a)*rr;
+        i?ctx.lineTo(x,y):ctx.moveTo(x,y);
+      }
+      ctx.closePath();
+      ctx.fillStyle=r.elite?'#c82f2f':'#272e3a';ctx.fill();
+      ctx.strokeStyle='rgba(220,225,235,.45)';ctx.lineWidth=2;ctx.stroke();
+      ctx.restore();
+    });
+
+    ctx.fillStyle='#fff';
+    bullets.forEach(b=>{ctx.beginPath();ctx.arc(b.x,b.y,b.r,0,Math.PI*2);ctx.fill();});
+    if(ship.inv<=0||Math.floor(ship.inv*9)%2===0)drawShip();
+
+    particles.forEach(p=>{
+      ctx.globalAlpha=Math.max(0,p.life*1.4);
+      ctx.fillStyle=cosmeticRanks[cosmeticRank].accent;
+      ctx.fillRect(p.x,p.y,3,3);
+    });
+    ctx.globalAlpha=1;
+  }
+
+  function loop(now){
+    const dt=Math.min(.035,(now-last)/1000);
+    last=now;
+    step(dt);
+    draw();
+    requestAnimationFrame(loop);
+  }
+
+  function start(){
+    started=true;
+    paused=false;
+    q('startOverlay').classList.add('hidden');
+    showMessage('READY · 3 LIVESES · SPACE RANK ROOKIE');
+    try{app.focus({preventScroll:true});}catch(_){app.focus();}
+  }
+
+  function restart(){
+    credits=0;score=0;lives=3;asteroidKills=0;shotsUsed=0;cooldown=0;reloading=0;gunSide=0;spawnCount=0;
+    bullets=[];rocks=[];particles=[];upgrades={gun:1,engine:1,shield:1};cosmeticRank=0;magLevel=0;
+    menuOpen=false;over=false;started=true;paused=false;active.clear();
+    resetShip();
+    for(let i=0;i<4;i++)spawnRock();
+    q('gameOver').classList.add('hidden');
+    showMessage('NEW SHIP · SPACE RANK ROOKIE');
+    updateUI();
+    try{app.focus({preventScroll:true});}catch(_){app.focus();}
+  }
+
+  function hold(btn,key){
+    const down=e=>{e.preventDefault();if(started&&!paused&&!menuOpen&&!over)active.add(key)};
+    const up=e=>{if(e)e.preventDefault();active.delete(key)};
+    btn.addEventListener('pointerdown',down);
+    ['pointerup','pointercancel','pointerleave'].forEach(ev=>btn.addEventListener(ev,up));
+  }
+
+
+  function keyToControl(key){
+    const k=String(key||'').toLowerCase();
+    if(k==='w'||k==='arrowup') return 'up';
+    if(k==='s'||k==='arrowdown') return 'down';
+    if(k==='a'||k==='arrowleft') return 'left';
+    if(k==='d'||k==='arrowright') return 'right';
+    if(k===' '||k==='space'||k==='spacebar') return 'fire';
+    return '';
+  }
+  function isEditableTarget(target){
+    if(!target) return false;
+    const tag=(target.tagName||'').toLowerCase();
+    return tag==='input'||tag==='textarea'||tag==='select'||target.isContentEditable;
+  }
+  app.addEventListener('keydown',e=>{
+    if(isEditableTarget(e.target)) return;
+    const control=keyToControl(e.key);
+    if(control){
+      e.preventDefault();
+      if(started&&!paused&&!menuOpen&&!over) active.add(control);
+      return;
+    }
+    const k=String(e.key||'').toLowerCase();
+    if(k==='r'){
+      e.preventDefault();
+      startReload();
+      return;
+    }
+    if(k==='m' && started && !over){
+      e.preventDefault();
+      if(menuOpen){menuOpen=false;paused=false;q('upgradeMenu').classList.add('hidden');}
+      else{menuOpen=true;paused=true;active.clear();q('upgradeMenu').classList.remove('hidden');updateUI();}
+    }
+  });
+  app.addEventListener('keyup',e=>{
+    const control=keyToControl(e.key);
+    if(control){e.preventDefault();active.delete(control);}
+  });
+  app.addEventListener('pointerdown',()=>{try{app.focus({preventScroll:true});}catch(_){app.focus();}});
+  window.addEventListener('blur',()=>active.clear());
+
+  q('goBtn').addEventListener('click',start);
+  q('restartBtn').addEventListener('click',restart);
+  q('menuBtn').addEventListener('click',()=>{
+    if(!started||over)return;
+    menuOpen=true;paused=true;active.clear();
+    q('upgradeMenu').classList.remove('hidden');
+    updateUI();
+  });
+  q('closeMenu').addEventListener('click',()=>{
+    menuOpen=false;paused=false;
+    q('upgradeMenu').classList.add('hidden');
+  });
+
+  document.querySelectorAll('[data-key]').forEach(b=>hold(b,b.dataset.key));
+  hold(q('fireBtn'),'fire');
+  q('reloadBtn').addEventListener('click',startReload);
+
+  q('gunUpgrade').addEventListener('click',()=>upgrade('gun'));
+  q('magUpgrade').addEventListener('click',upgradeMagazine);
+  q('engineUpgrade').addEventListener('click',()=>upgrade('engine'));
+  q('shieldUpgrade').addEventListener('click',()=>upgrade('shield'));
+  q('rankKing').addEventListener('click',()=>buyCosmeticRank(1));
+  q('rankMaster').addEventListener('click',()=>buyCosmeticRank(2));
+  q('rankLegend').addEventListener('click',()=>buyCosmeticRank(3));
+
+  window.addEventListener('resize',resize);
+  document.addEventListener('visibilitychange',()=>{
+    if(document.hidden&&started&&!over){
+      paused=true;active.clear();
+    }else if(!document.hidden&&started&&!over&&!menuOpen){
+      paused=false;
+    }
+  });
+
+  resize();
+  resetShip();
+  for(let i=0;i<4;i++)spawnRock();
+  updateUI();
+  requestAnimationFrame(loop);
+
+  if('serviceWorker' in navigator && location.protocol.startsWith('http')){
+    navigator.serviceWorker.register('./service-worker.js').catch(()=>{});
+  }
+})();
+</script>
+</body>
+</html>

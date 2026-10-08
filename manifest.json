@@ -1,0 +1,10 @@
+{
+  "name": "The Asteroid Space Game",
+  "short_name": "Asteroid Game",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#05070d",
+  "theme_color": "#05070d",
+  "orientation": "any"
+}
