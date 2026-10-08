@@ -1,5 +1,5 @@
 The Asteroid Space Game – GitHub Pages Ready
-
+Developed by Nortic Pixel Studio (Founder William T. Hansen)
 Files in this folder:
 - index.html
 - manifest.json
