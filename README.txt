@@ -1,36 +1,13 @@
-The Asteroid Space Game
+The Asteroid Space Game – v15
 Developed by Nortic Pixel Studio
-Founder: William T. Hansen
-Files in this folder:
-- index.html
-- manifest.json
-- service-worker.js
-- README.txt
 
-GitHub Pages setup:
-1. Create a new PUBLIC repository on GitHub.
-2. Upload ALL files from this folder to the repository root.
-3. Go to Settings > Pages.
-4. Under Build and deployment:
-   - Source: Deploy from a branch
-   - Branch: main
-   - Folder: /(root)
-5. Save.
-6. Wait a few minutes for GitHub Pages to publish the site.
+NEW IN v15
+- Extra-heart purchases now stop after Space Rank #10.
+- Heart opportunities:
+  - Rank #5: Space Colonel — one heart for 150 credits
+  - Rank #10: Space Marshal — one heart for 150 credits
+- No additional heart purchases unlock after Rank #10.
+- Maximum: 2 extra hearts per run.
+- Heart purchases remain saved with the active SAVE CODE.
 
-Important:
-- Upload the files themselves, not the ZIP file.
-- index.html must be directly in the repository root.
-
-PC controls:
-- W / Arrow Up = thrust
-- S / Arrow Down = brake
-- A / Arrow Left = turn left
-- D / Arrow Right = turn right
-- Space = fire
-- R = reload
-- M = Ship Systems
-
-Mobile / iOS:
-- Use the on-screen controls.
-- Open the published site in Safari and choose Share > Add to Home Screen for an app-like experience.
+All v14 features are retained.

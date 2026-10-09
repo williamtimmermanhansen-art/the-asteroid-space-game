@@ -98,6 +98,319 @@
       .fire{width:88px;height:88px}
     }
 
+
+    .zoom-controls{
+      position:absolute;
+      z-index:12;
+      right:max(12px,env(safe-area-inset-right));
+      top:calc(max(12px,env(safe-area-inset-top)) + 60px);
+      display:grid;
+      grid-template-columns:44px 52px 44px;
+      align-items:center;
+      gap:5px;
+      pointer-events:auto;
+    }
+    .zoom-btn,.zoom-label{
+      min-height:44px;
+      border-radius:13px;
+      border:1px solid rgba(255,255,255,.16);
+      background:rgba(0,0,0,.58);
+      color:#fff;
+      font-weight:900;
+      backdrop-filter:blur(8px);
+    }
+    .zoom-btn{font-size:22px}
+    .zoom-label{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:11px;
+      text-shadow:0 2px 4px #000;
+    }
+    @media (max-width:700px){
+      .hud{
+        font-size:9.5px;
+        line-height:1.05;
+        padding:7px 8px;
+        border-radius:13px;
+        max-width:60vw;
+      }
+      .hud .big{font-size:13px;line-height:1.05}
+      .hud-row{margin-top:2px}
+      .small{font-size:8.5px;margin-top:2px}
+      .rankbar{width:122px;max-width:42vw;height:5px;margin-top:4px}
+      .menu-button{
+        min-width:70px;
+        min-height:44px;
+        padding:0 10px;
+        font-size:11px;
+        border-radius:13px;
+      }
+      .zoom-controls{
+        top:calc(max(12px,env(safe-area-inset-top)) + 50px);
+        grid-template-columns:42px 46px 42px;
+        gap:4px;
+      }
+      .zoom-btn,.zoom-label{min-height:42px;border-radius:12px}
+      .zoom-btn{font-size:20px}
+      .zoom-label{font-size:9px}
+    }
+
+
+    .save-box{
+      margin-top:16px;
+      padding:14px;
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:16px;
+      background:rgba(255,255,255,.045);
+    }
+    .save-label{
+      display:block;
+      color:#fff;
+      font-size:12px;
+      font-weight:900;
+      letter-spacing:.08em;
+      margin-bottom:8px;
+    }
+    .save-row{
+      display:grid;
+      grid-template-columns:minmax(0,1fr) auto;
+      gap:8px;
+    }
+    .save-input{
+      width:100%;
+      min-height:48px;
+      box-sizing:border-box;
+      border:1px solid rgba(255,255,255,.18);
+      border-radius:13px;
+      background:#080c14;
+      color:#fff;
+      text-align:center;
+      font-size:20px;
+      font-weight:950;
+      letter-spacing:.22em;
+      outline:none;
+    }
+    .save-input:focus{border-color:rgba(170,215,255,.8)}
+    .generate-code{
+      min-height:48px;
+      padding:0 12px;
+      border:1px solid rgba(255,255,255,.16);
+      border-radius:13px;
+      background:#152238;
+      color:#fff;
+      font-weight:900;
+      font-size:11px;
+    }
+    .save-status{
+      min-height:18px;
+      margin-top:7px;
+      color:#a9bad0;
+      font-size:11px;
+      line-height:1.3;
+    }
+    .save-status.error{color:#ff9d9d}
+    .save-status.good{color:#a9f4bd}
+    @media (max-width:700px){
+      .save-box{padding:10px;margin-top:12px}
+      .save-input{min-height:44px;font-size:18px}
+      .generate-code{min-height:44px;font-size:10px;padding:0 9px}
+    }
+
+    .audio-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:8px;
+      margin-top:8px;
+    }
+    .audio-btn{
+      min-height:46px;
+      border:1px solid rgba(255,255,255,.16);
+      border-radius:13px;
+      background:#111927;
+      color:#fff;
+      font-weight:950;
+      font-size:11px;
+      letter-spacing:.04em;
+    }
+    .audio-btn.off{
+      opacity:.58;
+      background:#090d14;
+    }
+
+    .top-actions{
+      position:absolute;
+      z-index:12;
+      right:max(12px,env(safe-area-inset-right));
+      top:max(12px,env(safe-area-inset-top));
+      display:flex;
+      gap:7px;
+      align-items:center;
+    }
+    .top-actions .menu-button{
+      position:static;
+      right:auto;
+      top:auto;
+    }
+    .info-button{
+      min-width:72px;
+      min-height:48px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.18);
+      background:rgba(0,0,0,.58);
+      color:#fff;
+      font-weight:900;
+      backdrop-filter:blur(8px);
+    }
+    .audio-btn.master{
+      grid-column:1/-1;
+      min-height:50px;
+      background:#1a2942;
+    }
+    .info-overlay{
+      align-items:flex-start;
+      overflow:auto;
+      padding-top:max(18px,env(safe-area-inset-top));
+      padding-bottom:max(18px,env(safe-area-inset-bottom));
+    }
+    .info-card{
+      width:min(100%,560px);
+      margin:auto 0;
+    }
+    .info-section{
+      margin-top:13px;
+      padding:14px;
+      border-radius:18px;
+      background:rgba(255,255,255,.045);
+      border:1px solid rgba(255,255,255,.08);
+    }
+    .info-section h3{
+      font-size:15px;
+      letter-spacing:.03em;
+      margin-bottom:8px;
+    }
+    .info-list{
+      margin:0;
+      padding-left:20px;
+      color:#c3cfdf;
+      font-size:12px;
+      line-height:1.55;
+    }
+    .info-list li+li{margin-top:4px}
+    .info-list b{color:#fff}
+    .info-note{
+      margin-top:8px;
+      color:#91a5bd;
+      font-size:11px;
+      line-height:1.45;
+    }
+    @media (max-width:700px){
+      .top-actions{gap:5px}
+      .top-actions .menu-button,.info-button{
+        min-width:62px;
+        min-height:44px;
+        padding:0 8px;
+        font-size:10px;
+        border-radius:13px;
+      }
+      .info-card{padding:16px}
+      .info-section{padding:11px}
+      .info-section h3{font-size:13px}
+      .info-list{font-size:11px}
+    }
+
+
+    .settings-button{
+      min-width:84px;
+      min-height:48px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.18);
+      background:rgba(0,0,0,.58);
+      color:#fff;
+      font-weight:900;
+      backdrop-filter:blur(8px);
+    }
+    .settings-overlay{
+      align-items:flex-start;
+      overflow:auto;
+      padding-top:max(18px,env(safe-area-inset-top));
+      padding-bottom:max(18px,env(safe-area-inset-bottom));
+    }
+    .settings-card{
+      width:min(100%,520px);
+      margin:auto 0;
+    }
+    .settings-section{
+      margin-top:13px;
+      padding:14px;
+      border-radius:18px;
+      background:rgba(255,255,255,.045);
+      border:1px solid rgba(255,255,255,.08);
+    }
+    .settings-section h3{
+      font-size:15px;
+      letter-spacing:.03em;
+      margin-bottom:8px;
+    }
+    .settings-note{
+      margin-top:8px;
+      color:#91a5bd;
+      font-size:11px;
+      line-height:1.45;
+    }
+    @media (max-width:700px){
+      .top-actions .menu-button,.info-button,.settings-button{
+        min-width:62px;
+        min-height:44px;
+        padding:0 8px;
+        font-size:10px;
+        border-radius:13px;
+      }
+      .settings-card{padding:16px}
+      .settings-section{padding:11px}
+      .settings-section h3{font-size:13px}
+    }
+
+    .color-grid{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:8px;
+      margin-top:8px;
+    }
+    .color-btn{
+      min-height:46px;
+      border:1px solid rgba(255,255,255,.15);
+      border-radius:13px;
+      background:#101722;
+      color:#fff;
+      font-weight:900;
+      font-size:11px;
+      letter-spacing:.02em;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:7px;
+    }
+    .color-btn.active{
+      outline:2px solid rgba(255,255,255,.75);
+      background:#1b2738;
+    }
+    .color-dot{
+      width:13px;
+      height:13px;
+      border-radius:50%;
+      border:1px solid rgba(255,255,255,.7);
+      flex:0 0 auto;
+    }
+    .color-reset{
+      grid-column:1/-1;
+    }
+    @media (max-width:700px){
+      .color-btn{
+        min-height:43px;
+        font-size:10px;
+      }
+    }
 </style>
 </head>
 <body>
@@ -110,14 +423,25 @@
     <div class="hud-row">SHIELD <span id="shieldText">100 / 100</span></div>
     <div class="hud-row">SPACE RANK <span id="spaceRankHud">ROOKIE</span></div>
     <div class="hud-row">ASTEROIDS <span id="killsHud">0</span></div>
+    <div class="hud-row">SHIP TITLES <span id="shopRankHud">NONE</span></div>
+    <div class="hud-row">CREDIT MULTIPLIER <span id="creditMultiplierHud">×1</span></div>
     <div class="rankbar"><div id="rankBar"></div></div>
-    <div id="rankProgressText" class="small">20 to Space Cadet</div>
+    <div id="rankProgressText" class="small">35 to Space Cadet</div>
     <div id="ammoHud" class="hud-row">GUN 30 / 30</div>
   </div>
 
-  <button id="menuBtn" class="menu-button" type="button">🚀 SHIP</button>
+  <div class="top-actions">
+    <button id="settingsBtn" class="settings-button" type="button">⚙️ SETTINGS</button>
+    <button id="infoBtn" class="info-button" type="button">ℹ️ INFO</button>
+    <button id="menuBtn" class="menu-button" type="button">🚀 SHIP</button>
+  </div>
+  <div class="zoom-controls" aria-label="Map zoom controls">
+    <button id="zoomOutBtn" class="zoom-btn" type="button" aria-label="Zoom out">−</button>
+    <div id="zoomText" class="zoom-label">85%</div>
+    <button id="zoomInBtn" class="zoom-btn" type="button" aria-label="Zoom in">+</button>
+  </div>
 
-  <div id="keyboardHint" class="keyboard-hint">WASD / ARROWS · SPACE = FIRE · R = RELOAD · M = MENU</div>
+  <div id="keyboardHint" class="keyboard-hint">WASD / ARROWS · SPACE = FIRE · R = RELOAD · M = SHIP · I = INFO · O = SETTINGS</div>
   <div class="controls">
     <div class="dpad">
       <span></span><button class="control" data-key="up" type="button">▲</button><span></span>
@@ -137,8 +461,16 @@
     <div class="card center">
       <div style="font-size:64px">🚀</div>
       <h1 style="margin-top:14px">THE ASTEROID SPACE GAME</h1>
-      <p class="lead">Destroy asteroids, earn credits, climb the Space Ranks, and upgrade your ship.</p><p class="lead"><b>PC:</b> W/A/S/D or Arrow Keys to fly · Space to fire · R to reload · M to open Ship Systems<br><b>Mobile / Touchscreen:</b> Use the on-screen controls, including the Reload button.<br><b>Elite asteroid:</b> Every 5th asteroid is red, has more health, and gives 2× credits.</p>
-      <button id="goBtn" class="go" type="button">GO</button>
+      <p class="lead">Destroy asteroids, earn credits, climb the Space Ranks, and upgrade your ship.</p><p class="lead"><b>PC:</b> W/A/S/D or Arrow Keys to fly · Space to fire · R to reload · M to open Ship Systems · +/- or mouse wheel to zoom<br><b>Mobile / Touchscreen:</b> Use the on-screen controls, Reload, and the +/- zoom buttons.<br><b>Elite asteroid:</b> Every 5th asteroid is red, has more health, and gives 2× credits.<br><b>Audio:</b> Space ambience and calm indie music begin after START / LOAD.</p>
+      <div class="save-box">
+        <label class="save-label" for="saveCodeInput">SAVE CODE · 4–5 DIGITS</label>
+        <div class="save-row">
+          <input id="saveCodeInput" class="save-input" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="5" autocomplete="off" aria-label="Save code">
+          <button id="generateCodeBtn" class="generate-code" type="button">GENERATE CODE</button>
+        </div>
+        <div id="saveStatus" class="save-status">Enter your own code or generate one. Saves stay on this browser/device.</div>
+      </div>
+      <button id="goBtn" class="go" type="button">START / LOAD</button>
       <p class="lead">iPhone tip: Add the game to your Home Screen for the most app-like full-screen experience.</p>
     </div>
   </div>
@@ -150,7 +482,7 @@
           <h2>🚀 SHIP SYSTEMS</h2>
           <div class="desc" style="font-size:14px;color:#fff;margin-top:6px">CREDITS: <b id="menuCredits">0</b></div>
           <div class="desc">SPACE RANK: <b id="menuSpaceRank">ROOKIE</b></div>
-          <div class="desc">DESTROYED: <b id="menuKills">0</b> asteroids</div>
+          <div class="desc">DESTROYED: <b id="menuKills">0</b> asteroids</div><div class="desc">TITLE BONUS: <b id="menuCreditMultiplier">×1</b></div><div class="desc">SAVE CODE: <b id="menuSaveCode">—</b></div>
         </div>
         <button id="closeMenu" class="close" type="button">CLOSE</button>
       </div>
@@ -183,13 +515,202 @@
       </div>
 
       <div class="system">
-        <div class="system-title"><span>👑 SHIP TITLE</span><span id="cosmeticHud">ROOKIE</span></div>
-        <div class="desc">Buy special colors and designs. Titles are unlocked in order.</div>
-        <div class="rank-grid">
-          <button id="rankKing" class="rank-btn" type="button">👑 KING · 100 CR<span>Gold ship</span></button>
-          <button id="rankMaster" class="rank-btn" type="button">💎 MASTER · 700 CR<span>Light blue ship</span></button>
-          <button id="rankLegend" class="rank-btn" type="button">⭐ LEGEND · 1500 CR<span>Legend-design</span></button>
+        <div class="system-title"><span>❤️ EXTRA HEART</span><span id="heartStatus">0 / 2</span></div>
+        <div id="heartInfo" class="desc">Unlocks at Space Rank #5 and #10 only. Each heart can only be bought once.</div>
+        <button id="heartUpgrade" class="upgrade-btn" type="button">LOCKED · REACH RANK #5</button>
+      </div>
+
+      <div class="system">
+        <div class="system-title"><span>🎨 SHIP COLOR</span><span id="shipColorHud">NORMAL</span></div>
+        <div class="desc">Change your ship hull color. Title bonuses stay active. Each color change costs 25 credits.</div>
+        <div class="color-grid">
+          <button id="colorRed" class="color-btn" type="button"><span class="color-dot" style="background:#e54848"></span>RED · 25 CR</button>
+          <button id="colorGreen" class="color-btn" type="button"><span class="color-dot" style="background:#48d66f"></span>GREEN · 25 CR</button>
+          <button id="colorOrange" class="color-btn" type="button"><span class="color-dot" style="background:#ff9a3d"></span>ORANGE · 25 CR</button>
+          <button id="colorPurple" class="color-btn" type="button"><span class="color-dot" style="background:#a66cff"></span>PURPLE · 25 CR</button>
+          <button id="colorPink" class="color-btn" type="button"><span class="color-dot" style="background:#ff69b4"></span>PINK · 25 CR</button>
+          <button id="colorReset" class="color-btn color-reset" type="button">RESET TO NORMAL · 30 CR</button>
         </div>
+      </div>
+
+      <div class="system">
+        <div class="system-title"><span>👑 SHIP TITLE</span><span id="cosmeticHud">ROOKIE</span></div>
+        <div class="desc">Buy special colors, designs, and credit bonuses. All 3 titles unlock a ×11 credit multiplier.</div>
+        <div class="rank-grid">
+          <button id="rankKing" class="rank-btn" type="button">👑 KING · 100 CR<span>Gold ship · ×2 credits</span></button>
+          <button id="rankMaster" class="rank-btn" type="button">💎 MASTER · 700 CR<span>Light blue ship · ×3 credits</span></button>
+          <button id="rankLegend" class="rank-btn" type="button">⭐ LEGEND · 1500 CR<span>Legend design · ×5 title bonus · all 3 = ×11</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div id="settingsMenu" class="overlay settings-overlay hidden">
+    <div class="card settings-card">
+      <div class="topline">
+        <div>
+          <h2>⚙️ SETTINGS</h2>
+          <div class="desc">Audio controls and general game options.</div>
+        </div>
+        <button id="closeSettings" class="close" type="button">CLOSE</button>
+      </div>
+
+      <div class="settings-section">
+        <h3>🎧 AUDIO</h3>
+        <div class="desc">Turn every sound on/off together, or control each sound group separately.</div>
+        <div class="audio-grid" style="margin-top:10px">
+          <button id="allAudioToggle" class="audio-btn master" type="button">ALL AUDIO · ON</button>
+          <button id="musicToggle" class="audio-btn" type="button">MUSIC · ON</button>
+          <button id="ambienceToggle" class="audio-btn" type="button">SPACE · ON</button>
+          <button id="engineSoundToggle" class="audio-btn" type="button">ENGINE · ON</button>
+          <button id="shotSoundToggle" class="audio-btn" type="button">SHOTS · ON</button>
+          <button id="creditSoundToggle" class="audio-btn" type="button">CREDITS · ON</button>
+          <button id="upgradeSoundToggle" class="audio-btn" type="button">UPGRADES · ON</button>
+        </div>
+        <div class="settings-note">Audio preferences are saved locally in the browser.</div>
+      </div>
+
+      <div class="settings-section">
+        <h3>🖥️ DISPLAY</h3>
+        <div class="desc">Use the on-screen +/- buttons, keyboard +/-, or mouse wheel to zoom the map.</div>
+      </div>
+
+      <div class="settings-section">
+        <h3>💾 SAVE CODE</h3>
+        <div class="desc">Active runs autosave for your current browser/device. Game Over deletes the active run for that code.</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="infoMenu" class="overlay info-overlay hidden">
+    <div class="card info-card">
+      <div class="topline">
+        <div>
+          <h2>ℹ️ GAME INFO</h2>
+          <div class="desc">Controls, ranks, upgrades, rewards, and elite asteroids.</div>
+        </div>
+        <button id="closeInfo" class="close" type="button">CLOSE</button>
+      </div>
+
+      <div class="info-section">
+        <h3>⌨️ PC CONTROLS</h3>
+        <ul class="info-list">
+          <li><b>W / Arrow Up</b> — Thrust forward</li>
+          <li><b>S / Arrow Down</b> — Brake</li>
+          <li><b>A / Arrow Left</b> — Turn left</li>
+          <li><b>D / Arrow Right</b> — Turn right</li>
+          <li><b>Space</b> — Fire</li>
+          <li><b>R</b> — Manual reload</li>
+          <li><b>M</b> — Open / close Ship Systems</li>
+          <li><b>I</b> — Open / close Game Info</li>
+          <li><b>O</b> — Open / close Settings</li>
+          <li><b>+ / -</b> — Zoom in / out</li>
+          <li><b>Mouse wheel</b> — Zoom in / out</li>
+          <li><b>Esc</b> — Close Ship Systems, Settings, or Game Info</li>
+        </ul>
+      </div>
+
+      <div class="info-section">
+        <h3>🏅 SPACE RANKS · ASTEROIDS DESTROYED</h3>
+        <ul class="info-list">
+          <li><b>Rookie</b> — 0</li>
+          <li><b>Space Cadet</b> — 35</li>
+          <li><b>Space Officer</b> — 65</li>
+          <li><b>Space Sergeant</b> — 90</li>
+          <li><b>Space Colonel</b> — 115</li>
+          <li><b>Space Lieutenant</b> — 165</li>
+          <li><b>Space Captain</b> — 215</li>
+          <li><b>Space Commander</b> — 300</li>
+          <li><b>Starship Commander</b> — 400</li>
+          <li><b>Space Marshal</b> — 500</li>
+          <li><b>Space Admiral</b> — 600</li>
+          <li><b>Starship Admiral</b> — 700</li>
+          <li><b>Galaxy Commander</b> — 800</li>
+          <li><b>Cosmic Commander</b> — 900</li>
+          <li><b>Space God</b> — 1,000</li>
+        </ul>
+        <div class="info-note">These ranks are earned automatically by destroying asteroids. Extra-heart purchases unlock at rank #5 (Space Colonel) and #10 (Space Marshal). Rank #10 is the final heart opportunity.</div>
+      </div>
+
+      <div class="info-section">
+        <h3>❤️ EXTRA HEARTS</h3>
+        <ul class="info-list">
+          <li>An extra heart costs <b>150 credits</b>.</li>
+          <li>One purchase opportunity unlocks at <b>Space Rank #5</b> and another at <b>Space Rank #10</b>.</li>
+          <li><b>Rank #10 is the final heart opportunity.</b> No more heart purchases unlock after it.</li>
+          <li>Each opportunity can only be used once, for a maximum of <b>2 extra hearts per run</b>.</li>
+          <li>Buying a heart adds one current life and one extra life slot. Previously lost hearts are not restored.</li>
+        </ul>
+      </div>
+
+      <div class="info-section">
+        <h3>🎨 SHIP COLORS</h3>
+        <ul class="info-list">
+          <li><b>Red, Green, Orange, Purple, or Pink</b> — 25 credits per color change.</li>
+          <li><b>Reset to Normal</b> — 30 credits.</li>
+          <li>Ship colors only change the hull appearance. Space Ranks and Ship Title bonuses stay active.</li>
+          <li>Normal uses the default appearance of your current Ship Title.</li>
+        </ul>
+      </div>
+
+      <div class="info-section">
+        <h3>👑 SHIP TITLES · PURCHASED IN ORDER</h3>
+        <ul class="info-list">
+          <li><b>King · 100 credits</b> — Gold ship and ×2 credits</li>
+          <li><b>Master · 700 credits</b> — Light-blue ship and ×3 credits</li>
+          <li><b>Legend · 1500 credits</b> — Legend design and ×5 title bonus</li>
+          <li><b>Full title set</b> — Owning King + Master + Legend activates ×11 credits</li>
+        </ul>
+      </div>
+
+      <div class="info-section">
+        <h3>🛠️ UPGRADES</h3>
+        <ul class="info-list">
+          <li><b>Weapons</b> — Faster firing as levels increase. Level 2+ adds alternating side cannons.</li>
+          <li><b>Magazine</b> — Starts at 30 shots. Upgrade to 60 shots for 100 credits, then 125 shots for 350 credits. Each Magazine upgrade also boosts bullet damage by +50%.</li>
+          <li><b>Engine</b> — Increases thrust, maximum speed, and turning speed.</li>
+          <li><b>Shield</b> — Adds 30 maximum shield per level and improves shield regeneration.</li>
+          <li><b>Reload</b> — Manual reload takes 3 seconds. An empty magazine triggers a 3-second automatic reload.</li>
+        </ul>
+      </div>
+
+      <div class="info-section">
+        <h3>🌌 DEEP SPACE BACKGROUND</h3>
+        <ul class="info-list">
+          <li>Distant <b>star streaks</b> drift far across the background.</li>
+          <li>A faint <b>wormhole</b> can be seen deep in space.</li>
+          <li>These are atmosphere effects and do not change gameplay.</li>
+        </ul>
+      </div>
+
+      <div class="info-section">
+        <h3>🔴 RED ELITE ASTEROIDS</h3>
+        <ul class="info-list">
+          <li>Every <b>5th spawned asteroid</b> is a red elite asteroid.</li>
+          <li>Red asteroids have <b>more health</b> and need more hits to destroy.</li>
+          <li>They pay <b>×2 normal asteroid credits</b>.</li>
+          <li>The elite ×2 reward stacks with your active Ship Title credit multiplier.</li>
+        </ul>
+      </div>
+
+      <div class="info-section">
+        <h3>💳 CREDIT REWARDS</h3>
+        <ul class="info-list">
+          <li>Destroy asteroids to earn credits.</li>
+          <li>Every <b>10 destroyed asteroids</b> gives a 15-credit bonus before the active title multiplier.</li>
+          <li>Use credits in <b>Ship Systems</b> for upgrades and Ship Titles.</li>
+        </ul>
+      </div>
+
+      <div class="info-section">
+        <h3>💾 SAVE CODE</h3>
+        <ul class="info-list">
+          <li>Use a personal 4- or 5-digit code to continue an active run.</li>
+          <li>The run autosaves on the same browser and device.</li>
+          <li>If you reach <b>Game Over</b>, the active run for that code is deleted.</li>
+        </ul>
       </div>
     </div>
   </div>
@@ -213,13 +734,470 @@
   const ctx = canvas.getContext('2d');
   const active = new Set();
 
-  let W=0,H=0,dpr=1;
-  let started=false, paused=true, menuOpen=false, over=false;
+  let W=0,H=0,dpr=1,worldW=2400,worldH=1800,zoom=1,zoomInitialized=false,wormhole={x:1700,y:520,r:120};
+  let started=false, paused=true, menuOpen=false, infoOpen=false, settingsOpen=false, over=false;
   let last=performance.now(), credits=0, score=0, lives=3, asteroidKills=0;
   let fireClock=0, spawnClock=0, msgClock=0, shotsUsed=0, cooldown=0, reloading=0, gunSide=0;
-  let cosmeticRank=0, magLevel=0, spawnCount=0;
-  let bullets=[], rocks=[], particles=[], stars=[];
+  let cosmeticRank=0, magLevel=0, spawnCount=0, activeSaveCode='', shipColor='normal', heartPurchases=0;
+  let bullets=[], rocks=[], particles=[], stars=[], farStreaks=[];
   let upgrades={gun:1,engine:1,shield:1}, ship;
+
+  let audioCtx=null, masterGain=null, sfxGain=null, musicGain=null, ambienceGain=null, engineGain=null;
+  let engineOsc=null, engineNoise=null, masterAudioEnabled=true, musicEnabled=true, ambienceEnabled=true;
+  let engineSoundEnabled=true, shotSoundEnabled=true, creditSoundEnabled=true, upgradeSoundEnabled=true;
+  let musicStep=0, thrustWasOn=false;
+  let musicTimer=null;
+
+
+  const AUDIO_KEYS={
+    master:'tasg_audio_master',
+    legacyFx:'tasg_audio_fx',
+    music:'tasg_audio_music',
+    ambience:'tasg_audio_ambience',
+    engine:'tasg_audio_engine',
+    shots:'tasg_audio_shots',
+    credits:'tasg_audio_credits',
+    upgrades:'tasg_audio_upgrades'
+  };
+
+  function readBoolPref(key,defaultValue=true){
+    const value=safeStorageGet(key);
+    return value===null ? defaultValue : value!=='0';
+  }
+
+  function writeBoolPref(key,value){
+    safeStorageSet(key,value?'1':'0');
+  }
+
+  function loadAudioPrefs(){
+    const legacyFx=readBoolPref(AUDIO_KEYS.legacyFx,true);
+    masterAudioEnabled=readBoolPref(AUDIO_KEYS.master,true);
+    musicEnabled=readBoolPref(AUDIO_KEYS.music,true);
+    ambienceEnabled=readBoolPref(AUDIO_KEYS.ambience,true);
+    engineSoundEnabled=readBoolPref(AUDIO_KEYS.engine,legacyFx);
+    shotSoundEnabled=readBoolPref(AUDIO_KEYS.shots,legacyFx);
+    creditSoundEnabled=readBoolPref(AUDIO_KEYS.credits,legacyFx);
+    upgradeSoundEnabled=readBoolPref(AUDIO_KEYS.upgrades,legacyFx);
+  }
+
+  function makeNoiseBuffer(seconds=1){
+    const len=Math.max(1,Math.floor(audioCtx.sampleRate*seconds));
+    const buffer=audioCtx.createBuffer(1,len,audioCtx.sampleRate);
+    const data=buffer.getChannelData(0);
+    for(let i=0;i<len;i++) data[i]=Math.random()*2-1;
+    return buffer;
+  }
+
+  function initAudio(){
+    if(audioCtx){
+      if(audioCtx.state==='suspended') audioCtx.resume().catch(()=>{});
+      updateAudioMix();
+      return;
+    }
+    const AC=window.AudioContext||window.webkitAudioContext;
+    if(!AC)return;
+
+    try{
+      audioCtx=new AC();
+
+      masterGain=audioCtx.createGain();
+      sfxGain=audioCtx.createGain();
+      musicGain=audioCtx.createGain();
+      ambienceGain=audioCtx.createGain();
+      engineGain=audioCtx.createGain();
+
+      masterGain.gain.value=masterAudioEnabled?.34:0;
+      sfxGain.gain.value=.86;
+      musicGain.gain.value=musicEnabled?.28:0;
+      ambienceGain.gain.value=ambienceEnabled?.16:0;
+      engineGain.gain.value=.0001;
+
+      sfxGain.connect(masterGain);
+      musicGain.connect(masterGain);
+      ambienceGain.connect(masterGain);
+      engineGain.connect(sfxGain);
+      masterGain.connect(audioCtx.destination);
+
+      // Continuous engine: filtered noise + low oscillator.
+      const noise=audioCtx.createBufferSource();
+      noise.buffer=makeNoiseBuffer(1.5);
+      noise.loop=true;
+      const noiseFilter=audioCtx.createBiquadFilter();
+      noiseFilter.type='lowpass';
+      noiseFilter.frequency.value=360;
+      noise.connect(noiseFilter);
+      noiseFilter.connect(engineGain);
+      noise.start();
+      engineNoise=noise;
+
+      const eng=audioCtx.createOscillator();
+      eng.type='sawtooth';
+      eng.frequency.value=68;
+      const engFilter=audioCtx.createBiquadFilter();
+      engFilter.type='lowpass';
+      engFilter.frequency.value=240;
+      eng.connect(engFilter);
+      engFilter.connect(engineGain);
+      eng.start();
+      engineOsc=eng;
+
+      // Stylized quiet space ambience.
+      const drone1=audioCtx.createOscillator();
+      const drone2=audioCtx.createOscillator();
+      const d1g=audioCtx.createGain();
+      const d2g=audioCtx.createGain();
+      drone1.type='sine';
+      drone2.type='sine';
+      drone1.frequency.value=55;
+      drone2.frequency.value=82.41;
+      d1g.gain.value=.18;
+      d2g.gain.value=.07;
+      drone1.connect(d1g); d1g.connect(ambienceGain);
+      drone2.connect(d2g); d2g.connect(ambienceGain);
+      drone1.start(); drone2.start();
+
+      if(!musicTimer) musicTimer=setInterval(musicTick,560);
+      updateAudioMix();
+    }catch(_){
+      audioCtx=null;
+    }
+  }
+
+  function updateAudioMix(){
+    if(!audioCtx)return;
+    const t=audioCtx.currentTime;
+    masterGain.gain.cancelScheduledValues(t);
+    musicGain.gain.cancelScheduledValues(t);
+    ambienceGain.gain.cancelScheduledValues(t);
+
+    masterGain.gain.setTargetAtTime(masterAudioEnabled?.34:0,t,.035);
+    musicGain.gain.setTargetAtTime(musicEnabled?.28:0,t,.08);
+    ambienceGain.gain.setTargetAtTime(ambienceEnabled?.16:0,t,.08);
+
+    if((!masterAudioEnabled || !engineSoundEnabled) && engineGain){
+      engineGain.gain.setTargetAtTime(.0001,t,.025);
+    }
+  }
+
+  function tone(freq,duration=.14,type='sine',volume=.09,when=0,slideTo=null,destination=null){
+    if(!audioCtx || !destination || !Number.isFinite(freq))return;
+    const t=audioCtx.currentTime+when;
+    const osc=audioCtx.createOscillator();
+    const gain=audioCtx.createGain();
+    osc.type=type;
+    osc.frequency.setValueAtTime(freq,t);
+    if(slideTo)osc.frequency.exponentialRampToValueAtTime(Math.max(20,slideTo),t+duration);
+    gain.gain.setValueAtTime(.0001,t);
+    gain.gain.exponentialRampToValueAtTime(Math.max(.0002,volume),t+.012);
+    gain.gain.exponentialRampToValueAtTime(.0001,t+duration);
+    osc.connect(gain);
+    gain.connect(destination);
+    osc.start(t);
+    osc.stop(t+duration+.03);
+  }
+
+  function noiseBurst(duration=.16,volume=.10,low=220,high=1600,destination=null){
+    if(!audioCtx || !destination)return;
+    const t=audioCtx.currentTime;
+    const src=audioCtx.createBufferSource();
+    const filter=audioCtx.createBiquadFilter();
+    const gain=audioCtx.createGain();
+    src.buffer=makeNoiseBuffer(Math.max(.08,duration));
+    filter.type='bandpass';
+    filter.frequency.value=(low+high)/2;
+    filter.Q.value=.7;
+    gain.gain.setValueAtTime(Math.max(.0002,volume),t);
+    gain.gain.exponentialRampToValueAtTime(.0001,t+duration);
+    src.connect(filter); filter.connect(gain); gain.connect(destination);
+    src.start(t); src.stop(t+duration+.02);
+  }
+
+  function playShotSound(){
+    if(!masterAudioEnabled || !shotSoundEnabled)return;
+    initAudio();
+    if(!audioCtx||!sfxGain)return;
+    tone(720,.09,'square',.075,0,220,sfxGain);
+    tone(1280,.055,'sine',.035,.005,580,sfxGain);
+  }
+
+  function playCreditSound(extra=false){
+    if(!masterAudioEnabled || !creditSoundEnabled)return;
+    initAudio();
+    if(!audioCtx||!sfxGain)return;
+    tone(660,.13,'sine',.055,0,880,sfxGain);
+    tone(990,.16,'triangle',.045,.075,1320,sfxGain);
+    if(extra) tone(1320,.18,'sine',.038,.15,1760,sfxGain);
+  }
+
+  function playPurchaseSound(){
+    if(!masterAudioEnabled || !upgradeSoundEnabled)return;
+    initAudio();
+    if(!audioCtx||!sfxGain)return;
+    tone(392,.18,'triangle',.055,0,523.25,sfxGain);
+    tone(523.25,.20,'triangle',.05,.10,659.25,sfxGain);
+    tone(783.99,.25,'sine',.045,.21,987.77,sfxGain);
+  }
+
+  function playRocketIgnition(){
+    if(!masterAudioEnabled || !engineSoundEnabled)return;
+    initAudio();
+    if(!audioCtx||!sfxGain)return;
+    noiseBurst(.28,.045,80,650,sfxGain);
+    tone(72,.26,'sawtooth',.024,0,108,sfxGain);
+  }
+
+  function updateEngineAudio(thrusting){
+    if(!audioCtx||!engineGain)return;
+    const t=audioCtx.currentTime;
+    const on=!!thrusting && started && !paused && !menuOpen && !infoOpen && !settingsOpen && !over
+      && masterAudioEnabled && engineSoundEnabled;
+    if(on && !thrustWasOn)playRocketIgnition();
+    thrustWasOn=on;
+    engineGain.gain.setTargetAtTime(on?.055:.0001,t,on?.045:.10);
+    if(engineOsc){
+      const f=66+(upgrades.engine-1)*8+(on?Math.min(24,Math.hypot(ship.vx,ship.vy)*.07):0);
+      engineOsc.frequency.setTargetAtTime(f,t,.08);
+    }
+  }
+
+  function musicTick(){
+    if(!audioCtx || !masterAudioEnabled || !musicEnabled || !started || over)return;
+    const melody=[220,277.18,329.63,277.18,246.94,329.63,369.99,329.63,
+                  220,277.18,329.63,440,369.99,329.63,277.18,246.94];
+    const bass=[110,110,123.47,123.47,92.50,92.50,98,98];
+    const note=melody[musicStep%melody.length];
+    tone(note,.72,'triangle',.028,0,note*.995,musicGain);
+    if(musicStep%4===0){
+      const b=bass[Math.floor(musicStep/4)%bass.length];
+      tone(b,1.25,'sine',.026,0,b*.998,musicGain);
+    }
+    if(musicStep%8===6) tone(note*2,.50,'sine',.012,.12,note*1.99,musicGain);
+    musicStep=(musicStep+1)%64;
+  }
+
+  function toggleMasterAudio(){
+    masterAudioEnabled=!masterAudioEnabled;
+    writeBoolPref(AUDIO_KEYS.master,masterAudioEnabled);
+    if(masterAudioEnabled)initAudio();
+    updateAudioMix();
+    updateUI();
+  }
+
+  function toggleAudioGroup(group){
+    if(group==='music'){
+      musicEnabled=!musicEnabled;
+      writeBoolPref(AUDIO_KEYS.music,musicEnabled);
+    }else if(group==='ambience'){
+      ambienceEnabled=!ambienceEnabled;
+      writeBoolPref(AUDIO_KEYS.ambience,ambienceEnabled);
+    }else if(group==='engine'){
+      engineSoundEnabled=!engineSoundEnabled;
+      writeBoolPref(AUDIO_KEYS.engine,engineSoundEnabled);
+    }else if(group==='shots'){
+      shotSoundEnabled=!shotSoundEnabled;
+      writeBoolPref(AUDIO_KEYS.shots,shotSoundEnabled);
+    }else if(group==='credits'){
+      creditSoundEnabled=!creditSoundEnabled;
+      writeBoolPref(AUDIO_KEYS.credits,creditSoundEnabled);
+    }else if(group==='upgrades'){
+      upgradeSoundEnabled=!upgradeSoundEnabled;
+      writeBoolPref(AUDIO_KEYS.upgrades,upgradeSoundEnabled);
+    }
+    initAudio();
+    updateAudioMix();
+    updateUI();
+  }
+
+  const SAVE_PREFIX='tasg_save_';
+  const LAST_CODE_KEY='tasg_last_save_code';
+
+  function cleanSaveCode(value){
+    return String(value||'').replace(/\D/g,'').slice(0,5);
+  }
+
+  function validSaveCode(value){
+    return /^\d{4,5}$/.test(String(value||''));
+  }
+
+  function setSaveStatus(text,kind=''){
+    const el=q('saveStatus');
+    if(!el)return;
+    el.textContent=text;
+    el.className='save-status'+(kind?' '+kind:'');
+  }
+
+  function safeStorageGet(key){
+    try{return localStorage.getItem(key);}catch(_){return null;}
+  }
+
+  function safeStorageSet(key,value){
+    try{localStorage.setItem(key,value);return true;}catch(_){return false;}
+  }
+
+  function safeStorageRemove(key){
+    try{localStorage.removeItem(key);}catch(_){}
+  }
+
+  function savePayload(){
+    return {
+      version:15,
+      savedAt:Date.now(),
+      alive:lives>0 && !over,
+      credits,
+      score,
+      lives,
+      asteroidKills,
+      upgrades:{...upgrades},
+      cosmeticRank,
+      shipColor,
+      heartPurchases,
+      magLevel,
+      shotsUsed,
+      cooldown,
+      reloading,
+      gunSide,
+      spawnCount,
+      zoom,
+      ship:{
+        xRatio:worldW?ship.x/worldW:.5,
+        yRatio:worldH?ship.y/worldH:.5,
+        vx:ship.vx,
+        vy:ship.vy,
+        a:ship.a,
+        shield:ship.shield
+      }
+    };
+  }
+
+  function saveGame(){
+    if(!activeSaveCode || !validSaveCode(activeSaveCode) || !started || over || lives<=0 || !ship)return false;
+    const ok=safeStorageSet(SAVE_PREFIX+activeSaveCode,JSON.stringify(savePayload()));
+    if(ok)safeStorageSet(LAST_CODE_KEY,activeSaveCode);
+    return ok;
+  }
+
+  function deleteCurrentSave(){
+    if(!activeSaveCode)return;
+    safeStorageRemove(SAVE_PREFIX+activeSaveCode);
+  }
+
+  function readSave(code){
+    const raw=safeStorageGet(SAVE_PREFIX+code);
+    if(!raw)return null;
+    try{
+      const data=JSON.parse(raw);
+      if(!data || data.alive===false || Number(data.lives)<=0)return null;
+      return data;
+    }catch(_){
+      return null;
+    }
+  }
+
+  function loadGame(code){
+    const data=readSave(code);
+    if(!data)return false;
+
+    credits=Math.max(0,Number(data.credits)||0);
+    score=Math.max(0,Number(data.score)||0);
+    heartPurchases=Math.max(0,Math.min(2,Number(data.heartPurchases)||0));
+    lives=Math.max(1,Math.min(3+heartPurchases,Number(data.lives)||3));
+    asteroidKills=Math.max(0,Number(data.asteroidKills)||0);
+
+    upgrades={
+      gun:Math.max(1,Number(data.upgrades?.gun)||1),
+      engine:Math.max(1,Number(data.upgrades?.engine)||1),
+      shield:Math.max(1,Number(data.upgrades?.shield)||1)
+    };
+    cosmeticRank=Math.max(0,Math.min(3,Number(data.cosmeticRank)||0));
+    shipColor=(typeof data.shipColor==='string' && shipColors.hasOwnProperty(data.shipColor)) ? data.shipColor : 'normal';
+    magLevel=Math.max(0,Math.min(2,Number(data.magLevel)||0));
+    shotsUsed=Math.max(0,Number(data.shotsUsed)||0);
+    cooldown=Math.max(0,Number(data.cooldown)||0);
+    reloading=Math.max(0,Number(data.reloading)||0);
+    gunSide=Math.max(0,Number(data.gunSide)||0);
+    spawnCount=Math.max(0,Number(data.spawnCount)||0);
+
+    if(Number.isFinite(Number(data.zoom)))setZoom(Number(data.zoom));
+
+    bullets=[];
+    rocks=[];
+    particles=[];
+    menuOpen=false;
+    infoOpen=false;
+    settingsOpen=false;
+    over=false;
+    active.clear();
+
+    resetShip();
+    if(data.ship){
+      ship.x=clamp((Number(data.ship.xRatio)||.5)*worldW,30,worldW-30);
+      ship.y=clamp((Number(data.ship.yRatio)||.5)*worldH,30,worldH-30);
+      ship.vx=Number(data.ship.vx)||0;
+      ship.vy=Number(data.ship.vy)||0;
+      ship.a=Number.isFinite(Number(data.ship.a))?Number(data.ship.a):-Math.PI/2;
+      ship.maxShield=100+(upgrades.shield-1)*30;
+      ship.shield=clamp(Number(data.ship.shield)||ship.maxShield,0,ship.maxShield);
+      ship.inv=2;
+    }
+
+    for(let i=0;i<4;i++)spawnRock();
+    return true;
+  }
+
+  function generateSaveCode(){
+    // Local save slots: avoid an existing slot on this browser when possible.
+    for(let i=0;i<100;i++){
+      const code=String(Math.floor(10000+Math.random()*90000));
+      if(!safeStorageGet(SAVE_PREFIX+code))return code;
+    }
+    return String(Math.floor(10000+Math.random()*90000));
+  }
+
+  const shipColors={
+    normal:null,
+    red:'#e54848',
+    green:'#48d66f',
+    orange:'#ff9a3d',
+    purple:'#a66cff',
+    pink:'#ff69b4'
+  };
+
+  function shipColorName(){
+    return shipColor==='normal' ? 'NORMAL' : shipColor.toUpperCase();
+  }
+
+  function currentShipHullColor(){
+    return shipColor==='normal' ? cosmeticRanks[cosmeticRank].color : shipColors[shipColor];
+  }
+
+  function buyShipColor(color){
+    if(!started || over)return;
+    if(!shipColors.hasOwnProperty(color) || color==='normal')return;
+    if(credits<25){
+      showMessage('NOT ENOUGH CREDITS',1.2);
+      return;
+    }
+    credits-=25;
+    shipColor=color;
+    playPurchaseSound();
+    showMessage(shipColorName()+' SHIP COLOR APPLIED',1.6);
+    updateUI();
+    saveGame();
+  }
+
+  function resetShipColor(){
+    if(!started || over)return;
+    if(credits<30){
+      showMessage('NOT ENOUGH CREDITS',1.2);
+      return;
+    }
+    credits-=30;
+    shipColor='normal';
+    playPurchaseSound();
+    showMessage('SHIP COLOR RESET TO NORMAL',1.6);
+    updateUI();
+    saveGame();
+  }
 
   const cosmeticRanks=[
     {name:'ROOKIE',cost:0,color:'#9fb6cf',accent:'#ffffff'},
@@ -229,44 +1207,125 @@
   ];
   const spaceRanks=[
     {name:'ROOKIE',at:0},
-    {name:'SPACE CADET',at:20},
-    {name:'SPACE OFFICER',at:50},
-    {name:'SPACE SERGEANT',at:75},
-    {name:'SPACE COLONEL',at:100},
-    {name:'SPACE LIEUTENANT',at:150},
-    {name:'SPACE CAPTAIN',at:200},
-    {name:'SPACE GOD',at:300}
+    {name:'SPACE CADET',at:35},
+    {name:'SPACE OFFICER',at:65},
+    {name:'SPACE SERGEANT',at:90},
+    {name:'SPACE COLONEL',at:115},
+    {name:'SPACE LIEUTENANT',at:165},
+    {name:'SPACE CAPTAIN',at:215},
+    {name:'SPACE COMMANDER',at:300},
+    {name:'STARSHIP COMMANDER',at:400},
+    {name:'SPACE MARSHAL',at:500},
+    {name:'SPACE ADMIRAL',at:600},
+    {name:'STARSHIP ADMIRAL',at:700},
+    {name:'GALAXY COMMANDER',at:800},
+    {name:'COSMIC COMMANDER',at:900},
+    {name:'SPACE GOD',at:1000}
   ];
 
   const rand=(a,b)=>a+Math.random()*(b-a);
+
+  const clamp=(v,min,max)=>Math.max(min,Math.min(max,v));
+
+  function defaultZoom(){
+    return W<=700 ? 0.72 : 0.86;
+  }
+
+  function setZoom(value){
+    zoom=clamp(value,0.50,1.60);
+    if(q('zoomText')) q('zoomText').textContent=Math.round(zoom*100)+'%';
+  }
+
+  function creditMultiplier(){
+    if(cosmeticRank>=3) return 11; // Full KING + MASTER + LEGEND set bonus
+    if(cosmeticRank===2) return 3;
+    if(cosmeticRank===1) return 2;
+    return 1;
+  }
+
+  function bulletDamage(){
+    return 1 + magLevel*0.5;
+  }
+
+  function bulletDamageText(){
+    return '×'+bulletDamage().toFixed(1).replace('.0','');
+  }
+
+  function ownedTitleText(){
+    if(cosmeticRank<=0) return 'NONE';
+    return cosmeticRanks.slice(1,cosmeticRank+1).map(r=>r.name).join(' · ');
+  }
+
+  function getCamera(){
+    const halfW=W/(2*zoom);
+    const halfH=H/(2*zoom);
+    return {
+      x:clamp(ship.x,halfW,Math.max(halfW,worldW-halfW)),
+      y:clamp(ship.y,halfH,Math.max(halfH,worldH-halfH))
+    };
+  }
 
   function resize(){
     const rect=app.getBoundingClientRect();
     dpr=Math.min(2,window.devicePixelRatio||1);
     W=Math.max(320,rect.width);
     H=Math.max(500,rect.height);
+
     canvas.width=Math.floor(W*dpr);
     canvas.height=Math.floor(H*dpr);
     canvas.style.width=W+'px';
     canvas.style.height=H+'px';
     ctx.setTransform(dpr,0,0,dpr,0,0);
-    stars=Array.from({length:Math.round(Math.min(150,W*H/6500))},()=>({
-      x:rand(0,W),y:rand(0,H),r:rand(.5,1.7),a:rand(.18,.7)
+
+    // The game world is deliberately much larger than the visible screen.
+    worldW=Math.max(2200,W*2.4);
+    worldH=Math.max(1800,H*2.4);
+
+    if(!zoomInitialized){
+      zoom=defaultZoom();
+      zoomInitialized=true;
+    }
+    setZoom(zoom);
+
+    stars=Array.from({
+      length:Math.round(clamp((worldW*worldH)/24000,180,650))
+    },()=>({
+      x:rand(20,worldW-20),
+      y:rand(20,worldH-20),
+      r:rand(.5,1.7),
+      a:rand(.18,.7)
     }));
+
+    farStreaks=Array.from({
+      length:Math.round(clamp((worldW*worldH)/150000,18,54))
+    },()=>({
+      x:rand(40,worldW-40),
+      y:rand(40,worldH-40),
+      len:rand(24,90),
+      ang:rand(-0.45,0.45),
+      a:rand(.06,.18),
+      speed:rand(.2,.8)
+    }));
+
+    wormhole={x:worldW*0.72,y:worldH*0.28,r:Math.min(worldW,worldH)*0.08};
+
     if(ship){
-      ship.x=Math.min(W-30,Math.max(30,ship.x));
-      ship.y=Math.min(H-30,Math.max(30,ship.y));
+      ship.x=clamp(ship.x,30,worldW-30);
+      ship.y=clamp(ship.y,30,worldH-30);
     }
   }
 
   function resetShip(){
     const max=100+(upgrades.shield-1)*30;
-    ship={x:W/2,y:H*.46,vx:0,vy:0,a:-Math.PI/2,r:17,shield:max,maxShield:max,inv:2};
+    ship={x:worldW/2,y:worldH/2,vx:0,vy:0,a:-Math.PI/2,r:17,shield:max,maxShield:max,inv:2};
   }
 
   function wrap(o){
-    if(o.x<-45)o.x=W+45;if(o.x>W+45)o.x=-45;
-    if(o.y<-45)o.y=H+45;if(o.y>H+45)o.y=-45;
+    const margin=24;
+    if(o.x<margin){o.x=margin;if(Number.isFinite(o.vx))o.vx=Math.abs(o.vx)*.45;}
+    if(o.x>worldW-margin){o.x=worldW-margin;if(Number.isFinite(o.vx))o.vx=-Math.abs(o.vx)*.45;}
+    if(o.y<margin){o.y=margin;if(Number.isFinite(o.vy))o.vy=Math.abs(o.vy)*.45;}
+    if(o.y>worldH-margin){o.y=worldH-margin;if(Number.isFinite(o.vy))o.vy=-Math.abs(o.vy)*.45;}
   }
 
   function systemCost(t){
@@ -299,8 +1358,10 @@
     shotsUsed=0;
     reloading=0;
     cooldown=0;
-    showMessage(magLevel===1?'60-SHOT MAGAZINE UNLOCKED':'125-SHOT MAGAZINE UNLOCKED',2);
+    showMessage(magLevel===1?'60-SHOT MAGAZINE UNLOCKED · BULLETS ×1.5':'125-SHOT MAGAZINE UNLOCKED · BULLETS ×2',2);
+    playPurchaseSound();
     updateUI();
+    saveGame();
   }
 
   function showMessage(text,time=1.8){
@@ -313,6 +1374,54 @@
     let idx=0;
     for(let i=0;i<spaceRanks.length;i++) if(asteroidKills>=spaceRanks[i].at) idx=i;
     return idx;
+  }
+
+  function currentRankNumber(){
+    return getSpaceRankIndex()+1;
+  }
+
+  function unlockedHeartSlots(){
+    // Rank #5 and #10 each unlock one purchase. No new heart slots after Rank #10.
+    return Math.min(2,Math.floor(currentRankNumber()/5));
+  }
+
+  function maxLives(){
+    return 3+heartPurchases;
+  }
+
+  function nextHeartRankNumber(){
+    if(heartPurchases>=2)return null;
+    return (heartPurchases+1)*5;
+  }
+
+  function buyExtraHeart(){
+    if(!started || over)return;
+
+    const unlocked=unlockedHeartSlots();
+
+    if(heartPurchases>=2){
+      showMessage('ALL EXTRA HEARTS PURCHASED',1.4);
+      return;
+    }
+
+    if(heartPurchases>=unlocked){
+      showMessage('NEXT HEART UNLOCKS AT RANK #'+nextHeartRankNumber(),1.6);
+      return;
+    }
+
+    if(credits<150){
+      showMessage('NOT ENOUGH CREDITS · HEART COSTS 150',1.5);
+      return;
+    }
+
+    credits-=150;
+    heartPurchases++;
+    lives++;
+    burst(ship.x,ship.y,28);
+    playPurchaseSound();
+    showMessage('+1 HEART PURCHASED · '+lives+' LIVES',2);
+    updateUI();
+    saveGame();
   }
 
   function getRankProgress(){
@@ -333,9 +1442,9 @@
     const buttons=[null,q('rankKing'),q('rankMaster'),q('rankLegend')];
     const labels=[
       '',
-      '👑 KING · 100 CR<span>Gold ship</span>',
-      '💎 MASTER · 700 CR<span>Light blue ship</span>',
-      '⭐ LEGEND · 1500 CR<span>Legend-design</span>'
+      '👑 KING · 100 CR<span>Gold ship · ×2 credits</span>',
+      '💎 MASTER · 700 CR<span>Light blue ship · ×3 credits</span>',
+      '⭐ LEGEND · 1500 CR<span>Legend design · ×5 title bonus · all 3 = ×11</span>'
     ];
     for(let i=1;i<=3;i++){
       const b=buttons[i];
@@ -354,11 +1463,31 @@
     q('credits').textContent=credits;
     q('menuCredits').textContent=credits;
     q('shieldText').textContent=Math.ceil(ship.shield)+' / '+ship.maxShield;
-    q('lives').textContent=('❤️ '.repeat(lives)+'🖤 '.repeat(3-lives)).trim();
+    const totalLifeSlots=maxLives();
+    q('lives').textContent=('❤️ '.repeat(lives)+'🖤 '.repeat(Math.max(0,totalLifeSlots-lives))).trim();
     q('spaceRankHud').textContent=sr.name;
     q('menuSpaceRank').textContent=sr.name;
     q('killsHud').textContent=asteroidKills;
     q('menuKills').textContent=asteroidKills;
+    q('shopRankHud').textContent=ownedTitleText();
+    q('creditMultiplierHud').textContent='×'+creditMultiplier();
+    q('menuCreditMultiplier').textContent='×'+creditMultiplier();
+    q('menuSaveCode').textContent=activeSaveCode||'—';
+    q('zoomText').textContent=Math.round(zoom*100)+'%';
+    q('allAudioToggle').textContent='ALL AUDIO · '+(masterAudioEnabled?'ON':'OFF');
+    q('musicToggle').textContent='MUSIC · '+(musicEnabled?'ON':'OFF');
+    q('ambienceToggle').textContent='SPACE · '+(ambienceEnabled?'ON':'OFF');
+    q('engineSoundToggle').textContent='ENGINE · '+(engineSoundEnabled?'ON':'OFF');
+    q('shotSoundToggle').textContent='SHOTS · '+(shotSoundEnabled?'ON':'OFF');
+    q('creditSoundToggle').textContent='CREDITS · '+(creditSoundEnabled?'ON':'OFF');
+    q('upgradeSoundToggle').textContent='UPGRADES · '+(upgradeSoundEnabled?'ON':'OFF');
+    q('allAudioToggle').classList.toggle('off',!masterAudioEnabled);
+    q('musicToggle').classList.toggle('off',!musicEnabled);
+    q('ambienceToggle').classList.toggle('off',!ambienceEnabled);
+    q('engineSoundToggle').classList.toggle('off',!engineSoundEnabled);
+    q('shotSoundToggle').classList.toggle('off',!shotSoundEnabled);
+    q('creditSoundToggle').classList.toggle('off',!creditSoundEnabled);
+    q('upgradeSoundToggle').classList.toggle('off',!upgradeSoundEnabled);
     q('rankBar').style.width=prog.pct+'%';
     q('menuRankBar').style.width=prog.pct+'%';
     q('rankProgressText').textContent=prog.text;
@@ -371,9 +1500,26 @@
     q('gunLevel').textContent=upgrades.gun;
     q('engineLevel').textContent=upgrades.engine;
     q('shieldLevel').textContent=upgrades.shield;
-    q('gunInfo').textContent=upgrades.gun>=2?'Side cannons · alternate left/right · 30 shots':'Center cannon · 30 shots before cooldown';
+    q('gunInfo').textContent=(upgrades.gun>=2?'Side cannons · alternate left/right · ':'Center cannon · ')+magCapacity()+' shots · bullet power '+bulletDamageText();
     q('engineInfo').textContent=Math.round((1+(upgrades.engine-1)*.17)*100)+' % engine power';
     q('shieldInfo').textContent=ship.maxShield+' max shield';
+    const heartUnlocked=unlockedHeartSlots();
+    q('heartStatus').textContent=heartPurchases+' / 2';
+
+    if(heartPurchases>=2){
+      q('heartInfo').textContent='Maximum reached · heart purchases end after Rank #10.';
+      q('heartUpgrade').textContent='HEART LIMIT REACHED';
+      q('heartUpgrade').disabled=true;
+    }else if(heartPurchases<heartUnlocked){
+      q('heartInfo').textContent='Extra heart available now · +1 life for this run.';
+      q('heartUpgrade').textContent='BUY +1 HEART · 150 CR';
+      q('heartUpgrade').disabled=credits<150;
+    }else{
+      const nextRank=nextHeartRankNumber();
+      q('heartInfo').textContent='Next heart unlocks at Space Rank #'+nextRank+'.';
+      q('heartUpgrade').textContent='LOCKED · REACH RANK #'+nextRank;
+      q('heartUpgrade').disabled=true;
+    }
     q('magCapacity').textContent=magCapacity();
     q('magInfo').textContent=magLevel===0?'Standard magazine · 30 shots':magLevel===1?'Extended magazine · 60 shots':'Heavy magazine · 125 shots';
     const magBtn=q('magUpgrade');
@@ -386,6 +1532,12 @@
       magBtn.disabled=credits<magCost;
     }
     q('cosmeticHud').textContent=cosmeticRanks[cosmeticRank].name;
+    q('shipColorHud').textContent=shipColorName();
+    ['red','green','orange','purple','pink'].forEach(name=>{
+      const id='color'+name.charAt(0).toUpperCase()+name.slice(1);
+      q(id).classList.toggle('active',shipColor===name);
+    });
+    q('colorReset').classList.toggle('active',shipColor==='normal');
     ['gun','engine','shield'].forEach(t=>{
       const b=q(t+'Upgrade'), c=systemCost(t);
       b.textContent='UPGRADE · '+c+' CR';
@@ -395,17 +1547,24 @@
   }
 
   function spawnRock(){
-    let side=Math.floor(Math.random()*4),x,y;
-    if(side===0){x=rand(0,W);y=-40}
-    else if(side===1){x=W+40;y=rand(0,H)}
-    else if(side===2){x=rand(0,W);y=H+40}
-    else{x=-40;y=rand(0,H)}
-
     spawnCount++;
-    const elite = spawnCount % 5 === 0;
-    const r=elite ? rand(24,44) : rand(19,41);
+    const elite=spawnCount%5===0;
+    const viewRadius=Math.max(W,H)/(2*zoom);
+    let x=ship.x,y=ship.y;
+
+    for(let attempt=0;attempt<12;attempt++){
+      const angle=rand(0,Math.PI*2);
+      const distance=viewRadius+rand(120,320);
+      const tx=clamp(ship.x+Math.cos(angle)*distance,45,worldW-45);
+      const ty=clamp(ship.y+Math.sin(angle)*distance,45,worldH-45);
+      if(Math.hypot(tx-ship.x,ty-ship.y)>viewRadius*.75 || attempt===11){
+        x=tx;y=ty;break;
+      }
+    }
+
+    const r=elite?rand(24,44):rand(19,41);
     const a=Math.atan2(ship.y-y,ship.x-x)+rand(-.65,.65);
-    const s=(elite ? rand(20,42) : rand(23,50))+Math.min(score/90,30);
+    const s=(elite?rand(20,42):rand(23,50))+Math.min(score/90,30);
     const baseHp=r>32?3:r>24?2:1;
 
     rocks.push({
@@ -413,8 +1572,8 @@
       vx:Math.cos(a)*s,
       vy:Math.sin(a)*s,
       r,
-      hp: elite ? baseHp+2 : baseHp,
-      maxHp: elite ? baseHp+2 : baseHp,
+      hp:elite?baseHp+2:baseHp,
+      maxHp:elite?baseHp+2:baseHp,
       rot:rand(0,6.28),
       spin:rand(-.65,.65),
       value:Math.max(4,Math.round(r/5)),
@@ -431,7 +1590,15 @@
 
   function addBullet(offset){
     const sx=Math.sin(ship.a)*offset, sy=-Math.cos(ship.a)*offset, a=ship.a;
-    bullets.push({x:ship.x+Math.cos(a)*22+sx,y:ship.y+Math.sin(a)*22+sy,vx:Math.cos(a)*410+ship.vx,vy:Math.sin(a)*410+ship.vy,life:1.4,r:4});
+    bullets.push({
+      x:ship.x+Math.cos(a)*22+sx,
+      y:ship.y+Math.sin(a)*22+sy,
+      vx:Math.cos(a)*410+ship.vx,
+      vy:Math.sin(a)*410+ship.vy,
+      life:1.4,
+      r:4,
+      dmg:bulletDamage()
+    });
   }
 
   function shoot(){
@@ -441,6 +1608,7 @@
     fireClock=0;
     if(upgrades.gun===1) addBullet(0);
     else { gunSide=gunSide?0:1; addBullet(gunSide?15:-15); }
+    playShotSound();
     shotsUsed++;
     if(shotsUsed>=magCapacity()){
       shotsUsed=magCapacity();
@@ -452,17 +1620,27 @@
   function asteroidDestroyed(r){
     r.hp--;
     if(r.hp>0){burst(r.x,r.y,3);return false;}
+
     const beforeRank=getSpaceRankIndex();
-    const earned = r.elite ? r.value*2 : r.value;
+    const mult=creditMultiplier();
+    const eliteMult=r.elite?2:1;
+    const earned=r.value*eliteMult*mult;
+
     credits+=earned;
-    score+=r.elite ? 20 : 10;
+    score+=r.elite?20:10;
     asteroidKills++;
     burst(r.x,r.y,r.elite?20:12);
-    if(r.elite) showMessage('RED ASTEROID DESTROYED · 2× CREDITS!',1.5);
+    playCreditSound(r.elite||mult>1);
+
+    if(r.elite){
+      showMessage('RED ASTEROID · ×2 ELITE · TITLE BONUS ×'+mult,1.5);
+    }
 
     if(asteroidKills%10===0){
-      credits+=15;
-      showMessage(' +15 BONUS CREDITS · '+asteroidKills+' ASTEROIDS!',1.8);
+      const bonus=15*mult;
+      credits+=bonus;
+      playCreditSound(true);
+      showMessage('+'+bonus+' BONUS CREDITS · '+asteroidKills+' ASTEROIDS!',1.8);
     }
 
     const afterRank=getSpaceRankIndex();
@@ -470,6 +1648,7 @@
       showMessage('RANK UP · '+spaceRanks[afterRank].name+'!',2.3);
       burst(ship.x,ship.y,32);
     }
+    saveGame();
     return true;
   }
 
@@ -478,6 +1657,7 @@
     burst(ship.x,ship.y,28);
     if(lives<=0){
       lives=0;over=true;paused=true;active.clear();
+      deleteCurrentSave();
       q('finalScore').textContent=score;
       q('finalRank').textContent=spaceRanks[getSpaceRankIndex()].name;
       q('gameOver').classList.remove('hidden');
@@ -488,6 +1668,7 @@
     rocks=rocks.filter(r=>Math.hypot(r.x-ship.x,r.y-ship.y)>210);
     showMessage('LIFE LOST · '+lives+' LEFT');
     updateUI();
+    saveGame();
   }
 
   function upgrade(t){
@@ -500,7 +1681,9 @@
       ship.shield=ship.maxShield;
     }
     showMessage(t==='gun'?'SIDE CANNONS UPGRADED':t==='engine'?'ENGINE UPGRADED':'SHIELD UPGRADED');
+    playPurchaseSound();
     updateUI();
+    saveGame();
   }
 
   function buyCosmeticRank(level){
@@ -511,7 +1694,9 @@
     cosmeticRank=level;
     showMessage(r.name+' SHIP TITLE UNLOCKED',2);
     burst(ship.x,ship.y,35);
+    playPurchaseSound();
     updateUI();
+    saveGame();
   }
 
   function step(dt){
@@ -523,7 +1708,7 @@
       cooldown=Math.max(0,cooldown-dt);
       if(cooldown===0){shotsUsed=0;showMessage('GUNS READY',1);}
     }
-    if(paused||menuOpen||over||!started){updateUI();return;}
+    if(paused||menuOpen||over||!started){updateEngineAudio(false);updateUI();return;}
 
     fireClock+=dt;
     spawnClock+=dt;
@@ -538,6 +1723,7 @@
     if(active.has('up')){ship.vx+=Math.cos(ship.a)*thrust*dt;ship.vy+=Math.sin(ship.a)*thrust*dt;}
     if(active.has('down')){ship.vx*=Math.pow(.2,dt);ship.vy*=Math.pow(.2,dt);}
     if(active.has('fire'))shoot();
+    updateEngineAudio(active.has('up'));
 
     const sp=Math.hypot(ship.vx,ship.vy);
     if(sp>max){ship.vx=ship.vx/sp*max;ship.vy=ship.vy/sp*max;}
@@ -554,7 +1740,7 @@
     }
 
     bullets.forEach(b=>{b.x+=b.vx*dt;b.y+=b.vy*dt;b.life-=dt});
-    bullets=bullets.filter(b=>b.life>0&&b.x>-30&&b.x<W+30&&b.y>-30&&b.y<H+30);
+    bullets=bullets.filter(b=>b.life>0&&b.x>-30&&b.x<worldW+30&&b.y>-30&&b.y<worldH+30);
     rocks.forEach(r=>{r.x+=r.vx*dt;r.y+=r.vy*dt;r.rot+=r.spin*dt;wrap(r)});
     particles.forEach(p=>{p.x+=p.vx*dt;p.y+=p.vy*dt;p.life-=dt});
     particles=particles.filter(p=>p.life>0);
@@ -564,7 +1750,12 @@
         const b=bullets[bi],r=rocks[ri];
         if(b&&Math.hypot(b.x-r.x,b.y-r.y)<r.r+b.r){
           bullets.splice(bi,1);
-          if(asteroidDestroyed(r))rocks.splice(ri,1);
+          let destroyed=false;
+          const hits=Math.max(1,Math.round(b.dmg||1));
+          for(let hit=0;hit<hits;hit++){
+            if(asteroidDestroyed(r)){destroyed=true;break;}
+          }
+          if(destroyed)rocks.splice(ri,1);
           break;
         }
       }
@@ -606,7 +1797,7 @@
     ctx.lineTo(-8,0);
     ctx.lineTo(-15,14);
     ctx.closePath();
-    ctx.fillStyle=style.color;
+    ctx.fillStyle=currentShipHullColor();
     ctx.fill();
     ctx.strokeStyle=style.accent;
     ctx.lineWidth=cosmeticRank===3?3:2;
@@ -645,29 +1836,100 @@
   }
 
   function draw(){
+    ctx.setTransform(dpr,0,0,dpr,0,0);
     ctx.clearRect(0,0,W,H);
-    ctx.fillStyle='#04060b';ctx.fillRect(0,0,W,H);
+    ctx.fillStyle='#020308';
+    ctx.fillRect(0,0,W,H);
+
+    const cam=getCamera();
+
+    ctx.save();
+    ctx.translate(W/2,H/2);
+    ctx.scale(zoom,zoom);
+    ctx.translate(-cam.x,-cam.y);
+
+    // Large playable map
+    ctx.fillStyle='#04060b';
+    ctx.fillRect(0,0,worldW,worldH);
+    ctx.strokeStyle='rgba(120,150,190,.20)';
+    ctx.lineWidth=2/zoom;
+    ctx.strokeRect(2,2,worldW-4,worldH-4);
+
+    if(wormhole){
+      const grad=ctx.createRadialGradient(wormhole.x,wormhole.y,0,wormhole.x,wormhole.y,wormhole.r*1.8);
+      grad.addColorStop(0,'rgba(150,220,255,.16)');
+      grad.addColorStop(.20,'rgba(90,150,255,.12)');
+      grad.addColorStop(.45,'rgba(70,40,150,.11)');
+      grad.addColorStop(.70,'rgba(20,10,40,.04)');
+      grad.addColorStop(1,'rgba(0,0,0,0)');
+      ctx.fillStyle=grad;
+      ctx.beginPath();
+      ctx.arc(wormhole.x,wormhole.y,wormhole.r*1.8,0,Math.PI*2);
+      ctx.fill();
+
+      for(let ring=1; ring<=4; ring++){
+        ctx.beginPath();
+        ctx.lineWidth=(2.5-ring*.35)/zoom;
+        ctx.strokeStyle=`rgba(${160-ring*15}, ${220-ring*10}, 255, ${0.18-ring*0.025})`;
+        ctx.ellipse(wormhole.x,wormhole.y,wormhole.r*(0.28+ring*0.16),wormhole.r*(0.10+ring*0.07),-0.55,0,Math.PI*2);
+        ctx.stroke();
+      }
+    }
+
+    farStreaks.forEach((st,idx)=>{
+      const drift=((performance.now()*0.001*st.speed)+(idx*3.7))%worldW;
+      const x=(st.x+drift)%worldW;
+      const y=st.y;
+      const dx=Math.cos(st.ang)*st.len;
+      const dy=Math.sin(st.ang)*st.len;
+      const g=ctx.createLinearGradient(x-dx*.5,y-dy*.5,x+dx*.5,y+dy*.5);
+      g.addColorStop(0,'rgba(255,255,255,0)');
+      g.addColorStop(.5,`rgba(210,235,255,${st.a})`);
+      g.addColorStop(1,'rgba(255,255,255,0)');
+      ctx.strokeStyle=g;
+      ctx.lineWidth=1.1/zoom;
+      ctx.beginPath();
+      ctx.moveTo(x-dx*.5,y-dy*.5);
+      ctx.lineTo(x+dx*.5,y+dy*.5);
+      ctx.stroke();
+    });
 
     stars.forEach(s=>{
-      ctx.globalAlpha=s.a;ctx.fillStyle='#fff';
-      ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);ctx.fill();
+      ctx.globalAlpha=s.a;
+      ctx.fillStyle='#fff';
+      ctx.beginPath();
+      ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+      ctx.fill();
     });
     ctx.globalAlpha=1;
 
     rocks.forEach(r=>{
-      ctx.save();ctx.translate(r.x,r.y);ctx.rotate(r.rot);ctx.beginPath();
+      ctx.save();
+      ctx.translate(r.x,r.y);
+      ctx.rotate(r.rot);
+      ctx.beginPath();
       for(let i=0;i<9;i++){
-        const a=i/9*Math.PI*2,rr=r.r*(.83+((i*13)%5)*.045),x=Math.cos(a)*rr,y=Math.sin(a)*rr;
+        const a=i/9*Math.PI*2;
+        const rr=r.r*(.83+((i*13)%5)*.045);
+        const x=Math.cos(a)*rr,y=Math.sin(a)*rr;
         i?ctx.lineTo(x,y):ctx.moveTo(x,y);
       }
       ctx.closePath();
-      ctx.fillStyle=r.elite?'#c82f2f':'#272e3a';ctx.fill();
-      ctx.strokeStyle='rgba(220,225,235,.45)';ctx.lineWidth=2;ctx.stroke();
+      ctx.fillStyle=r.elite?'#c82f2f':'#272e3a';
+      ctx.fill();
+      ctx.strokeStyle=r.elite?'rgba(255,195,195,.95)':'rgba(220,225,235,.45)';
+      ctx.lineWidth=r.elite?3:2;
+      ctx.stroke();
       ctx.restore();
     });
 
     ctx.fillStyle='#fff';
-    bullets.forEach(b=>{ctx.beginPath();ctx.arc(b.x,b.y,b.r,0,Math.PI*2);ctx.fill();});
+    bullets.forEach(b=>{
+      ctx.beginPath();
+      ctx.arc(b.x,b.y,b.r,0,Math.PI*2);
+      ctx.fill();
+    });
+
     if(ship.inv<=0||Math.floor(ship.inv*9)%2===0)drawShip();
 
     particles.forEach(p=>{
@@ -676,6 +1938,8 @@
       ctx.fillRect(p.x,p.y,3,3);
     });
     ctx.globalAlpha=1;
+
+    ctx.restore();
   }
 
   function loop(now){
@@ -687,22 +1951,53 @@
   }
 
   function start(){
+    const code=cleanSaveCode(q('saveCodeInput').value);
+    q('saveCodeInput').value=code;
+
+    if(!validSaveCode(code)){
+      setSaveStatus('Enter a 4- or 5-digit SAVE CODE first.','error');
+      q('saveCodeInput').focus();
+      return;
+    }
+
+    initAudio();
+    activeSaveCode=code;
+    safeStorageSet(LAST_CODE_KEY,code);
+
+    const loaded=loadGame(code);
     started=true;
     paused=false;
     q('startOverlay').classList.add('hidden');
-    showMessage('READY · 3 LIVESES · SPACE RANK ROOKIE');
+
+    if(loaded){
+      showMessage('SAVE LOADED · CODE '+code,2);
+    }else{
+      // The pre-start state is a fresh run. Claim this code as its save slot.
+      credits=0;score=0;lives=3;heartPurchases=0;asteroidKills=0;shotsUsed=0;cooldown=0;reloading=0;gunSide=0;spawnCount=0;
+      bullets=[];rocks=[];particles=[];upgrades={gun:1,engine:1,shield:1};cosmeticRank=0;shipColor='normal';magLevel=0;
+      menuOpen=false;infoOpen=false;settingsOpen=false;over=false;active.clear();
+      resetShip();
+      for(let i=0;i<4;i++)spawnRock();
+      showMessage('NEW SAVE · CODE '+code,2);
+      updateUI();
+      saveGame();
+    }
+
+    updateUI();
     try{app.focus({preventScroll:true});}catch(_){app.focus();}
   }
 
   function restart(){
-    credits=0;score=0;lives=3;asteroidKills=0;shotsUsed=0;cooldown=0;reloading=0;gunSide=0;spawnCount=0;
-    bullets=[];rocks=[];particles=[];upgrades={gun:1,engine:1,shield:1};cosmeticRank=0;magLevel=0;
-    menuOpen=false;over=false;started=true;paused=false;active.clear();
+    initAudio();
+    credits=0;score=0;lives=3;heartPurchases=0;asteroidKills=0;shotsUsed=0;cooldown=0;reloading=0;gunSide=0;spawnCount=0;
+    bullets=[];rocks=[];particles=[];upgrades={gun:1,engine:1,shield:1};cosmeticRank=0;shipColor='normal';magLevel=0;
+    menuOpen=false;infoOpen=false;settingsOpen=false;over=false;started=true;paused=false;active.clear();
     resetShip();
     for(let i=0;i<4;i++)spawnRock();
     q('gameOver').classList.add('hidden');
-    showMessage('NEW SHIP · SPACE RANK ROOKIE');
+    showMessage('NEW SHIP · SAVE CODE '+(activeSaveCode||'—'));
     updateUI();
+    saveGame();
     try{app.focus({preventScroll:true});}catch(_){app.focus();}
   }
 
@@ -742,10 +2037,66 @@
       startReload();
       return;
     }
+    if(k==='+'||k==='='||k==='add'){
+      e.preventDefault();
+      setZoom(zoom+.10);
+      updateUI();
+      return;
+    }
+    if(k==='-'||k==='_'||k==='subtract'){
+      e.preventDefault();
+      setZoom(zoom-.10);
+      updateUI();
+      return;
+    }
     if(k==='m' && started && !over){
       e.preventDefault();
-      if(menuOpen){menuOpen=false;paused=false;q('upgradeMenu').classList.add('hidden');}
-      else{menuOpen=true;paused=true;active.clear();q('upgradeMenu').classList.remove('hidden');updateUI();}
+      infoOpen=false;settingsOpen=false;
+      q('infoMenu').classList.add('hidden');
+      q('settingsMenu').classList.add('hidden');
+      if(menuOpen){
+        menuOpen=false;paused=false;q('upgradeMenu').classList.add('hidden');
+      }else{
+        menuOpen=true;paused=true;active.clear();
+        q('upgradeMenu').classList.remove('hidden');
+        updateUI();
+      }
+      return;
+    }
+    if(k==='i' && started && !over){
+      e.preventDefault();
+      menuOpen=false;settingsOpen=false;
+      q('upgradeMenu').classList.add('hidden');
+      q('settingsMenu').classList.add('hidden');
+      if(infoOpen){
+        infoOpen=false;paused=false;q('infoMenu').classList.add('hidden');
+      }else{
+        infoOpen=true;paused=true;active.clear();
+        q('infoMenu').classList.remove('hidden');
+      }
+      return;
+    }
+    if(k==='o' && started && !over){
+      e.preventDefault();
+      menuOpen=false;infoOpen=false;
+      q('upgradeMenu').classList.add('hidden');
+      q('infoMenu').classList.add('hidden');
+      if(settingsOpen){
+        settingsOpen=false;paused=false;q('settingsMenu').classList.add('hidden');
+      }else{
+        settingsOpen=true;paused=true;active.clear();
+        q('settingsMenu').classList.remove('hidden');
+      }
+      return;
+    }
+    if(k==='escape'){
+      if(menuOpen||infoOpen||settingsOpen){
+        e.preventDefault();
+        menuOpen=false;infoOpen=false;settingsOpen=false;paused=false;active.clear();
+        q('upgradeMenu').classList.add('hidden');
+        q('infoMenu').classList.add('hidden');
+        q('settingsMenu').classList.add('hidden');
+      }
     }
   });
   app.addEventListener('keyup',e=>{
@@ -753,29 +2104,97 @@
     if(control){e.preventDefault();active.delete(control);}
   });
   app.addEventListener('pointerdown',()=>{try{app.focus({preventScroll:true});}catch(_){app.focus();}});
-  window.addEventListener('blur',()=>active.clear());
+  window.addEventListener('blur',()=>{active.clear();updateEngineAudio(false);});
 
+  q('saveCodeInput').addEventListener('input',()=>{
+    const cleaned=cleanSaveCode(q('saveCodeInput').value);
+    if(q('saveCodeInput').value!==cleaned)q('saveCodeInput').value=cleaned;
+    if(validSaveCode(cleaned)){
+      setSaveStatus(readSave(cleaned)?'SAVE FOUND · START / LOAD will continue it.':'NEW SAVE CODE · START / LOAD will create it.','good');
+    }else{
+      setSaveStatus('Enter your own code or generate one. Saves stay on this browser/device.');
+    }
+  });
+  q('saveCodeInput').addEventListener('keydown',e=>{
+    if(e.key==='Enter'){e.preventDefault();start();}
+  });
+  q('generateCodeBtn').addEventListener('click',()=>{
+    const code=generateSaveCode();
+    q('saveCodeInput').value=code;
+    setSaveStatus('NEW SAVE CODE '+code+' · Keep this code for this browser/device.','good');
+  });
   q('goBtn').addEventListener('click',start);
   q('restartBtn').addEventListener('click',restart);
   q('menuBtn').addEventListener('click',()=>{
     if(!started||over)return;
+    infoOpen=false;settingsOpen=false;
+    q('infoMenu').classList.add('hidden');
+    q('settingsMenu').classList.add('hidden');
     menuOpen=true;paused=true;active.clear();
     q('upgradeMenu').classList.remove('hidden');
+    updateEngineAudio(false);
     updateUI();
   });
   q('closeMenu').addEventListener('click',()=>{
     menuOpen=false;paused=false;
     q('upgradeMenu').classList.add('hidden');
   });
+  q('infoBtn').addEventListener('click',()=>{
+    if(!started||over)return;
+    menuOpen=false;settingsOpen=false;
+    q('upgradeMenu').classList.add('hidden');
+    q('settingsMenu').classList.add('hidden');
+    infoOpen=true;paused=true;active.clear();
+    q('infoMenu').classList.remove('hidden');
+    updateEngineAudio(false);
+  });
+  q('closeInfo').addEventListener('click',()=>{
+    infoOpen=false;paused=false;
+    q('infoMenu').classList.add('hidden');
+  });
+  q('settingsBtn').addEventListener('click',()=>{
+    if(!started||over)return;
+    menuOpen=false;infoOpen=false;
+    q('upgradeMenu').classList.add('hidden');
+    q('infoMenu').classList.add('hidden');
+    settingsOpen=true;paused=true;active.clear();
+    q('settingsMenu').classList.remove('hidden');
+    updateEngineAudio(false);
+  });
+  q('closeSettings').addEventListener('click',()=>{
+    settingsOpen=false;paused=false;
+    q('settingsMenu').classList.add('hidden');
+  });
 
   document.querySelectorAll('[data-key]').forEach(b=>hold(b,b.dataset.key));
   hold(q('fireBtn'),'fire');
   q('reloadBtn').addEventListener('click',startReload);
+  q('zoomOutBtn').addEventListener('click',()=>{setZoom(zoom-.10);updateUI();});
+  q('zoomInBtn').addEventListener('click',()=>{setZoom(zoom+.10);updateUI();});
+  canvas.addEventListener('wheel',e=>{
+    e.preventDefault();
+    setZoom(zoom+(e.deltaY<0?.10:-.10));
+    updateUI();
+  },{passive:false});
 
   q('gunUpgrade').addEventListener('click',()=>upgrade('gun'));
   q('magUpgrade').addEventListener('click',upgradeMagazine);
   q('engineUpgrade').addEventListener('click',()=>upgrade('engine'));
   q('shieldUpgrade').addEventListener('click',()=>upgrade('shield'));
+  q('heartUpgrade').addEventListener('click',buyExtraHeart);
+  q('allAudioToggle').addEventListener('click',toggleMasterAudio);
+  q('musicToggle').addEventListener('click',()=>toggleAudioGroup('music'));
+  q('ambienceToggle').addEventListener('click',()=>toggleAudioGroup('ambience'));
+  q('engineSoundToggle').addEventListener('click',()=>toggleAudioGroup('engine'));
+  q('shotSoundToggle').addEventListener('click',()=>toggleAudioGroup('shots'));
+  q('creditSoundToggle').addEventListener('click',()=>toggleAudioGroup('credits'));
+  q('upgradeSoundToggle').addEventListener('click',()=>toggleAudioGroup('upgrades'));
+  q('colorRed').addEventListener('click',()=>buyShipColor('red'));
+  q('colorGreen').addEventListener('click',()=>buyShipColor('green'));
+  q('colorOrange').addEventListener('click',()=>buyShipColor('orange'));
+  q('colorPurple').addEventListener('click',()=>buyShipColor('purple'));
+  q('colorPink').addEventListener('click',()=>buyShipColor('pink'));
+  q('colorReset').addEventListener('click',resetShipColor);
   q('rankKing').addEventListener('click',()=>buyCosmeticRank(1));
   q('rankMaster').addEventListener('click',()=>buyCosmeticRank(2));
   q('rankLegend').addEventListener('click',()=>buyCosmeticRank(3));
@@ -783,20 +2202,31 @@
   window.addEventListener('resize',resize);
   document.addEventListener('visibilitychange',()=>{
     if(document.hidden&&started&&!over){
-      paused=true;active.clear();
-    }else if(!document.hidden&&started&&!over&&!menuOpen){
+      saveGame();
+      paused=true;active.clear();updateEngineAudio(false);
+    }else if(!document.hidden&&started&&!over&&!menuOpen&&!infoOpen&&!settingsOpen){
       paused=false;
     }
   });
+  window.addEventListener('pagehide',()=>saveGame());
+  setInterval(()=>{if(started&&!over&&lives>0)saveGame();},2000);
 
+  loadAudioPrefs();
   resize();
   resetShip();
   for(let i=0;i<4;i++)spawnRock();
+
+  const lastCode=cleanSaveCode(safeStorageGet(LAST_CODE_KEY));
+  if(validSaveCode(lastCode)){
+    q('saveCodeInput').value=lastCode;
+    setSaveStatus(readSave(lastCode)?'SAVE FOUND · START / LOAD will continue it.':'LAST CODE '+lastCode+' · No active run saved.','good');
+  }
+
   updateUI();
   requestAnimationFrame(loop);
 
   if('serviceWorker' in navigator && location.protocol.startsWith('http')){
-    navigator.serviceWorker.register('./service-worker.js').catch(()=>{});
+    navigator.serviceWorker.register('./service-worker.js?v=15').catch(()=>{});
   }
 })();
 </script>
