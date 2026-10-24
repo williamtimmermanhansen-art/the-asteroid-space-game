@@ -1,22 +1,18 @@
-The Asteroid Space Game – v16.2
+The Asteroid Space Game – v16.2 FINAL MUSIC INCLUDED
 Developed by William T. Hansen of Nortic Pixel Studio, with assistance from ChatGPT.
 
-CURRENT VERSION
-v16.2 adds a five-step music volume control:
-0% / 25% / 50% / 75% / 100%.
+MUSIC FIX
+- "A few jumps away" by Arthur Vyncke is now embedded directly inside index.html.
+- The live game no longer depends on finding a separate MP3 file.
+- The MP3 is still included separately in this package for attribution/archive purposes.
+- Music loops automatically.
+- Music volume levels remain: 0%, 25%, 50%, 75%, 100%.
+- SETTINGS shows track status.
 
-The selected music volume is stored locally in the browser.
-Volume 0% keeps MUSIC enabled but silences the track.
-Other sound groups remain independent.
-
-FILES
-- index.html
-- manifest.json
-- service-worker.js
-- a-few-jumps-away.mp3
-- deep-space-background.png
-- README.txt
-- CHANGELOG.txt
+IMPORTANT
+Upload ALL files in this folder to the v16.2 branch.
+The embedded music is inside index.html, so the game music will remain available even if
+the separate MP3 path is unavailable.
 
 MUSIC CREDIT
 Track: "A few jumps away"
@@ -25,5 +21,3 @@ Artist: Arthur Vyncke (Belgium)
 Keep the required artist credit and follow the original source/license terms.
 Do not register the track on Spotify, iTunes, copyright-detection systems,
 or similar services as your own work.
-
-For the complete development history, see CHANGELOG.txt.

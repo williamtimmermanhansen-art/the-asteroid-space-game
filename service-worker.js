@@ -1,17 +1,18 @@
-const CACHE='the-asteroid-space-game-v16-2';
+const CACHE='the-asteroid-space-game-v16-2-musicfix';
 const FILES=[
   './',
   './index.html',
   './manifest.json',
-  './a-few-jumps-away.mp3',
   './deep-space-background.png',
   './README.txt',
   './CHANGELOG.txt'
 ];
+
 self.addEventListener('install',event=>{
   self.skipWaiting();
   event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(FILES)));
 });
+
 self.addEventListener('activate',event=>{
   event.waitUntil(
     caches.keys()
@@ -19,6 +20,7 @@ self.addEventListener('activate',event=>{
       .then(()=>self.clients.claim())
   );
 });
+
 self.addEventListener('fetch',event=>{
   event.respondWith(
     caches.open(CACHE).then(cache=>
