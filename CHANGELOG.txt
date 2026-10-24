@@ -1,0 +1,287 @@
+THE ASTEROID SPACE GAME
+FULL CHANGELOG
+Developed by William T. Hansen of Nortic Pixel Studio, with assistance from ChatGPT.
+
+===============================================================================
+v16.2 - MUSIC VOLUME CONTROL
+===============================================================================
+- Added five selectable background-music volume levels:
+  - 0%
+  - 25%
+  - 50%
+  - 75%
+  - 100%
+- Music-volume preference is saved locally in the browser.
+- 0% silences the music without changing the MUSIC ON/OFF preference.
+- Other sound categories remain independent.
+- Added full project CHANGELOG.txt.
+
+===============================================================================
+v16.1 - AUDIO FIX
+===============================================================================
+- Fixed the supplied MP3 not being available when testing the HTML separately.
+- Confirmed "A few jumps away" is included in the GitHub-ready package.
+- Added looping playback for the MP3.
+- Added visible music track status in SETTINGS:
+  - PLAYING / LOOP ON
+  - MUSIC OFF
+  - ALL AUDIO OFF
+  - VOLUME/FILE ERROR states
+- Added retry behavior for browsers that initially block autoplay.
+- Increased music playback level from the first v16 implementation.
+- Produced a self-contained HTML test build with embedded music/background assets.
+
+===============================================================================
+v16 - COMMUNITY UPDATE
+===============================================================================
+- Increased playable map size.
+- Increased asteroid population and spawn frequency.
+- Magazine capacities increased by 15 shots:
+  - 45 starting shots
+  - 75 shots after first Magazine upgrade
+  - 140 shots after second Magazine upgrade
+- Magazine upgrades continue to increase bullet power:
+  - x1.0 starting power
+  - x1.5 with 75-shot Magazine
+  - x2.0 with 140-shot Magazine
+- Added dedicated Reload System upgrade path:
+  - 3.0 sec -> 2.5 sec: 75 credits
+  - 2.5 sec -> 2.0 sec: 125 credits
+  - 2.0 sec -> 1.5 sec: 200 credits
+  - 1.5 sec -> 1.0 sec: 300 credits
+  - 1.0 sec -> 0.5 sec: 450 credits
+- Automatic empty-magazine reload uses the upgraded reload time.
+- Added purchasable Deep Space background:
+  - 250-credit one-time unlock
+  - free switching between Standard and Deep Space after purchase
+  - background choice saved with SAVE CODE
+- Added supplied Deep Space image as game asset.
+- Added supplied music track "A few jumps away" by Arthur Vyncke.
+- Music configured to loop.
+- Added music attribution/license notice to README.
+- Added progressively more complex ship silhouettes at higher Space Ranks,
+  inspired by the supplied ship-design references.
+- Added very subtle "Nortic Pixel Studio" branding at the bottom of the game.
+- Added start-screen developer credit:
+  "Developed by William T. Hansen of Nortic Pixel Studio, with assistance from ChatGPT."
+- Preserved English-only in-game UI.
+
+===============================================================================
+v15 - HEART LIMIT AT RANK #10
+===============================================================================
+- Extra-heart purchase opportunities limited to:
+  - Space Rank #5: Space Colonel
+  - Space Rank #10: Space Marshal
+- No new heart purchase opportunities after Rank #10.
+- Each extra heart costs 150 credits.
+- Maximum of 2 extra hearts per run.
+- Heart purchases are stored in the active SAVE CODE.
+
+===============================================================================
+v14 - EXTRA HEART SYSTEM
+===============================================================================
+- Introduced purchasable extra hearts.
+- Cost: 150 credits per heart.
+- Initial design allowed one opportunity every 5 Space Ranks.
+- Heart purchases added one current life and one extra life slot.
+- Lost hearts were not automatically restored.
+- Heart purchases were made persistent in SAVE CODE data.
+- Later refined in v15 to stop after Rank #10.
+
+===============================================================================
+v13 - SHIP COLOR CUSTOMIZATION
+===============================================================================
+- Added SHIP COLOR section to SHIP SYSTEMS.
+- Added purchasable hull colors:
+  - Red: 25 credits
+  - Green: 25 credits
+  - Orange: 25 credits
+  - Purple: 25 credits
+  - Pink: 25 credits
+- Added Reset to Normal for 30 credits.
+- Ship color affects appearance only.
+- Space Rank and purchased Ship Title credit bonuses remain active.
+- Normal restores the current Ship Title's default hull color.
+- Selected color is stored with SAVE CODE.
+
+===============================================================================
+v12 - RANK NAMES, MAGAZINE POWER, DEEP-SPACE EFFECTS
+===============================================================================
+- Renamed:
+  - Star Commander -> Starship Commander
+  - Star Admiral -> Starship Admiral
+- Magazine upgrades also increased bullet damage.
+- Gun information displays current bullet-power multiplier.
+- Added distant star streaks to the background.
+- Added a faint distant wormhole.
+- Added DEEP SPACE BACKGROUND information to INFO.
+
+===============================================================================
+v11 - EXPANDED SPACE RANKS
+===============================================================================
+- Expanded automatic Space Rank progression to 1,000 destroyed asteroids.
+- Existing rank requirements were increased by 15 asteroids:
+  - Rookie: 0
+  - Space Cadet: 35
+  - Space Officer: 65
+  - Space Sergeant: 90
+  - Space Colonel: 115
+  - Space Lieutenant: 165
+  - Space Captain: 215
+- Added higher ranks:
+  - Space Commander: 300
+  - Starship Commander: 400
+  - Space Marshal: 500
+  - Space Admiral: 600
+  - Starship Admiral: 700
+  - Galaxy Commander: 800
+  - Cosmic Commander: 900
+  - Space God: 1,000
+- INFO rank list updated to match.
+
+===============================================================================
+v10 - SETTINGS MENU
+===============================================================================
+- Moved audio controls out of SHIP SYSTEMS.
+- Added dedicated SETTINGS button next to INFO and SHIP.
+- SETTINGS includes:
+  - ALL AUDIO
+  - MUSIC
+  - SPACE ambience
+  - ENGINE
+  - SHOTS
+  - CREDITS
+  - UPGRADES
+- Added O keyboard shortcut to open/close SETTINGS.
+- ESC closes SETTINGS, INFO, or SHIP SYSTEMS.
+
+===============================================================================
+v9 - DETAILED AUDIO CONTROLS & INFO
+===============================================================================
+- Added individual audio-category toggles.
+- Added ALL AUDIO master toggle.
+- Preserved individual audio preferences when master audio is disabled.
+- Added INFO button next to SHIP.
+- Added I keyboard shortcut for INFO.
+- Added ESC support for closing menus.
+- INFO added:
+  - PC controls
+  - Space Ranks
+  - purchasable Ship Titles
+  - upgrade explanations
+  - Red Elite Asteroid explanation
+  - credit reward information
+  - SAVE CODE information
+- Engine remained at the quieter level introduced in v8.
+
+===============================================================================
+v8 - QUIETER ENGINE
+===============================================================================
+- Reduced continuous engine volume.
+- Reduced rocket-ignition volume.
+- Other audio categories left unchanged.
+
+===============================================================================
+v7 - PROCEDURAL AUDIO
+===============================================================================
+- Added procedural Web Audio effects:
+  - space ambience
+  - calm original background music
+  - engine/thrust sound
+  - rocket ignition
+  - laser shots
+  - credit sounds
+  - purchase/upgrade jingle
+- Added initial SOUND FX and MUSIC toggles.
+- Audio starts after a user gesture to support mobile browser restrictions.
+
+===============================================================================
+v6 - SAVE CODES
+===============================================================================
+- Added 4-5 digit SAVE CODE system.
+- Saves stored locally in browser localStorage.
+- Added code generator.
+- Added START / LOAD flow.
+- Added automatic periodic saving.
+- Saved progression includes credits, lives, upgrades, titles, magazine state,
+  zoom, ship state, and position.
+- Game Over deletes the active run.
+- Saves are local to the same browser/device.
+- Added last-used save-code memory.
+
+===============================================================================
+v5 - LARGE MAP, CAMERA, ZOOM, MOBILE HUD
+===============================================================================
+- Added larger scrolling game world.
+- Added camera-follow system.
+- Added map boundaries.
+- Added desktop/mobile zoom:
+  - on-screen + / -
+  - keyboard + / -
+  - mouse wheel
+- Reduced mobile HUD size.
+- Displayed purchased Ship Titles in the HUD.
+- Improved asteroid spawning outside the immediate camera view.
+
+===============================================================================
+v4 - PROGRESSION / REWARD EXPANSION
+===============================================================================
+- Continued expansion of the English game build.
+- Added/refined progression systems that became the later Space Rank,
+  upgrade, title, and reward structure.
+- Continued PC/mobile web-app packaging.
+
+===============================================================================
+v3 - ENGLISH UI BUILD
+===============================================================================
+- Converted the playable game's visible UI to English.
+- Continued browser/web-app support.
+- Retained PC and touch controls.
+
+===============================================================================
+v2 - EARLY WORKING WEB APP
+===============================================================================
+- Produced a more complete working browser build.
+- Added/continued web-app packaging.
+- Continued development of PC and touch/mobile controls.
+
+===============================================================================
+v1 - ORIGINAL RELEASE
+===============================================================================
+- Original public version of The Asteroid Space Game.
+- Core asteroid-shooter gameplay.
+- Player-controlled spaceship.
+- Asteroid destruction and basic scoring/progression foundation.
+- First GitHub-hosted version of the project.
+
+===============================================================================
+CURRENT DESIGN / CORE SYSTEMS
+===============================================================================
+- PC, iOS/mobile, and Android browser support.
+- PC controls include WASD/arrows, Space, R, M, I, O, ESC, and zoom controls.
+- Touch controls for mobile.
+- SAVE CODE persistence.
+- Automatic Space Rank progression up to Space God at 1,000 asteroids.
+- Purchasable Ship Titles:
+  - King
+  - Master
+  - Legend
+- Title credit multipliers and full-set x11 multiplier.
+- Red Elite Asteroids appear periodically and award x2 asteroid credits.
+- Every 10 destroyed asteroids grants a base 15-credit bonus before active title multiplier.
+- Gun, Engine, Shield, Magazine, Reload, Ship Color, Heart, Background,
+  audio, and visual-progression systems.
+
+===============================================================================
+MUSIC CREDIT
+===============================================================================
+Track: "A few jumps away"
+Artist: Arthur Vyncke (Belgium)
+
+The supplied permission text states that the track is free to use in permitted
+content with required artist credit and must not be registered on Spotify,
+iTunes, copyright-detection systems, or similar platforms as someone else's
+original work.
+
+The original source/license should be checked before redistribution or
+commercial use beyond the uses explicitly permitted by that source.

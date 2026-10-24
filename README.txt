@@ -1,13 +1,29 @@
-The Asteroid Space Game – v15
-Developed by Nortic Pixel Studio
+The Asteroid Space Game – v16.2
+Developed by William T. Hansen of Nortic Pixel Studio, with assistance from ChatGPT.
 
-NEW IN v15
-- Extra-heart purchases now stop after Space Rank #10.
-- Heart opportunities:
-  - Rank #5: Space Colonel — one heart for 150 credits
-  - Rank #10: Space Marshal — one heart for 150 credits
-- No additional heart purchases unlock after Rank #10.
-- Maximum: 2 extra hearts per run.
-- Heart purchases remain saved with the active SAVE CODE.
+CURRENT VERSION
+v16.2 adds a five-step music volume control:
+0% / 25% / 50% / 75% / 100%.
 
-All v14 features are retained.
+The selected music volume is stored locally in the browser.
+Volume 0% keeps MUSIC enabled but silences the track.
+Other sound groups remain independent.
+
+FILES
+- index.html
+- manifest.json
+- service-worker.js
+- a-few-jumps-away.mp3
+- deep-space-background.png
+- README.txt
+- CHANGELOG.txt
+
+MUSIC CREDIT
+Track: "A few jumps away"
+Artist: Arthur Vyncke (Belgium)
+
+Keep the required artist credit and follow the original source/license terms.
+Do not register the track on Spotify, iTunes, copyright-detection systems,
+or similar services as your own work.
+
+For the complete development history, see CHANGELOG.txt.

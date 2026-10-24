@@ -411,6 +411,73 @@
         font-size:10px;
       }
     }
+
+    .developer-credit{
+      margin-top:10px;
+      font-size:10px;
+      line-height:1.4;
+      color:rgba(255,255,255,.48);
+      letter-spacing:.02em;
+    }
+    .studio-footer{
+      position:absolute;
+      z-index:5;
+      left:50%;
+      bottom:max(3px,env(safe-area-inset-bottom));
+      transform:translateX(-50%);
+      pointer-events:none;
+      user-select:none;
+      white-space:nowrap;
+      font-size:8px;
+      font-weight:800;
+      letter-spacing:.18em;
+      color:rgba(255,255,255,.13);
+      text-transform:uppercase;
+    }
+    .theme-status{
+      font-weight:900;
+      color:#cfe9ff;
+    }
+    @media (max-width:700px){
+      .studio-footer{font-size:7px;letter-spacing:.13em}
+      .developer-credit{font-size:9px}
+    }
+
+    .music-volume-panel{
+      grid-column:1/-1;
+      padding:10px;
+      border-radius:14px;
+      background:rgba(255,255,255,.035);
+      border:1px solid rgba(255,255,255,.08);
+    }
+    .music-volume-title{
+      margin-bottom:8px;
+      text-align:center;
+      font-size:10px;
+      font-weight:900;
+      letter-spacing:.08em;
+      color:rgba(255,255,255,.72);
+    }
+    .music-volume-grid{
+      display:grid;
+      grid-template-columns:repeat(5,minmax(0,1fr));
+      gap:6px;
+    }
+    .music-vol-btn{
+      min-width:0;
+      min-height:38px;
+      padding:0 4px;
+      font-size:10px;
+    }
+    .music-vol-btn.selected{
+      opacity:1;
+      outline:2px solid rgba(255,255,255,.72);
+      background:#1b2738;
+    }
+    @media (max-width:700px){
+      .music-volume-grid{gap:4px}
+      .music-vol-btn{font-size:9px;min-height:36px}
+    }
 </style>
 </head>
 <body>
@@ -427,7 +494,7 @@
     <div class="hud-row">CREDIT MULTIPLIER <span id="creditMultiplierHud">×1</span></div>
     <div class="rankbar"><div id="rankBar"></div></div>
     <div id="rankProgressText" class="small">35 to Space Cadet</div>
-    <div id="ammoHud" class="hud-row">GUN 30 / 30</div>
+    <div id="ammoHud" class="hud-row">GUN 45 / 45</div>
   </div>
 
   <div class="top-actions">
@@ -457,11 +524,14 @@
 
   <div id="message" class="message hidden" aria-live="polite"></div>
 
+  <audio id="licensedMusic" src="./a-few-jumps-away.mp3" preload="auto" loop></audio>
+  <div class="studio-footer">Nortic Pixel Studio</div>
+
   <div id="startOverlay" class="overlay">
     <div class="card center">
       <div style="font-size:64px">🚀</div>
       <h1 style="margin-top:14px">THE ASTEROID SPACE GAME</h1>
-      <p class="lead">Destroy asteroids, earn credits, climb the Space Ranks, and upgrade your ship.</p><p class="lead"><b>PC:</b> W/A/S/D or Arrow Keys to fly · Space to fire · R to reload · M to open Ship Systems · +/- or mouse wheel to zoom<br><b>Mobile / Touchscreen:</b> Use the on-screen controls, Reload, and the +/- zoom buttons.<br><b>Elite asteroid:</b> Every 5th asteroid is red, has more health, and gives 2× credits.<br><b>Audio:</b> Space ambience and calm indie music begin after START / LOAD.</p>
+      <p class="lead">Destroy asteroids, earn credits, climb the Space Ranks, and upgrade your ship.</p><p class="lead"><b>PC:</b> W/A/S/D or Arrow Keys to fly · Space to fire · R to reload · M to open Ship Systems · +/- or mouse wheel to zoom<br><b>Mobile / Touchscreen:</b> Use the on-screen controls, Reload, and the +/- zoom buttons.<br><b>Elite asteroid:</b> Every 5th asteroid is red, has more health, and gives 2× credits.<br><b>Audio:</b> Space ambience and “A few jumps away” begin after START / LOAD and the music loops automatically.</p>
       <div class="save-box">
         <label class="save-label" for="saveCodeInput">SAVE CODE · 4–5 DIGITS</label>
         <div class="save-row">
@@ -470,6 +540,7 @@
         </div>
         <div id="saveStatus" class="save-status">Enter your own code or generate one. Saves stay on this browser/device.</div>
       </div>
+      <div class="developer-credit">Developed by William T. Hansen of Nortic Pixel Studio, with assistance from ChatGPT.</div>
       <button id="goBtn" class="go" type="button">START / LOAD</button>
       <p class="lead">iPhone tip: Add the game to your Home Screen for the most app-like full-screen experience.</p>
     </div>
@@ -492,14 +563,20 @@
 
       <div class="system">
         <div class="system-title"><span>🔫 WEAPONS</span><span>LV. <b id="gunLevel">1</b></span></div>
-        <div id="gunInfo" class="desc">Center cannon · 30 shots before cooldown</div>
+        <div id="gunInfo" class="desc">Center cannon · 45 shots before reload</div>
         <button id="gunUpgrade" class="upgrade-btn" type="button">UPGRADE · 35 CR</button>
       </div>
 
       <div class="system">
-        <div class="system-title"><span>🧰 MAGAZINE</span><span><b id="magCapacity">30</b> SHOTS</span></div>
-        <div id="magInfo" class="desc">Standard magazine · 30 shots</div>
-        <button id="magUpgrade" class="upgrade-btn" type="button">UPGRADE TO 60 · 100 CR</button>
+        <div class="system-title"><span>🧰 MAGAZINE</span><span><b id="magCapacity">45</b> SHOTS</span></div>
+        <div id="magInfo" class="desc">Standard magazine · 45 shots · bullet power ×1</div>
+        <button id="magUpgrade" class="upgrade-btn" type="button">UPGRADE TO 75 · 100 CR</button>
+      </div>
+
+      <div class="system">
+        <div class="system-title"><span>⏱️ RELOAD SYSTEM</span><span>LV. <b id="reloadLevel">0</b></span></div>
+        <div id="reloadInfo" class="desc">Reload time · 3.0 seconds</div>
+        <button id="reloadUpgrade" class="upgrade-btn" type="button">UPGRADE TO 2.5s · 75 CR</button>
       </div>
 
       <div class="system">
@@ -518,6 +595,12 @@
         <div class="system-title"><span>❤️ EXTRA HEART</span><span id="heartStatus">0 / 2</span></div>
         <div id="heartInfo" class="desc">Unlocks at Space Rank #5 and #10 only. Each heart can only be bought once.</div>
         <button id="heartUpgrade" class="upgrade-btn" type="button">LOCKED · REACH RANK #5</button>
+      </div>
+
+      <div class="system">
+        <div class="system-title"><span>🌌 SPACE BACKGROUND</span><span id="backgroundStatus" class="theme-status">STANDARD</span></div>
+        <div id="backgroundInfo" class="desc">Unlock the supplied Deep Space background once, then switch between backgrounds for free.</div>
+        <button id="backgroundUpgrade" class="upgrade-btn" type="button">UNLOCK DEEP SPACE · 250 CR</button>
       </div>
 
       <div class="system">
@@ -563,13 +646,25 @@
         <div class="audio-grid" style="margin-top:10px">
           <button id="allAudioToggle" class="audio-btn master" type="button">ALL AUDIO · ON</button>
           <button id="musicToggle" class="audio-btn" type="button">MUSIC · ON</button>
+          <div class="music-volume-panel">
+            <div class="music-volume-title">MUSIC VOLUME</div>
+            <div class="music-volume-grid">
+              <button id="musicVol0" class="audio-btn music-vol-btn" type="button">0%</button>
+              <button id="musicVol25" class="audio-btn music-vol-btn" type="button">25%</button>
+              <button id="musicVol50" class="audio-btn music-vol-btn" type="button">50%</button>
+              <button id="musicVol75" class="audio-btn music-vol-btn" type="button">75%</button>
+              <button id="musicVol100" class="audio-btn music-vol-btn" type="button">100%</button>
+            </div>
+          </div>
           <button id="ambienceToggle" class="audio-btn" type="button">SPACE · ON</button>
           <button id="engineSoundToggle" class="audio-btn" type="button">ENGINE · ON</button>
           <button id="shotSoundToggle" class="audio-btn" type="button">SHOTS · ON</button>
           <button id="creditSoundToggle" class="audio-btn" type="button">CREDITS · ON</button>
           <button id="upgradeSoundToggle" class="audio-btn" type="button">UPGRADES · ON</button>
         </div>
-        <div class="settings-note">Audio preferences are saved locally in the browser.</div>
+        <div class="settings-note">Audio preferences are saved locally in the browser.<br>
+Music: “A few jumps away” — Arthur Vyncke.<br>
+<span id="musicTrackStatus">TRACK STATUS · WAITING FOR START</span></div>
       </div>
 
       <div class="settings-section">
@@ -669,10 +764,10 @@
         <h3>🛠️ UPGRADES</h3>
         <ul class="info-list">
           <li><b>Weapons</b> — Faster firing as levels increase. Level 2+ adds alternating side cannons.</li>
-          <li><b>Magazine</b> — Starts at 30 shots. Upgrade to 60 shots for 100 credits, then 125 shots for 350 credits. Each Magazine upgrade also boosts bullet damage by +50%.</li>
+          <li><b>Magazine</b> — Starts at 45 shots. Upgrade to 75 shots for 100 credits, then 140 shots for 350 credits. Each Magazine upgrade also boosts bullet damage by +50%.</li>
           <li><b>Engine</b> — Increases thrust, maximum speed, and turning speed.</li>
           <li><b>Shield</b> — Adds 30 maximum shield per level and improves shield regeneration.</li>
-          <li><b>Reload</b> — Manual reload takes 3 seconds. An empty magazine triggers a 3-second automatic reload.</li>
+          <li><b>Reload</b> — Starts at 3.0 seconds. Upgrade the Reload System through 2.5s, 2.0s, 1.5s, 1.0s, and finally 0.5s. Empty magazines use the same reload time.</li>
         </ul>
       </div>
 
@@ -682,6 +777,15 @@
           <li>Distant <b>star streaks</b> drift far across the background.</li>
           <li>A faint <b>wormhole</b> can be seen deep in space.</li>
           <li>These are atmosphere effects and do not change gameplay.</li>
+        </ul>
+      </div>
+
+      <div class="info-section">
+        <h3>🌌 WORLD & BACKGROUNDS</h3>
+        <ul class="info-list">
+          <li>The playable space map is larger and supports more asteroids at the same time.</li>
+          <li><b>Deep Space Background</b> — Unlock once for 250 credits, then switch between Standard and Deep Space for free.</li>
+          <li>The background choice is saved with your SAVE CODE.</li>
         </ul>
       </div>
 
@@ -701,6 +805,15 @@
           <li>Destroy asteroids to earn credits.</li>
           <li>Every <b>10 destroyed asteroids</b> gives a 15-credit bonus before the active title multiplier.</li>
           <li>Use credits in <b>Ship Systems</b> for upgrades and Ship Titles.</li>
+        </ul>
+      </div>
+
+      <div class="info-section">
+        <h3>🎵 MUSIC</h3>
+        <ul class="info-list">
+          <li><b>“A few jumps away”</b> by Arthur Vyncke plays as the background music.</li>
+          <li>The track loops automatically while MUSIC is enabled.</li>
+          <li>Use SETTINGS to turn MUSIC or ALL AUDIO on/off and set music volume to 0%, 25%, 50%, 75%, or 100%.</li>
         </ul>
       </div>
 
@@ -733,17 +846,21 @@
   const canvas = q('game');
   const ctx = canvas.getContext('2d');
   const active = new Set();
+  const licensedMusic=q('licensedMusic');
+  licensedMusic.volume=.32;
+  const deepSpaceImage=new Image();
+  deepSpaceImage.src='./deep-space-background.png';
 
   let W=0,H=0,dpr=1,worldW=2400,worldH=1800,zoom=1,zoomInitialized=false,wormhole={x:1700,y:520,r:120};
   let started=false, paused=true, menuOpen=false, infoOpen=false, settingsOpen=false, over=false;
   let last=performance.now(), credits=0, score=0, lives=3, asteroidKills=0;
   let fireClock=0, spawnClock=0, msgClock=0, shotsUsed=0, cooldown=0, reloading=0, gunSide=0;
-  let cosmeticRank=0, magLevel=0, spawnCount=0, activeSaveCode='', shipColor='normal', heartPurchases=0;
+  let cosmeticRank=0, magLevel=0, reloadLevel=0, spawnCount=0, activeSaveCode='', shipColor='normal', heartPurchases=0, backgroundOwned=false, backgroundTheme='standard';
   let bullets=[], rocks=[], particles=[], stars=[], farStreaks=[];
   let upgrades={gun:1,engine:1,shield:1}, ship;
 
   let audioCtx=null, masterGain=null, sfxGain=null, musicGain=null, ambienceGain=null, engineGain=null;
-  let engineOsc=null, engineNoise=null, masterAudioEnabled=true, musicEnabled=true, ambienceEnabled=true;
+  let engineOsc=null, engineNoise=null, masterAudioEnabled=true, musicEnabled=true, musicVolume=50, ambienceEnabled=true;
   let engineSoundEnabled=true, shotSoundEnabled=true, creditSoundEnabled=true, upgradeSoundEnabled=true;
   let musicStep=0, thrustWasOn=false;
   let musicTimer=null;
@@ -753,6 +870,7 @@
     master:'tasg_audio_master',
     legacyFx:'tasg_audio_fx',
     music:'tasg_audio_music',
+    musicVolume:'tasg_audio_music_volume',
     ambience:'tasg_audio_ambience',
     engine:'tasg_audio_engine',
     shots:'tasg_audio_shots',
@@ -773,6 +891,9 @@
     const legacyFx=readBoolPref(AUDIO_KEYS.legacyFx,true);
     masterAudioEnabled=readBoolPref(AUDIO_KEYS.master,true);
     musicEnabled=readBoolPref(AUDIO_KEYS.music,true);
+    const savedMusicVolumeRaw=safeStorageGet(AUDIO_KEYS.musicVolume);
+    const savedMusicVolume=savedMusicVolumeRaw===null ? 50 : Number(savedMusicVolumeRaw);
+    musicVolume=[0,25,50,75,100].includes(savedMusicVolume) ? savedMusicVolume : 50;
     ambienceEnabled=readBoolPref(AUDIO_KEYS.ambience,true);
     engineSoundEnabled=readBoolPref(AUDIO_KEYS.engine,legacyFx);
     shotSoundEnabled=readBoolPref(AUDIO_KEYS.shots,legacyFx);
@@ -856,12 +977,65 @@
       drone2.connect(d2g); d2g.connect(ambienceGain);
       drone1.start(); drone2.start();
 
-      if(!musicTimer) musicTimer=setInterval(musicTick,560);
       updateAudioMix();
+      syncLicensedMusic();
     }catch(_){
       audioCtx=null;
     }
   }
+
+  function musicVolumeGain(){
+    return musicVolume/100;
+  }
+
+  function setMusicVolume(value){
+    const allowed=[0,25,50,75,100];
+    const v=Number(value);
+    if(!allowed.includes(v))return;
+    musicVolume=v;
+    safeStorageSet(AUDIO_KEYS.musicVolume,String(v));
+    syncLicensedMusic();
+    updateUI();
+  }
+
+  function updateMusicTrackStatus(text){
+    const el=q('musicTrackStatus');
+    if(el)el.textContent='TRACK STATUS · '+text;
+  }
+
+  function syncLicensedMusic(){
+    if(!licensedMusic)return;
+    licensedMusic.volume=musicVolumeGain();
+    const shouldPlay=started && !over && !document.hidden && masterAudioEnabled && musicEnabled && musicVolume>0;
+    licensedMusic.muted=!masterAudioEnabled || !musicEnabled || musicVolume===0;
+
+    if(licensedMusic.error){
+      updateMusicTrackStatus('FILE ERROR');
+      return;
+    }
+
+    if(shouldPlay){
+      const p=licensedMusic.play();
+      if(p && typeof p.then==='function'){
+        p.then(()=>updateMusicTrackStatus('PLAYING · LOOP ON'))
+         .catch(()=>updateMusicTrackStatus('TAP MUSIC OFF / ON TO START'));
+      }
+    }else{
+      licensedMusic.pause();
+      if(!started)updateMusicTrackStatus('WAITING FOR START');
+      else if(!masterAudioEnabled)updateMusicTrackStatus('ALL AUDIO OFF');
+      else if(!musicEnabled)updateMusicTrackStatus('MUSIC OFF');
+      else if(musicVolume===0)updateMusicTrackStatus('VOLUME 0%');
+      else if(document.hidden)updateMusicTrackStatus('PAUSED');
+      else if(over)updateMusicTrackStatus('GAME OVER');
+    }
+  }
+
+  licensedMusic.addEventListener('canplay',()=>{
+    if(started && masterAudioEnabled && musicEnabled)updateMusicTrackStatus('READY');
+  });
+  licensedMusic.addEventListener('playing',()=>updateMusicTrackStatus('PLAYING · LOOP ON · '+musicVolume+'%'));
+  licensedMusic.addEventListener('error',()=>updateMusicTrackStatus('FILE ERROR'));
 
   function updateAudioMix(){
     if(!audioCtx)return;
@@ -877,6 +1051,7 @@
     if((!masterAudioEnabled || !engineSoundEnabled) && engineGain){
       engineGain.gain.setTargetAtTime(.0001,t,.025);
     }
+    syncLicensedMusic();
   }
 
   function tone(freq,duration=.14,type='sine',volume=.09,when=0,slideTo=null,destination=null){
@@ -961,18 +1136,7 @@
   }
 
   function musicTick(){
-    if(!audioCtx || !masterAudioEnabled || !musicEnabled || !started || over)return;
-    const melody=[220,277.18,329.63,277.18,246.94,329.63,369.99,329.63,
-                  220,277.18,329.63,440,369.99,329.63,277.18,246.94];
-    const bass=[110,110,123.47,123.47,92.50,92.50,98,98];
-    const note=melody[musicStep%melody.length];
-    tone(note,.72,'triangle',.028,0,note*.995,musicGain);
-    if(musicStep%4===0){
-      const b=bass[Math.floor(musicStep/4)%bass.length];
-      tone(b,1.25,'sine',.026,0,b*.998,musicGain);
-    }
-    if(musicStep%8===6) tone(note*2,.50,'sine',.012,.12,note*1.99,musicGain);
-    musicStep=(musicStep+1)%64;
+    // v16 uses the licensed looping MP3 track instead of the procedural music sequencer.
   }
 
   function toggleMasterAudio(){
@@ -987,6 +1151,10 @@
     if(group==='music'){
       musicEnabled=!musicEnabled;
       writeBoolPref(AUDIO_KEYS.music,musicEnabled);
+      if(musicEnabled){
+        initAudio();
+        licensedMusic.currentTime=Math.max(0,licensedMusic.currentTime||0);
+      }
     }else if(group==='ambience'){
       ambienceEnabled=!ambienceEnabled;
       writeBoolPref(AUDIO_KEYS.ambience,ambienceEnabled);
@@ -1040,7 +1208,7 @@
 
   function savePayload(){
     return {
-      version:15,
+      version:16.2,
       savedAt:Date.now(),
       alive:lives>0 && !over,
       credits,
@@ -1052,6 +1220,9 @@
       shipColor,
       heartPurchases,
       magLevel,
+      reloadLevel,
+      backgroundOwned,
+      backgroundTheme,
       shotsUsed,
       cooldown,
       reloading,
@@ -1111,6 +1282,9 @@
     cosmeticRank=Math.max(0,Math.min(3,Number(data.cosmeticRank)||0));
     shipColor=(typeof data.shipColor==='string' && shipColors.hasOwnProperty(data.shipColor)) ? data.shipColor : 'normal';
     magLevel=Math.max(0,Math.min(2,Number(data.magLevel)||0));
+    reloadLevel=Math.max(0,Math.min(5,Number(data.reloadLevel)||0));
+    backgroundOwned=!!data.backgroundOwned;
+    backgroundTheme=(backgroundOwned && data.backgroundTheme==='deep')?'deep':'standard';
     shotsUsed=Math.max(0,Number(data.shotsUsed)||0);
     cooldown=Math.max(0,Number(data.cooldown)||0);
     reloading=Math.max(0,Number(data.reloading)||0);
@@ -1140,7 +1314,7 @@
       ship.inv=2;
     }
 
-    for(let i=0;i<4;i++)spawnRock();
+    for(let i=0;i<7;i++)spawnRock();
     return true;
   }
 
@@ -1195,6 +1369,26 @@
     shipColor='normal';
     playPurchaseSound();
     showMessage('SHIP COLOR RESET TO NORMAL',1.6);
+    updateUI();
+    saveGame();
+  }
+
+  function buyOrToggleBackground(){
+    if(!started || over)return;
+    if(!backgroundOwned){
+      if(credits<250){
+        showMessage('NOT ENOUGH CREDITS · BACKGROUND COSTS 250',1.5);
+        return;
+      }
+      credits-=250;
+      backgroundOwned=true;
+      backgroundTheme='deep';
+      playPurchaseSound();
+      showMessage('DEEP SPACE BACKGROUND UNLOCKED',2);
+    }else{
+      backgroundTheme=backgroundTheme==='deep'?'standard':'deep';
+      showMessage(backgroundTheme==='deep'?'DEEP SPACE BACKGROUND ACTIVE':'STANDARD BACKGROUND ACTIVE',1.5);
+    }
     updateUI();
     saveGame();
   }
@@ -1278,8 +1472,8 @@
     ctx.setTransform(dpr,0,0,dpr,0,0);
 
     // The game world is deliberately much larger than the visible screen.
-    worldW=Math.max(2200,W*2.4);
-    worldH=Math.max(1800,H*2.4);
+    worldW=Math.max(3600,W*3.5);
+    worldH=Math.max(2800,H*3.2);
 
     if(!zoomInitialized){
       zoom=defaultZoom();
@@ -1333,20 +1527,42 @@
   }
 
   function magCapacity(){
-    return magLevel===0 ? 30 : magLevel===1 ? 60 : 125;
+    return magLevel===0 ? 45 : magLevel===1 ? 75 : 140;
   }
 
   function magUpgradeCost(){
     return magLevel===0 ? 100 : magLevel===1 ? 350 : null;
   }
 
+  const reloadTimes=[3,2.5,2,1.5,1,.5];
+  const reloadCosts=[75,125,200,300,450];
+
+  function reloadDuration(){
+    return reloadTimes[Math.max(0,Math.min(reloadTimes.length-1,reloadLevel))];
+  }
+
+  function reloadUpgradeCost(){
+    return reloadLevel>=reloadTimes.length-1 ? null : reloadCosts[reloadLevel];
+  }
+
+  function upgradeReload(){
+    const cost=reloadUpgradeCost();
+    if(cost===null || credits<cost)return;
+    credits-=cost;
+    reloadLevel++;
+    playPurchaseSound();
+    showMessage('RELOAD UPGRADED · '+reloadDuration().toFixed(1)+' SEC.',1.8);
+    updateUI();
+    saveGame();
+  }
+
   function startReload(){
     if(!started || paused || menuOpen || over) return;
     if(reloading>0 || cooldown>0) return;
     if(shotsUsed<=0) return;
-    reloading=3;
+    reloading=reloadDuration();
     active.delete('fire');
-    showMessage('RELOADING · 3 SEC.',1.2);
+    showMessage('RELOADING · '+reloadDuration().toFixed(1)+' SEC.',1.2);
     updateUI();
   }
 
@@ -1358,7 +1574,7 @@
     shotsUsed=0;
     reloading=0;
     cooldown=0;
-    showMessage(magLevel===1?'60-SHOT MAGAZINE UNLOCKED · BULLETS ×1.5':'125-SHOT MAGAZINE UNLOCKED · BULLETS ×2',2);
+    showMessage(magLevel===1?'75-SHOT MAGAZINE UNLOCKED · BULLETS ×1.5':'140-SHOT MAGAZINE UNLOCKED · BULLETS ×2',2);
     playPurchaseSound();
     updateUI();
     saveGame();
@@ -1476,6 +1692,11 @@
     q('zoomText').textContent=Math.round(zoom*100)+'%';
     q('allAudioToggle').textContent='ALL AUDIO · '+(masterAudioEnabled?'ON':'OFF');
     q('musicToggle').textContent='MUSIC · '+(musicEnabled?'ON':'OFF');
+    [0,25,50,75,100].forEach(v=>{
+      const b=q('musicVol'+v);
+      b.classList.toggle('selected',musicVolume===v);
+      b.classList.toggle('off',musicVolume!==v);
+    });
     q('ambienceToggle').textContent='SPACE · '+(ambienceEnabled?'ON':'OFF');
     q('engineSoundToggle').textContent='ENGINE · '+(engineSoundEnabled?'ON':'OFF');
     q('shotSoundToggle').textContent='SHOTS · '+(shotSoundEnabled?'ON':'OFF');
@@ -1521,15 +1742,38 @@
       q('heartUpgrade').disabled=true;
     }
     q('magCapacity').textContent=magCapacity();
-    q('magInfo').textContent=magLevel===0?'Standard magazine · 30 shots':magLevel===1?'Extended magazine · 60 shots':'Heavy magazine · 125 shots';
+    q('magInfo').textContent=magLevel===0?'Standard magazine · 45 shots · bullet power ×1':magLevel===1?'Extended magazine · 75 shots · bullet power ×1.5':'Heavy magazine · 140 shots · bullet power ×2';
     const magBtn=q('magUpgrade');
     const magCost=magUpgradeCost();
     if(magCost===null){
-      magBtn.textContent='MAX MAGAZINE · 125 SHOTS';
+      magBtn.textContent='MAX MAGAZINE · 140 SHOTS';
       magBtn.disabled=true;
     }else{
-      magBtn.textContent=(magLevel===0?'UPGRADE TO 60':'UPGRADE TO 125')+' · '+magCost+' CR';
+      magBtn.textContent=(magLevel===0?'UPGRADE TO 75':'UPGRADE TO 140')+' · '+magCost+' CR';
       magBtn.disabled=credits<magCost;
+    }
+
+    q('reloadLevel').textContent=reloadLevel;
+    q('reloadInfo').textContent='Reload time · '+reloadDuration().toFixed(1)+' seconds';
+    const reloadBtnUpgrade=q('reloadUpgrade');
+    const reloadCost=reloadUpgradeCost();
+    if(reloadCost===null){
+      reloadBtnUpgrade.textContent='MAX RELOAD · 0.5s';
+      reloadBtnUpgrade.disabled=true;
+    }else{
+      reloadBtnUpgrade.textContent='UPGRADE TO '+reloadTimes[reloadLevel+1].toFixed(1)+'s · '+reloadCost+' CR';
+      reloadBtnUpgrade.disabled=credits<reloadCost;
+    }
+
+    q('backgroundStatus').textContent=backgroundTheme==='deep'?'DEEP SPACE':'STANDARD';
+    if(!backgroundOwned){
+      q('backgroundInfo').textContent='Unlock the Deep Space background once, then switch between backgrounds for free.';
+      q('backgroundUpgrade').textContent='UNLOCK DEEP SPACE · 250 CR';
+      q('backgroundUpgrade').disabled=credits<250;
+    }else{
+      q('backgroundInfo').textContent='Deep Space unlocked · switching backgrounds is free.';
+      q('backgroundUpgrade').textContent=backgroundTheme==='deep'?'USE STANDARD BACKGROUND':'USE DEEP SPACE BACKGROUND';
+      q('backgroundUpgrade').disabled=false;
     }
     q('cosmeticHud').textContent=cosmeticRanks[cosmeticRank].name;
     q('shipColorHud').textContent=shipColorName();
@@ -1554,7 +1798,7 @@
 
     for(let attempt=0;attempt<12;attempt++){
       const angle=rand(0,Math.PI*2);
-      const distance=viewRadius+rand(120,320);
+      const distance=viewRadius+rand(160,440);
       const tx=clamp(ship.x+Math.cos(angle)*distance,45,worldW-45);
       const ty=clamp(ship.y+Math.sin(angle)*distance,45,worldH-45);
       if(Math.hypot(tx-ship.x,ty-ship.y)>viewRadius*.75 || attempt===11){
@@ -1612,13 +1856,13 @@
     shotsUsed++;
     if(shotsUsed>=magCapacity()){
       shotsUsed=magCapacity();
-      cooldown=3;
-      showMessage('MAG EMPTY · AUTO RELOAD 3 SEC.',1.2);
+      cooldown=reloadDuration();
+      showMessage('MAG EMPTY · AUTO RELOAD '+reloadDuration().toFixed(1)+' SEC.',1.2);
     }
   }
 
-  function asteroidDestroyed(r){
-    r.hp--;
+  function asteroidDestroyed(r,damage=1){
+    r.hp-=Math.max(.1,Number(damage)||1);
     if(r.hp>0){burst(r.x,r.y,3);return false;}
 
     const beforeRank=getSpaceRankIndex();
@@ -1662,6 +1906,7 @@
       q('finalRank').textContent=spaceRanks[getSpaceRankIndex()].name;
       q('gameOver').classList.remove('hidden');
       updateUI();
+      syncLicensedMusic();
       return;
     }
     resetShip();
@@ -1735,7 +1980,7 @@
     ship.inv=Math.max(0,ship.inv-dt);
     ship.shield=Math.min(ship.maxShield,ship.shield+dt*(1.2+(upgrades.shield-1)*.8));
 
-    if(spawnClock>1.15&&rocks.length<Math.min(11,3+Math.floor(score/130))){
+    if(spawnClock>.78&&rocks.length<Math.min(20,6+Math.floor(score/100))){
       spawnClock=0;spawnRock();
     }
 
@@ -1750,12 +1995,7 @@
         const b=bullets[bi],r=rocks[ri];
         if(b&&Math.hypot(b.x-r.x,b.y-r.y)<r.r+b.r){
           bullets.splice(bi,1);
-          let destroyed=false;
-          const hits=Math.max(1,Math.round(b.dmg||1));
-          for(let hit=0;hit<hits;hit++){
-            if(asteroidDestroyed(r)){destroyed=true;break;}
-          }
-          if(destroyed)rocks.splice(ri,1);
+          if(asteroidDestroyed(r,b.dmg||1))rocks.splice(ri,1);
           break;
         }
       }
@@ -1779,48 +2019,87 @@
     ctx.save();
     ctx.translate(ship.x,ship.y);
     ctx.rotate(ship.a);
-    const style=cosmeticRanks[cosmeticRank],engine=upgrades.engine,gun=upgrades.gun;
+
+    const style=cosmeticRanks[cosmeticRank];
+    const engine=upgrades.engine;
+    const gun=upgrades.gun;
+    const rankIdx=getSpaceRankIndex();
+    const tier=rankIdx>=12?4:rankIdx>=9?3:rankIdx>=6?2:rankIdx>=3?1:0;
+    const hull=currentShipHullColor();
 
     if(active.has('up')&&!paused){
+      const flame=22+engine*4+tier*2;
       ctx.beginPath();
-      ctx.moveTo(-12,-7-engine);
-      ctx.lineTo(-28-engine*4,0);
-      ctx.lineTo(-12,7+engine);
+      ctx.moveTo(-12,-6-engine*.5);
+      ctx.lineTo(-flame,0);
+      ctx.lineTo(-12,6+engine*.5);
       ctx.closePath();
       ctx.fillStyle=cosmeticRank===1?'#ffd66b':cosmeticRank===2?'#b9ecff':cosmeticRank===3?'#d8c4ff':'#f2b85e';
       ctx.fill();
     }
 
+    // Main fuselage: progressively longer and more angular at higher Space Ranks.
     ctx.beginPath();
-    ctx.moveTo(24+engine,0);
-    ctx.lineTo(-15,-14);
-    ctx.lineTo(-8,0);
-    ctx.lineTo(-15,14);
+    ctx.moveTo(25+engine+tier*2,0);
+    ctx.lineTo(7+tier*2,-7-tier);
+    ctx.lineTo(-10,-10-tier*2);
+    ctx.lineTo(-18-tier*2,-4);
+    ctx.lineTo(-12-tier,0);
+    ctx.lineTo(-18-tier*2,4);
+    ctx.lineTo(-10,10+tier*2);
+    ctx.lineTo(7+tier*2,7+tier);
     ctx.closePath();
-    ctx.fillStyle=currentShipHullColor();
+    ctx.fillStyle=hull;
     ctx.fill();
     ctx.strokeStyle=style.accent;
     ctx.lineWidth=cosmeticRank===3?3:2;
     ctx.stroke();
 
+    // Rank-inspired wing layouts based on the supplied ship-design references.
+    if(tier>=1){
+      ctx.beginPath();
+      ctx.moveTo(4,-7); ctx.lineTo(-10,-20-tier*2); ctx.lineTo(11,-12); ctx.closePath();
+      ctx.moveTo(4,7); ctx.lineTo(-10,20+tier*2); ctx.lineTo(11,12); ctx.closePath();
+      ctx.fillStyle=hull; ctx.fill(); ctx.stroke();
+    }
+    if(tier>=2){
+      ctx.beginPath();
+      ctx.moveTo(-5,-9);ctx.lineTo(-22,-28);ctx.lineTo(-2,-18);ctx.lineTo(12,-9);
+      ctx.moveTo(-5,9);ctx.lineTo(-22,28);ctx.lineTo(-2,18);ctx.lineTo(12,9);
+      ctx.strokeStyle=style.accent;ctx.lineWidth=3;ctx.stroke();
+    }
+    if(tier>=3){
+      ctx.fillStyle=style.accent;
+      ctx.fillRect(-15,-23,15,4);
+      ctx.fillRect(-15,19,15,4);
+      ctx.beginPath();ctx.arc(5,0,6,0,Math.PI*2);ctx.fill();
+    }
+    if(tier>=4){
+      ctx.beginPath();
+      ctx.moveTo(7,-12);ctx.lineTo(20,-22);ctx.lineTo(17,-8);
+      ctx.moveTo(7,12);ctx.lineTo(20,22);ctx.lineTo(17,8);
+      ctx.strokeStyle=style.accent;ctx.lineWidth=3;ctx.stroke();
+      ctx.beginPath();ctx.moveTo(2,-8);ctx.lineTo(12,0);ctx.lineTo(2,8);
+      ctx.strokeStyle='#f5f1ff';ctx.lineWidth=3;ctx.stroke();
+    }
+
     if(gun>=2){
       ctx.fillStyle=style.accent;
-      ctx.fillRect(0,-18,15,4);
-      ctx.fillRect(0,14,15,4);
+      ctx.fillRect(2,-18-tier,15+tier*2,4);
+      ctx.fillRect(2,14+tier,15+tier*2,4);
     }
     if(gun>=4){
-      ctx.fillRect(-6,-22,13,3);
-      ctx.fillRect(-6,19,13,3);
+      ctx.fillRect(-8,-24-tier,14,3);
+      ctx.fillRect(-8,21+tier,14,3);
     }
+
     if(cosmeticRank===1){
-      ctx.beginPath();ctx.moveTo(-2,-10);ctx.lineTo(5,-18);ctx.lineTo(11,-10);
+      ctx.beginPath();ctx.moveTo(-1,-9);ctx.lineTo(5,-17);ctx.lineTo(11,-9);
       ctx.strokeStyle='#fff1a6';ctx.lineWidth=3;ctx.stroke();
-    }
-    if(cosmeticRank===2){
-      ctx.beginPath();ctx.arc(3,0,7,0,Math.PI*2);ctx.fillStyle='#e6f8ff';ctx.fill();
-    }
-    if(cosmeticRank===3){
-      ctx.beginPath();ctx.moveTo(3,-11);ctx.lineTo(9,0);ctx.lineTo(3,11);
+    }else if(cosmeticRank===2){
+      ctx.beginPath();ctx.arc(4,0,6,0,Math.PI*2);ctx.fillStyle='#e6f8ff';ctx.fill();
+    }else if(cosmeticRank===3){
+      ctx.beginPath();ctx.moveTo(3,-10);ctx.lineTo(10,0);ctx.lineTo(3,10);
       ctx.strokeStyle='#c4a8ff';ctx.lineWidth=4;ctx.stroke();
     }
     ctx.restore();
@@ -1851,6 +2130,17 @@
     // Large playable map
     ctx.fillStyle='#04060b';
     ctx.fillRect(0,0,worldW,worldH);
+
+    if(backgroundTheme==='deep' && deepSpaceImage.complete && deepSpaceImage.naturalWidth){
+      const iw=deepSpaceImage.naturalWidth, ih=deepSpaceImage.naturalHeight;
+      const scale=Math.max(worldW/iw,worldH/ih);
+      const dw=iw*scale, dh=ih*scale;
+      ctx.save();
+      ctx.globalAlpha=.52;
+      ctx.drawImage(deepSpaceImage,(worldW-dw)/2,(worldH-dh)/2,dw,dh);
+      ctx.restore();
+    }
+
     ctx.strokeStyle='rgba(120,150,190,.20)';
     ctx.lineWidth=2/zoom;
     ctx.strokeRect(2,2,worldW-4,worldH-4);
@@ -1974,30 +2264,32 @@
     }else{
       // The pre-start state is a fresh run. Claim this code as its save slot.
       credits=0;score=0;lives=3;heartPurchases=0;asteroidKills=0;shotsUsed=0;cooldown=0;reloading=0;gunSide=0;spawnCount=0;
-      bullets=[];rocks=[];particles=[];upgrades={gun:1,engine:1,shield:1};cosmeticRank=0;shipColor='normal';magLevel=0;
+      bullets=[];rocks=[];particles=[];upgrades={gun:1,engine:1,shield:1};cosmeticRank=0;shipColor='normal';magLevel=0;reloadLevel=0;backgroundOwned=false;backgroundTheme='standard';
       menuOpen=false;infoOpen=false;settingsOpen=false;over=false;active.clear();
       resetShip();
-      for(let i=0;i<4;i++)spawnRock();
+      for(let i=0;i<7;i++)spawnRock();
       showMessage('NEW SAVE · CODE '+code,2);
       updateUI();
       saveGame();
     }
 
     updateUI();
+    syncLicensedMusic();
     try{app.focus({preventScroll:true});}catch(_){app.focus();}
   }
 
   function restart(){
     initAudio();
     credits=0;score=0;lives=3;heartPurchases=0;asteroidKills=0;shotsUsed=0;cooldown=0;reloading=0;gunSide=0;spawnCount=0;
-    bullets=[];rocks=[];particles=[];upgrades={gun:1,engine:1,shield:1};cosmeticRank=0;shipColor='normal';magLevel=0;
+    bullets=[];rocks=[];particles=[];upgrades={gun:1,engine:1,shield:1};cosmeticRank=0;shipColor='normal';magLevel=0;reloadLevel=0;backgroundOwned=false;backgroundTheme='standard';
     menuOpen=false;infoOpen=false;settingsOpen=false;over=false;started=true;paused=false;active.clear();
     resetShip();
-    for(let i=0;i<4;i++)spawnRock();
+    for(let i=0;i<7;i++)spawnRock();
     q('gameOver').classList.add('hidden');
     showMessage('NEW SHIP · SAVE CODE '+(activeSaveCode||'—'));
     updateUI();
     saveGame();
+    syncLicensedMusic();
     try{app.focus({preventScroll:true});}catch(_){app.focus();}
   }
 
@@ -2179,16 +2471,28 @@
 
   q('gunUpgrade').addEventListener('click',()=>upgrade('gun'));
   q('magUpgrade').addEventListener('click',upgradeMagazine);
+  q('reloadUpgrade').addEventListener('click',upgradeReload);
   q('engineUpgrade').addEventListener('click',()=>upgrade('engine'));
   q('shieldUpgrade').addEventListener('click',()=>upgrade('shield'));
   q('heartUpgrade').addEventListener('click',buyExtraHeart);
+  q('backgroundUpgrade').addEventListener('click',buyOrToggleBackground);
   q('allAudioToggle').addEventListener('click',toggleMasterAudio);
   q('musicToggle').addEventListener('click',()=>toggleAudioGroup('music'));
+  q('musicVol0').addEventListener('click',()=>setMusicVolume(0));
+  q('musicVol25').addEventListener('click',()=>setMusicVolume(25));
+  q('musicVol50').addEventListener('click',()=>setMusicVolume(50));
+  q('musicVol75').addEventListener('click',()=>setMusicVolume(75));
+  q('musicVol100').addEventListener('click',()=>setMusicVolume(100));
   q('ambienceToggle').addEventListener('click',()=>toggleAudioGroup('ambience'));
   q('engineSoundToggle').addEventListener('click',()=>toggleAudioGroup('engine'));
   q('shotSoundToggle').addEventListener('click',()=>toggleAudioGroup('shots'));
   q('creditSoundToggle').addEventListener('click',()=>toggleAudioGroup('credits'));
   q('upgradeSoundToggle').addEventListener('click',()=>toggleAudioGroup('upgrades'));
+  document.addEventListener('pointerup',()=>{
+    if(started && !over && masterAudioEnabled && musicEnabled && licensedMusic.paused){
+      syncLicensedMusic();
+    }
+  },{passive:true});
   q('colorRed').addEventListener('click',()=>buyShipColor('red'));
   q('colorGreen').addEventListener('click',()=>buyShipColor('green'));
   q('colorOrange').addEventListener('click',()=>buyShipColor('orange'));
@@ -2203,9 +2507,9 @@
   document.addEventListener('visibilitychange',()=>{
     if(document.hidden&&started&&!over){
       saveGame();
-      paused=true;active.clear();updateEngineAudio(false);
+      paused=true;active.clear();updateEngineAudio(false);syncLicensedMusic();
     }else if(!document.hidden&&started&&!over&&!menuOpen&&!infoOpen&&!settingsOpen){
-      paused=false;
+      paused=false;syncLicensedMusic();
     }
   });
   window.addEventListener('pagehide',()=>saveGame());
@@ -2214,7 +2518,7 @@
   loadAudioPrefs();
   resize();
   resetShip();
-  for(let i=0;i<4;i++)spawnRock();
+  for(let i=0;i<7;i++)spawnRock();
 
   const lastCode=cleanSaveCode(safeStorageGet(LAST_CODE_KEY));
   if(validSaveCode(lastCode)){
@@ -2226,7 +2530,7 @@
   requestAnimationFrame(loop);
 
   if('serviceWorker' in navigator && location.protocol.startsWith('http')){
-    navigator.serviceWorker.register('./service-worker.js?v=15').catch(()=>{});
+    navigator.serviceWorker.register('./service-worker.js?v=16.2').catch(()=>{});
   }
 })();
 </script>
