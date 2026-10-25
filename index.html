@@ -495,6 +495,7 @@
     <div class="rankbar"><div id="rankBar"></div></div>
     <div id="rankProgressText" class="small">35 to Space Cadet</div>
     <div id="ammoHud" class="hud-row">GUN 45 / 45</div>
+    <div id="starHud" class="small">STAR BOOST · 3:00</div>
   </div>
 
   <div class="top-actions">
@@ -595,12 +596,6 @@
         <div class="system-title"><span>❤️ EXTRA HEART</span><span id="heartStatus">0 / 2</span></div>
         <div id="heartInfo" class="desc">Unlocks at Space Rank #5 and #10 only. Each heart can only be bought once.</div>
         <button id="heartUpgrade" class="upgrade-btn" type="button">LOCKED · REACH RANK #5</button>
-      </div>
-
-      <div class="system">
-        <div class="system-title"><span>🌌 SPACE BACKGROUND</span><span id="backgroundStatus" class="theme-status">STANDARD</span></div>
-        <div id="backgroundInfo" class="desc">Unlock the supplied Deep Space background once, then switch between backgrounds for free.</div>
-        <button id="backgroundUpgrade" class="upgrade-btn" type="button">UNLOCK DEEP SPACE · 250 CR</button>
       </div>
 
       <div class="system">
@@ -708,25 +703,43 @@ Music: “A few jumps away” — Arthur Vyncke.<br>
       </div>
 
       <div class="info-section">
+        <h3>🎥 DYNAMIC CAMERA</h3>
+        <ul class="info-list">
+          <li>The camera follows the ship smoothly instead of locking it to the exact center of the screen.</li>
+          <li>The view looks ahead in the direction you are flying, giving you more space to see incoming asteroids and long-range shots.</li>
+        </ul>
+      </div>
+
+      <div class="info-section">
         <h3>🏅 SPACE RANKS · ASTEROIDS DESTROYED</h3>
         <ul class="info-list">
-          <li><b>Rookie</b> — 0</li>
-          <li><b>Space Cadet</b> — 35</li>
-          <li><b>Space Officer</b> — 65</li>
-          <li><b>Space Sergeant</b> — 90</li>
-          <li><b>Space Colonel</b> — 115</li>
-          <li><b>Space Lieutenant</b> — 165</li>
-          <li><b>Space Captain</b> — 215</li>
-          <li><b>Space Commander</b> — 300</li>
-          <li><b>Starship Commander</b> — 400</li>
-          <li><b>Space Marshal</b> — 500</li>
-          <li><b>Space Admiral</b> — 600</li>
-          <li><b>Starship Admiral</b> — 700</li>
-          <li><b>Galaxy Commander</b> — 800</li>
-          <li><b>Cosmic Commander</b> — 900</li>
-          <li><b>Space God</b> — 1,000</li>
+          <li><b>#1 Rookie</b> — 0</li>
+          <li><b>#2 Space Cadet</b> — 35</li>
+          <li><b>#3 Space Officer</b> — 65</li>
+          <li><b>#4 Space Sergeant</b> — 90</li>
+          <li><b>#5 Space Colonel</b> — 115</li>
+          <li><b>#6 Space Lieutenant</b> — 165</li>
+          <li><b>#7 Space Captain</b> — 215</li>
+          <li><b>#8 Space Commander</b> — 300</li>
+          <li><b>#9 Starship Commander</b> — 400</li>
+          <li><b>#10 Space Marshal</b> — 500</li>
+          <li><b>#11 Space Admiral</b> — 600</li>
+          <li><b>#12 Starship Admiral</b> — 700</li>
+          <li><b>#13 Galaxy Commander</b> — 800</li>
+          <li><b>#14 Cosmic Commander</b> — 900</li>
+          <li><b>#15 Space God</b> — 1,000</li>
+          <li><b>#16 Ascended God</b> — 1,150</li>
+          <li><b>#17 Celestial God</b> — 1,300</li>
+          <li><b>#18 Cosmic Titan</b> — 1,500</li>
+          <li><b>#19 Galactic Overlord</b> — 1,750</li>
+          <li><b>#20 Universe Emperor</b> — 2,000</li>
+          <li><b>#21 Eternal Deity</b> — 2,300</li>
+          <li><b>#22 Multiverse Ruler</b> — 2,600</li>
+          <li><b>#23 Infinity Master</b> — 3,000</li>
+          <li><b>#24 Celestial Supreme</b> — 3,500</li>
+          <li><b>#25 Omniverse God</b> — 4,000</li>
         </ul>
-        <div class="info-note">These ranks are earned automatically by destroying asteroids. Extra-heart purchases unlock at rank #5 (Space Colonel) and #10 (Space Marshal). Rank #10 is the final heart opportunity.</div>
+        <div class="info-note">These ranks are earned automatically by destroying asteroids. Extra-heart purchases still unlock only at rank #5 (Space Colonel) and #10 (Space Marshal).</div>
       </div>
 
       <div class="info-section">
@@ -772,7 +785,7 @@ Music: “A few jumps away” — Arthur Vyncke.<br>
       </div>
 
       <div class="info-section">
-        <h3>🌌 DEEP SPACE BACKGROUND</h3>
+        <h3>🌌 DEEP SPACE EFFECTS</h3>
         <ul class="info-list">
           <li>Distant <b>star streaks</b> drift far across the background.</li>
           <li>A faint <b>wormhole</b> can be seen deep in space.</li>
@@ -781,21 +794,25 @@ Music: “A few jumps away” — Arthur Vyncke.<br>
       </div>
 
       <div class="info-section">
-        <h3>🌌 WORLD & BACKGROUNDS</h3>
+        <h3>☄️ SPECIAL ASTEROIDS</h3>
         <ul class="info-list">
-          <li>The playable space map is larger and supports more asteroids at the same time.</li>
-          <li><b>Deep Space Background</b> — Unlock once for 250 credits, then switch between Standard and Deep Space for free.</li>
-          <li>The background choice is saved with your SAVE CODE.</li>
+          <li><b>Red Asteroid</b> — appears roughly every 3rd spawn and pays <b>×2 normal credits</b>.</li>
+          <li><b>Purple Asteroid</b> — appears every 10th spawn and pays <b>×3 normal credits</b>.</li>
+          <li><b>Green Asteroid</b> — appears every 15th spawn and pays <b>×4 normal credits</b>.</li>
+          <li>When special spawn intervals overlap, the higher-value asteroid takes priority.</li>
+          <li>Special asteroid rewards stack with your active Ship Title credit multiplier.</li>
         </ul>
       </div>
 
       <div class="info-section">
-        <h3>🔴 RED ELITE ASTEROIDS</h3>
+        <h3>⭐ MAGAZINE STAR BOOST</h3>
         <ul class="info-list">
-          <li>Every <b>5th spawned asteroid</b> is a red elite asteroid.</li>
-          <li>Red asteroids have <b>more health</b> and need more hits to destroy.</li>
-          <li>They pay <b>×2 normal asteroid credits</b>.</li>
-          <li>The elite ×2 reward stacks with your active Ship Title credit multiplier.</li>
+          <li>A glowing star appears after about <b>3 minutes of active gameplay</b>.</li>
+          <li>Fly into the star to collect it.</li>
+          <li>The boost gives <b>15 seconds of infinite magazine ammo</b>.</li>
+          <li>While the boost is active, firing does not use magazine shots.</li>
+          <li>Collecting the star instantly refills the magazine and cancels any reload or gun cooldown.</li>
+          <li>After the boost ends, the next star timer begins again.</li>
         </ul>
       </div>
 
@@ -848,15 +865,13 @@ Music: “A few jumps away” — Arthur Vyncke.<br>
   const active = new Set();
   const licensedMusic=q('licensedMusic');
   licensedMusic.volume=.32;
-  const deepSpaceImage=new Image();
-  deepSpaceImage.src='./deep-space-background.png';
-
-  let W=0,H=0,dpr=1,worldW=2400,worldH=1800,zoom=1,zoomInitialized=false,wormhole={x:1700,y:520,r:120};
+  let W=0,H=0,dpr=1,worldW=2400,worldH=1800,zoom=1,zoomInitialized=false,wormhole={x:1700,y:520,r:120},cameraX=0,cameraY=0,cameraReady=false;
   let started=false, paused=true, menuOpen=false, infoOpen=false, settingsOpen=false, over=false;
   let last=performance.now(), credits=0, score=0, lives=3, asteroidKills=0;
   let fireClock=0, spawnClock=0, msgClock=0, shotsUsed=0, cooldown=0, reloading=0, gunSide=0;
-  let cosmeticRank=0, magLevel=0, reloadLevel=0, spawnCount=0, activeSaveCode='', shipColor='normal', heartPurchases=0, backgroundOwned=false, backgroundTheme='standard';
+  let cosmeticRank=0, magLevel=0, reloadLevel=0, spawnCount=0, activeSaveCode='', shipColor='normal', heartPurchases=0;
   let bullets=[], rocks=[], particles=[], stars=[], farStreaks=[];
+  let magStar=null, starSpawnClock=0, starBoostTime=0;
   let upgrades={gun:1,engine:1,shield:1}, ship;
 
   let audioCtx=null, masterGain=null, sfxGain=null, musicGain=null, ambienceGain=null, engineGain=null;
@@ -1208,7 +1223,7 @@ Music: “A few jumps away” — Arthur Vyncke.<br>
 
   function savePayload(){
     return {
-      version:16.2,
+      version:16.41,
       savedAt:Date.now(),
       alive:lives>0 && !over,
       credits,
@@ -1221,13 +1236,14 @@ Music: “A few jumps away” — Arthur Vyncke.<br>
       heartPurchases,
       magLevel,
       reloadLevel,
-      backgroundOwned,
-      backgroundTheme,
       shotsUsed,
       cooldown,
       reloading,
       gunSide,
       spawnCount,
+      starSpawnClock,
+      starBoostTime,
+      magStar:magStar?{xRatio:magStar.x/worldW,yRatio:magStar.y/worldH}:null,
       zoom,
       ship:{
         xRatio:worldW?ship.x/worldW:.5,
@@ -1283,13 +1299,13 @@ Music: “A few jumps away” — Arthur Vyncke.<br>
     shipColor=(typeof data.shipColor==='string' && shipColors.hasOwnProperty(data.shipColor)) ? data.shipColor : 'normal';
     magLevel=Math.max(0,Math.min(2,Number(data.magLevel)||0));
     reloadLevel=Math.max(0,Math.min(5,Number(data.reloadLevel)||0));
-    backgroundOwned=!!data.backgroundOwned;
-    backgroundTheme=(backgroundOwned && data.backgroundTheme==='deep')?'deep':'standard';
     shotsUsed=Math.max(0,Number(data.shotsUsed)||0);
     cooldown=Math.max(0,Number(data.cooldown)||0);
     reloading=Math.max(0,Number(data.reloading)||0);
     gunSide=Math.max(0,Number(data.gunSide)||0);
     spawnCount=Math.max(0,Number(data.spawnCount)||0);
+    starSpawnClock=Math.max(0,Math.min(STAR_SPAWN_SECONDS,Number(data.starSpawnClock)||0));
+    starBoostTime=Math.max(0,Math.min(STAR_BOOST_SECONDS,Number(data.starBoostTime)||0));
 
     if(Number.isFinite(Number(data.zoom)))setZoom(Number(data.zoom));
 
@@ -1313,8 +1329,20 @@ Music: “A few jumps away” — Arthur Vyncke.<br>
       ship.shield=clamp(Number(data.ship.shield)||ship.maxShield,0,ship.maxShield);
       ship.inv=2;
     }
+    cameraReady=false;
+    updateCamera(.016);
 
-    for(let i=0;i<7;i++)spawnRock();
+    magStar=null;
+    if(data.magStar && starBoostTime<=0){
+      magStar={
+        x:clamp((Number(data.magStar.xRatio)||.5)*worldW,70,worldW-70),
+        y:clamp((Number(data.magStar.yRatio)||.5)*worldH,70,worldH-70),
+        r:18,
+        rot:0
+      };
+    }
+
+    for(let i=0;i<21;i++)spawnRock();
     return true;
   }
 
@@ -1373,25 +1401,6 @@ Music: “A few jumps away” — Arthur Vyncke.<br>
     saveGame();
   }
 
-  function buyOrToggleBackground(){
-    if(!started || over)return;
-    if(!backgroundOwned){
-      if(credits<250){
-        showMessage('NOT ENOUGH CREDITS · BACKGROUND COSTS 250',1.5);
-        return;
-      }
-      credits-=250;
-      backgroundOwned=true;
-      backgroundTheme='deep';
-      playPurchaseSound();
-      showMessage('DEEP SPACE BACKGROUND UNLOCKED',2);
-    }else{
-      backgroundTheme=backgroundTheme==='deep'?'standard':'deep';
-      showMessage(backgroundTheme==='deep'?'DEEP SPACE BACKGROUND ACTIVE':'STANDARD BACKGROUND ACTIVE',1.5);
-    }
-    updateUI();
-    saveGame();
-  }
 
   const cosmeticRanks=[
     {name:'ROOKIE',cost:0,color:'#9fb6cf',accent:'#ffffff'},
@@ -1414,7 +1423,17 @@ Music: “A few jumps away” — Arthur Vyncke.<br>
     {name:'STARSHIP ADMIRAL',at:700},
     {name:'GALAXY COMMANDER',at:800},
     {name:'COSMIC COMMANDER',at:900},
-    {name:'SPACE GOD',at:1000}
+    {name:'SPACE GOD',at:1000},
+    {name:'ASCENDED GOD',at:1150},
+    {name:'CELESTIAL GOD',at:1300},
+    {name:'COSMIC TITAN',at:1500},
+    {name:'GALACTIC OVERLORD',at:1750},
+    {name:'UNIVERSE EMPEROR',at:2000},
+    {name:'ETERNAL DEITY',at:2300},
+    {name:'MULTIVERSE RULER',at:2600},
+    {name:'INFINITY MASTER',at:3000},
+    {name:'CELESTIAL SUPREME',at:3500},
+    {name:'OMNIVERSE GOD',at:4000}
   ];
 
   const rand=(a,b)=>a+Math.random()*(b-a);
@@ -1450,13 +1469,41 @@ Music: “A few jumps away” — Arthur Vyncke.<br>
     return cosmeticRanks.slice(1,cosmeticRank+1).map(r=>r.name).join(' · ');
   }
 
-  function getCamera(){
+  function updateCamera(dt){
+    if(!ship)return;
+
     const halfW=W/(2*zoom);
     const halfH=H/(2*zoom);
-    return {
-      x:clamp(ship.x,halfW,Math.max(halfW,worldW-halfW)),
-      y:clamp(ship.y,halfH,Math.max(halfH,worldH-halfH))
-    };
+
+    const speed=Math.hypot(ship.vx,ship.vy);
+    const speedFactor=clamp(speed/170,0,1);
+
+    // Look ahead in the direction the ship is facing and moving.
+    // This keeps the ship away from exact screen center and shows more space ahead.
+    const facingLook=80 + 55*speedFactor;
+    const velocityLook=.42;
+
+    let targetX=ship.x + Math.cos(ship.a)*facingLook + ship.vx*velocityLook;
+    let targetY=ship.y + Math.sin(ship.a)*facingLook + ship.vy*velocityLook;
+
+    targetX=clamp(targetX,halfW,Math.max(halfW,worldW-halfW));
+    targetY=clamp(targetY,halfH,Math.max(halfH,worldH-halfH));
+
+    if(!cameraReady){
+      cameraX=targetX;
+      cameraY=targetY;
+      cameraReady=true;
+    }else{
+      const follow=1-Math.exp(-4.8*Math.max(.001,dt||.016));
+      cameraX+=(targetX-cameraX)*follow;
+      cameraY+=(targetY-cameraY)*follow;
+    }
+
+    return {x:cameraX,y:cameraY};
+  }
+
+  function getCamera(){
+    return {x:cameraX,y:cameraY};
   }
 
   function resize(){
@@ -1506,12 +1553,16 @@ Music: “A few jumps away” — Arthur Vyncke.<br>
     if(ship){
       ship.x=clamp(ship.x,30,worldW-30);
       ship.y=clamp(ship.y,30,worldH-30);
+      cameraReady=false;
     }
   }
 
   function resetShip(){
     const max=100+(upgrades.shield-1)*30;
     ship={x:worldW/2,y:worldH/2,vx:0,vy:0,a:-Math.PI/2,r:17,shield:max,maxShield:max,inv:2};
+    cameraX=ship.x;
+    cameraY=ship.y;
+    cameraReady=false;
   }
 
   function wrap(o){
@@ -1558,7 +1609,7 @@ Music: “A few jumps away” — Arthur Vyncke.<br>
 
   function startReload(){
     if(!started || paused || menuOpen || over) return;
-    if(reloading>0 || cooldown>0) return;
+    if(reloading>0 || cooldown>0 || starBoostTime>0) return;
     if(shotsUsed<=0) return;
     reloading=reloadDuration();
     active.delete('fire');
@@ -1642,7 +1693,7 @@ Music: “A few jumps away” — Arthur Vyncke.<br>
 
   function getRankProgress(){
     const idx=getSpaceRankIndex();
-    if(idx>=spaceRanks.length-1) return {pct:100,text:'MAX RANK · SPACE GOD'};
+    if(idx>=spaceRanks.length-1) return {pct:100,text:'MAX RANK · '+titleCase(spaceRanks[idx].name)};
     const current=spaceRanks[idx], next=spaceRanks[idx+1];
     return {
       pct:Math.max(0,Math.min(100,(asteroidKills-current.at)/(next.at-current.at)*100)),
@@ -1713,15 +1764,23 @@ Music: “A few jumps away” — Arthur Vyncke.<br>
     q('menuRankBar').style.width=prog.pct+'%';
     q('rankProgressText').textContent=prog.text;
     q('menuRankProgress').textContent=prog.text;
-    q('ammoHud').textContent=reloading>0
-      ? 'RELOADING '+reloading.toFixed(1)+'s'
-      : cooldown>0
-        ? 'GUN COOLDOWN '+cooldown.toFixed(1)+'s'
-        : 'GUN '+Math.max(0,magCapacity()-shotsUsed)+' / '+magCapacity();
+    q('ammoHud').textContent=starBoostTime>0
+      ? 'GUN ∞ / ∞ · STAR BOOST '+starBoostTime.toFixed(1)+'s'
+      : reloading>0
+        ? 'RELOADING '+reloading.toFixed(1)+'s'
+        : cooldown>0
+          ? 'GUN COOLDOWN '+cooldown.toFixed(1)+'s'
+          : 'GUN '+Math.max(0,magCapacity()-shotsUsed)+' / '+magCapacity();
+
+    q('starHud').textContent=starBoostTime>0
+      ? 'STAR BOOST ACTIVE · '+starBoostTime.toFixed(1)+'s'
+      : magStar
+        ? 'STAR BOOST · STAR ON MAP'
+        : 'STAR BOOST · '+formatClock(STAR_SPAWN_SECONDS-starSpawnClock);
     q('gunLevel').textContent=upgrades.gun;
     q('engineLevel').textContent=upgrades.engine;
     q('shieldLevel').textContent=upgrades.shield;
-    q('gunInfo').textContent=(upgrades.gun>=2?'Side cannons · alternate left/right · ':'Center cannon · ')+magCapacity()+' shots · bullet power '+bulletDamageText();
+    q('gunInfo').textContent=(upgrades.gun>=2?'Side cannons · alternate left/right · ':'Center cannon · ')+magCapacity()+' shots · bullet power '+bulletDamageText()+(starBoostTime>0?' · STAR BOOST ∞ AMMO':'');
     q('engineInfo').textContent=Math.round((1+(upgrades.engine-1)*.17)*100)+' % engine power';
     q('shieldInfo').textContent=ship.maxShield+' max shield';
     const heartUnlocked=unlockedHeartSlots();
@@ -1765,16 +1824,6 @@ Music: “A few jumps away” — Arthur Vyncke.<br>
       reloadBtnUpgrade.disabled=credits<reloadCost;
     }
 
-    q('backgroundStatus').textContent=backgroundTheme==='deep'?'DEEP SPACE':'STANDARD';
-    if(!backgroundOwned){
-      q('backgroundInfo').textContent='Unlock the Deep Space background once, then switch between backgrounds for free.';
-      q('backgroundUpgrade').textContent='UNLOCK DEEP SPACE · 250 CR';
-      q('backgroundUpgrade').disabled=credits<250;
-    }else{
-      q('backgroundInfo').textContent='Deep Space unlocked · switching backgrounds is free.';
-      q('backgroundUpgrade').textContent=backgroundTheme==='deep'?'USE STANDARD BACKGROUND':'USE DEEP SPACE BACKGROUND';
-      q('backgroundUpgrade').disabled=false;
-    }
     q('cosmeticHud').textContent=cosmeticRanks[cosmeticRank].name;
     q('shipColorHud').textContent=shipColorName();
     ['red','green','orange','purple','pink'].forEach(name=>{
@@ -1790,9 +1839,76 @@ Music: “A few jumps away” — Arthur Vyncke.<br>
     updateRankButtons();
   }
 
+  const STAR_SPAWN_SECONDS=180;
+  const STAR_BOOST_SECONDS=15;
+
+  function formatClock(seconds){
+    const s=Math.max(0,Math.ceil(seconds));
+    const m=Math.floor(s/60);
+    const rem=s%60;
+    return m+':'+String(rem).padStart(2,'0');
+  }
+
+  function spawnMagazineStar(){
+    const angle=rand(0,Math.PI*2);
+    const distance=rand(260,520);
+    magStar={
+      x:clamp(ship.x+Math.cos(angle)*distance,70,worldW-70),
+      y:clamp(ship.y+Math.sin(angle)*distance,70,worldH-70),
+      r:18,
+      rot:rand(0,Math.PI*2)
+    };
+    starSpawnClock=0;
+    showMessage('MAGAZINE STAR SPAWNED · FIND THE STAR!',2.2);
+  }
+
+  function collectMagazineStar(){
+    magStar=null;
+    starBoostTime=STAR_BOOST_SECONDS;
+    starSpawnClock=0;
+    shotsUsed=0;
+    cooldown=0;
+    reloading=0;
+    burst(ship.x,ship.y,36);
+    playPurchaseSound();
+    showMessage('STAR BOOST · INFINITE MAGAZINE · 15 SEC.',2.3);
+    updateUI();
+    saveGame();
+  }
+
+  function asteroidKindForSpawn(n){
+    // Higher-value special asteroid wins when spawn intervals overlap.
+    if(n%15===0)return 'green';
+    if(n%10===0)return 'purple';
+    if(n%3===0)return 'red';
+    return 'gray';
+  }
+
+  function asteroidRewardMultiplier(r){
+    if(r.kind==='green')return 4;
+    if(r.kind==='purple')return 3;
+    if(r.kind==='red')return 2;
+    return 1;
+  }
+
+  function asteroidColor(kind){
+    if(kind==='green')return '#35b96b';
+    if(kind==='purple')return '#8e55d8';
+    if(kind==='red')return '#c82f2f';
+    return '#272e3a';
+  }
+
+  function asteroidStroke(kind){
+    if(kind==='green')return 'rgba(185,255,205,.98)';
+    if(kind==='purple')return 'rgba(225,195,255,.98)';
+    if(kind==='red')return 'rgba(255,195,195,.95)';
+    return 'rgba(220,225,235,.45)';
+  }
+
   function spawnRock(){
     spawnCount++;
-    const elite=spawnCount%5===0;
+    const kind=asteroidKindForSpawn(spawnCount);
+    const special=kind!=='gray';
     const viewRadius=Math.max(W,H)/(2*zoom);
     let x=ship.x,y=ship.y;
 
@@ -1806,22 +1922,24 @@ Music: “A few jumps away” — Arthur Vyncke.<br>
       }
     }
 
-    const r=elite?rand(24,44):rand(19,41);
+    const r=special?rand(24,44):rand(19,41);
     const a=Math.atan2(ship.y-y,ship.x-x)+rand(-.65,.65);
-    const s=(elite?rand(20,42):rand(23,50))+Math.min(score/90,30);
+    const s=(special?rand(20,42):rand(23,50))+Math.min(score/90,30);
     const baseHp=r>32?3:r>24?2:1;
+    const extraHp=kind==='green'?4:kind==='purple'?3:kind==='red'?2:0;
 
     rocks.push({
       x,y,
       vx:Math.cos(a)*s,
       vy:Math.sin(a)*s,
       r,
-      hp:elite?baseHp+2:baseHp,
-      maxHp:elite?baseHp+2:baseHp,
+      hp:baseHp+extraHp,
+      maxHp:baseHp+extraHp,
       rot:rand(0,6.28),
       spin:rand(-.65,.65),
       value:Math.max(4,Math.round(r/5)),
-      elite
+      kind,
+      elite:special
     });
   }
 
@@ -1839,7 +1957,7 @@ Music: “A few jumps away” — Arthur Vyncke.<br>
       y:ship.y+Math.sin(a)*22+sy,
       vx:Math.cos(a)*410+ship.vx,
       vy:Math.sin(a)*410+ship.vy,
-      life:1.4,
+      life:6.0,
       r:4,
       dmg:bulletDamage()
     });
@@ -1853,11 +1971,13 @@ Music: “A few jumps away” — Arthur Vyncke.<br>
     if(upgrades.gun===1) addBullet(0);
     else { gunSide=gunSide?0:1; addBullet(gunSide?15:-15); }
     playShotSound();
-    shotsUsed++;
-    if(shotsUsed>=magCapacity()){
-      shotsUsed=magCapacity();
-      cooldown=reloadDuration();
-      showMessage('MAG EMPTY · AUTO RELOAD '+reloadDuration().toFixed(1)+' SEC.',1.2);
+    if(starBoostTime<=0){
+      shotsUsed++;
+      if(shotsUsed>=magCapacity()){
+        shotsUsed=magCapacity();
+        cooldown=reloadDuration();
+        showMessage('MAG EMPTY · AUTO RELOAD '+reloadDuration().toFixed(1)+' SEC.',1.2);
+      }
     }
   }
 
@@ -1867,8 +1987,8 @@ Music: “A few jumps away” — Arthur Vyncke.<br>
 
     const beforeRank=getSpaceRankIndex();
     const mult=creditMultiplier();
-    const eliteMult=r.elite?2:1;
-    const earned=r.value*eliteMult*mult;
+    const specialMult=asteroidRewardMultiplier(r);
+    const earned=r.value*specialMult*mult;
 
     credits+=earned;
     score+=r.elite?20:10;
@@ -1876,8 +1996,12 @@ Music: “A few jumps away” — Arthur Vyncke.<br>
     burst(r.x,r.y,r.elite?20:12);
     playCreditSound(r.elite||mult>1);
 
-    if(r.elite){
-      showMessage('RED ASTEROID · ×2 ELITE · TITLE BONUS ×'+mult,1.5);
+    if(r.kind==='green'){
+      showMessage('GREEN ASTEROID · ×4 CREDITS · TITLE BONUS ×'+mult,1.6);
+    }else if(r.kind==='purple'){
+      showMessage('PURPLE ASTEROID · ×3 CREDITS · TITLE BONUS ×'+mult,1.6);
+    }else if(r.kind==='red'){
+      showMessage('RED ASTEROID · ×2 CREDITS · TITLE BONUS ×'+mult,1.5);
     }
 
     if(asteroidKills%10===0){
@@ -1957,6 +2081,25 @@ Music: “A few jumps away” — Arthur Vyncke.<br>
 
     fireClock+=dt;
     spawnClock+=dt;
+
+    if(starBoostTime>0){
+      starBoostTime=Math.max(0,starBoostTime-dt);
+      if(starBoostTime===0){
+        starSpawnClock=0;
+        showMessage('STAR BOOST ENDED · NEXT STAR IN 3:00',1.8);
+      }
+    }else if(!magStar){
+      starSpawnClock=Math.min(STAR_SPAWN_SECONDS,starSpawnClock+dt);
+      if(starSpawnClock>=STAR_SPAWN_SECONDS)spawnMagazineStar();
+    }
+
+    if(magStar){
+      magStar.rot+=dt*1.8;
+      if(Math.hypot(ship.x-magStar.x,ship.y-magStar.y)<ship.r+magStar.r+8){
+        collectMagazineStar();
+      }
+    }
+
     if(msgClock>0){msgClock-=dt;if(msgClock<=0)q('message').classList.add('hidden');}
 
     const turn=2.75+(upgrades.engine-1)*.14;
@@ -1980,12 +2123,37 @@ Music: “A few jumps away” — Arthur Vyncke.<br>
     ship.inv=Math.max(0,ship.inv-dt);
     ship.shield=Math.min(ship.maxShield,ship.shield+dt*(1.2+(upgrades.shield-1)*.8));
 
-    if(spawnClock>.78&&rocks.length<Math.min(20,6+Math.floor(score/100))){
+    if(spawnClock>.26&&rocks.length<Math.min(60,18+3*Math.floor(score/100))){
       spawnClock=0;spawnRock();
     }
 
     bullets.forEach(b=>{b.x+=b.vx*dt;b.y+=b.vy*dt;b.life-=dt});
     bullets=bullets.filter(b=>b.life>0&&b.x>-30&&b.x<worldW+30&&b.y>-30&&b.y<worldH+30);
+    if(magStar){
+      ctx.save();
+      ctx.translate(magStar.x,magStar.y);
+      ctx.rotate(magStar.rot);
+
+      const pulse=1+Math.sin(performance.now()/170)*.12;
+      ctx.shadowBlur=28/zoom;
+      ctx.shadowColor='rgba(255,225,90,.95)';
+      ctx.fillStyle='rgba(255,224,82,.98)';
+      ctx.strokeStyle='rgba(255,250,205,.98)';
+      ctx.lineWidth=2.5/zoom;
+      ctx.beginPath();
+      for(let i=0;i<10;i++){
+        const a=-Math.PI/2+i*Math.PI/5;
+        const rr=(i%2===0?magStar.r:magStar.r*.43)*pulse;
+        const x=Math.cos(a)*rr;
+        const y=Math.sin(a)*rr;
+        i===0?ctx.moveTo(x,y):ctx.lineTo(x,y);
+      }
+      ctx.closePath();
+      ctx.fill();
+      ctx.stroke();
+      ctx.restore();
+    }
+
     rocks.forEach(r=>{r.x+=r.vx*dt;r.y+=r.vy*dt;r.rot+=r.spin*dt;wrap(r)});
     particles.forEach(p=>{p.x+=p.vx*dt;p.y+=p.vy*dt;p.life-=dt});
     particles=particles.filter(p=>p.life>0);
@@ -2131,16 +2299,6 @@ Music: “A few jumps away” — Arthur Vyncke.<br>
     ctx.fillStyle='#04060b';
     ctx.fillRect(0,0,worldW,worldH);
 
-    if(backgroundTheme==='deep' && deepSpaceImage.complete && deepSpaceImage.naturalWidth){
-      const iw=deepSpaceImage.naturalWidth, ih=deepSpaceImage.naturalHeight;
-      const scale=Math.max(worldW/iw,worldH/ih);
-      const dw=iw*scale, dh=ih*scale;
-      ctx.save();
-      ctx.globalAlpha=.52;
-      ctx.drawImage(deepSpaceImage,(worldW-dw)/2,(worldH-dh)/2,dw,dh);
-      ctx.restore();
-    }
-
     ctx.strokeStyle='rgba(120,150,190,.20)';
     ctx.lineWidth=2/zoom;
     ctx.strokeRect(2,2,worldW-4,worldH-4);
@@ -2205,9 +2363,9 @@ Music: “A few jumps away” — Arthur Vyncke.<br>
         i?ctx.lineTo(x,y):ctx.moveTo(x,y);
       }
       ctx.closePath();
-      ctx.fillStyle=r.elite?'#c82f2f':'#272e3a';
+      ctx.fillStyle=asteroidColor(r.kind||'gray');
       ctx.fill();
-      ctx.strokeStyle=r.elite?'rgba(255,195,195,.95)':'rgba(220,225,235,.45)';
+      ctx.strokeStyle=asteroidStroke(r.kind||'gray');
       ctx.lineWidth=r.elite?3:2;
       ctx.stroke();
       ctx.restore();
@@ -2236,6 +2394,7 @@ Music: “A few jumps away” — Arthur Vyncke.<br>
     const dt=Math.min(.035,(now-last)/1000);
     last=now;
     step(dt);
+    updateCamera(dt);
     draw();
     requestAnimationFrame(loop);
   }
@@ -2263,11 +2422,11 @@ Music: “A few jumps away” — Arthur Vyncke.<br>
       showMessage('SAVE LOADED · CODE '+code,2);
     }else{
       // The pre-start state is a fresh run. Claim this code as its save slot.
-      credits=0;score=0;lives=3;heartPurchases=0;asteroidKills=0;shotsUsed=0;cooldown=0;reloading=0;gunSide=0;spawnCount=0;
-      bullets=[];rocks=[];particles=[];upgrades={gun:1,engine:1,shield:1};cosmeticRank=0;shipColor='normal';magLevel=0;reloadLevel=0;backgroundOwned=false;backgroundTheme='standard';
+      credits=0;score=0;lives=3;heartPurchases=0;asteroidKills=0;shotsUsed=0;cooldown=0;reloading=0;gunSide=0;spawnCount=0;starSpawnClock=0;starBoostTime=0;magStar=null;
+      bullets=[];rocks=[];particles=[];upgrades={gun:1,engine:1,shield:1};cosmeticRank=0;shipColor='normal';magLevel=0;reloadLevel=0;
       menuOpen=false;infoOpen=false;settingsOpen=false;over=false;active.clear();
       resetShip();
-      for(let i=0;i<7;i++)spawnRock();
+      for(let i=0;i<21;i++)spawnRock();
       showMessage('NEW SAVE · CODE '+code,2);
       updateUI();
       saveGame();
@@ -2280,11 +2439,11 @@ Music: “A few jumps away” — Arthur Vyncke.<br>
 
   function restart(){
     initAudio();
-    credits=0;score=0;lives=3;heartPurchases=0;asteroidKills=0;shotsUsed=0;cooldown=0;reloading=0;gunSide=0;spawnCount=0;
-    bullets=[];rocks=[];particles=[];upgrades={gun:1,engine:1,shield:1};cosmeticRank=0;shipColor='normal';magLevel=0;reloadLevel=0;backgroundOwned=false;backgroundTheme='standard';
+    credits=0;score=0;lives=3;heartPurchases=0;asteroidKills=0;shotsUsed=0;cooldown=0;reloading=0;gunSide=0;spawnCount=0;starSpawnClock=0;starBoostTime=0;magStar=null;
+    bullets=[];rocks=[];particles=[];upgrades={gun:1,engine:1,shield:1};cosmeticRank=0;shipColor='normal';magLevel=0;reloadLevel=0;
     menuOpen=false;infoOpen=false;settingsOpen=false;over=false;started=true;paused=false;active.clear();
     resetShip();
-    for(let i=0;i<7;i++)spawnRock();
+    for(let i=0;i<21;i++)spawnRock();
     q('gameOver').classList.add('hidden');
     showMessage('NEW SHIP · SAVE CODE '+(activeSaveCode||'—'));
     updateUI();
@@ -2475,7 +2634,6 @@ Music: “A few jumps away” — Arthur Vyncke.<br>
   q('engineUpgrade').addEventListener('click',()=>upgrade('engine'));
   q('shieldUpgrade').addEventListener('click',()=>upgrade('shield'));
   q('heartUpgrade').addEventListener('click',buyExtraHeart);
-  q('backgroundUpgrade').addEventListener('click',buyOrToggleBackground);
   q('allAudioToggle').addEventListener('click',toggleMasterAudio);
   q('musicToggle').addEventListener('click',()=>toggleAudioGroup('music'));
   q('musicVol0').addEventListener('click',()=>setMusicVolume(0));
@@ -2518,7 +2676,7 @@ Music: “A few jumps away” — Arthur Vyncke.<br>
   loadAudioPrefs();
   resize();
   resetShip();
-  for(let i=0;i<7;i++)spawnRock();
+  for(let i=0;i<21;i++)spawnRock();
 
   const lastCode=cleanSaveCode(safeStorageGet(LAST_CODE_KEY));
   if(validSaveCode(lastCode)){
@@ -2530,7 +2688,7 @@ Music: “A few jumps away” — Arthur Vyncke.<br>
   requestAnimationFrame(loop);
 
   if('serviceWorker' in navigator && location.protocol.startsWith('http')){
-    navigator.serviceWorker.register('./service-worker.js?v=16.2-musicfix').catch(()=>{});
+    navigator.serviceWorker.register('./service-worker.js?v=16.4.1').catch(()=>{});
   }
 })();
 </script>

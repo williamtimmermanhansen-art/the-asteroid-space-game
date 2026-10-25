@@ -1,23 +1,26 @@
-The Asteroid Space Game – v16.2 FINAL MUSIC INCLUDED
+The Asteroid Space Game – v16.4.1
 Developed by William T. Hansen of Nortic Pixel Studio, with assistance from ChatGPT.
 
-MUSIC FIX
-- "A few jumps away" by Arthur Vyncke is now embedded directly inside index.html.
-- The live game no longer depends on finding a separate MP3 file.
-- The MP3 is still included separately in this package for attribution/archive purposes.
-- Music loops automatically.
-- Music volume levels remain: 0%, 25%, 50%, 75%, 100%.
-- SETTINGS shows track status.
+NEW IN v16.4.1
+- Reworked the game camera.
+- The ship is no longer locked to the exact center of the screen.
+- The camera smoothly follows the ship.
+- The camera looks ahead in the direction the ship is facing and moving.
+- Faster movement creates slightly more look-ahead.
+- Camera motion is smoothed to avoid harsh snapping.
+- Camera remains clamped safely inside world boundaries.
 
-IMPORTANT
-Upload ALL files in this folder to the v16.2 branch.
-The embedded music is inside index.html, so the game music will remain available even if
-the separate MP3 path is unavailable.
+RETAINED FROM v16.4
+- 25 Space Ranks through Omniverse God at 4,000 destroyed asteroids.
+- Magazine Star Boost every ~3 minutes.
+- 15 seconds of infinite magazine ammo after collecting the star.
+- Roughly 3x asteroid population.
+- Red x2, Purple x3, Green x4 special asteroids.
+- Long-range bullets.
+- Music and volume controls.
+- Save codes, upgrades, hearts, titles and ship colors.
 
 MUSIC CREDIT
 Track: "A few jumps away"
 Artist: Arthur Vyncke (Belgium)
-
 Keep the required artist credit and follow the original source/license terms.
-Do not register the track on Spotify, iTunes, copyright-detection systems,
-or similar services as your own work.

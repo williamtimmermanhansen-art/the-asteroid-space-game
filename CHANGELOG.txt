@@ -237,3 +237,45 @@ person's original work.
 
 The original source/license should be checked before redistribution or
 commercial use beyond the uses explicitly permitted by the original source.
+
+===============================================================================
+v16.3.2 — PURCHASABLE BACKGROUND REMOVED
+===============================================================================
+- Completely removed the purchasable Deep Space background.
+- Removed the background purchase option from Ship Systems.
+- Removed background ownership/theme data from saves.
+- Removed background switching and Deep Space image rendering.
+- Removed the Deep Space image asset from the game package.
+- Returned to the stable standard space background.
+- Distant star streaks and the wormhole atmosphere effects remain.
+
+===============================================================================
+v16.4 — EXTENDED RANKS & MAGAZINE STAR BOOST
+===============================================================================
+- Extended automatic Space Rank progression from 15 ranks to 25 ranks.
+- Added:
+  #16 Ascended God — 1,150
+  #17 Celestial God — 1,300
+  #18 Cosmic Titan — 1,500
+  #19 Galactic Overlord — 1,750
+  #20 Universe Emperor — 2,000
+  #21 Eternal Deity — 2,300
+  #22 Multiverse Ruler — 2,600
+  #23 Infinity Master — 3,000
+  #24 Celestial Supreme — 3,500
+  #25 Omniverse God — 4,000
+- Updated INFO with all 25 ranks.
+- Added Magazine Star Boost pickup.
+- A glowing star appears after about 3 minutes of active gameplay.
+- Collecting it gives 15 seconds of infinite magazine ammo.
+- Star pickup instantly refills the magazine and clears reload/cooldown.
+- Star boost/timer/pickup state is saved with SAVE CODE.
+
+===============================================================================
+v16.4.1 — DYNAMIC FOLLOW CAMERA
+===============================================================================
+- Changed the camera from strict ship-centered view to smooth follow camera.
+- Added directional look-ahead based on ship facing direction.
+- Added extra look-ahead based on ship velocity.
+- The ship now sits away from exact screen center while moving.
+- Camera movement is smoothed and clamped inside world boundaries.
